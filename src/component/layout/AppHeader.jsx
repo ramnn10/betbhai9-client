@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { BiChevronDown, BiZoomIn } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import RuleModel from "../ruleModal/RuleModal";
-import { FaHome, FaSearchPlus, FaTimes } from "react-icons/fa";
+import { FaHome, FaSearch, FaSearchPlus, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import settings from "../../domainConfig";
 import ButtonValues from "../../views/buttonvalues/ButtonValues";
@@ -259,7 +259,7 @@ const AppHeader = () => {
                       {clickedOutside ? (
                         <div className="animate__animated animate__fadeIn animate__faster absolute right-0 shadow-2xl divide-y  bg-[#f1f5f8] w-[185px] md:mx-0 mr-[2%] ml-[2%] text-[16px] text-[#212529] transition duration-2000 border z-40">
                           <div className="">
-                            <div className=" cursor-pointer space-y-1 px-1 py-2 pb-3">
+                            <div className=" cursor-pointer space-y-0.5 px-1 py-2 pb-2">
                               <div
                                 onClick={() => navigate("/dashboard")}
                                 className="  xl:hidden px-1.5  w-full flex text-black font-normal hover:underline"
@@ -316,9 +316,9 @@ const AppHeader = () => {
                                 Set Button Values
                               </div>
 
-                              <div onClick={() => navigate("/security-auth")} className=" px-1.5  w-full flex text-black font-normal hover:underline whitespace-nowrap">
+                              {/* <div onClick={() => navigate("/security-auth")} className=" px-1.5  w-full flex text-black font-normal hover:underline whitespace-nowrap">
                                 Security Auth Verification{" "}
-                              </div>
+                              </div> */}
 
                               <div onClick={() => navigate("/change-password")} className=" px-1.5  w-full flex text-black font-normal hover:underline">
                                 Change Password{" "}
@@ -329,7 +329,7 @@ const AppHeader = () => {
                               >
                                 Rules
                               </div>
-                              <div className="px-1.5 w-full flex justify-between items-center text-black font-normal hover:underline xl:hidden">
+                              {/* <div className="px-1.5 w-full flex justify-between items-center text-black font-normal hover:underline xl:hidden">
                                 <span>Balance</span>
                                 <input
                                   type="checkbox"
@@ -341,8 +341,8 @@ const AppHeader = () => {
                                   }}
                                   checked={balanceChecked}
                                 />
-                              </div>
-                              <div className="px-1.5 w-full flex justify-between items-center text-black font-normal hover:underline xl:hidden">
+                              </div> */}
+                              {/* <div className="px-1.5 w-full flex justify-between items-center text-black font-normal hover:underline xl:hidden">
                                 <span>Exposure</span>
                                 <input
                                   type="checkbox"
@@ -354,7 +354,7 @@ const AppHeader = () => {
                                   }}
                                   checked={isExposureChecked}
                                 />
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                           <div
@@ -362,7 +362,15 @@ const AppHeader = () => {
                               navigate("/login");
                               localStorage.clear();
                             }}
-                            className="px-2 pt-3 pb-2 w-full text-[#b71e2d] text-[16px] cursor-pointer font-[700]">
+                            className="px-2 pt-3 pb-2 w-full lg:block hidden text-black hover:underline text-[16px] cursor-pointer font-[400]">
+                            Signout
+                          </div>
+                          <div
+                            onClick={() => {
+                              navigate("/login");
+                              localStorage.clear();
+                            }}
+                            className="px-2 pt-3 pb-2 w-full lg:hidden block text-[#b71e2d] text-[16px] cursor-pointer font-[700]">
                             Logout
                           </div>
                         </div>
@@ -382,17 +390,17 @@ const AppHeader = () => {
             </div> */}
           </div>
         </div>
-        <div className="text-white flex xl:hidden font-bold xl:pt-4  items-center text-base cursor-pointer">
+        <div className="text-white flex xl:hidden font-bold xl:pt-4 p-1 justify-center  items-center text-base cursor-pointer">
           <input
             placeholder="Search here"
             className={`text-[14px]  transition-all duration-1000 ease-in-out bg-white ${searchIcon ? "w-[140px] ml-[5px] px-[5px]" : "w-0 px-0"
               }`}
           />
 
-          <div className="">
-            <BiZoomIn
-              className="font-semibold"
-              size={24}
+          <div className="bg-white rounded-full flex justify-center items-center p-[6px]">
+            <FaSearch
+              className="font-semibold text-black"
+              size={13}
               onClick={handleSearchIcon}
             />
           </div>

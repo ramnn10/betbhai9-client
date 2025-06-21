@@ -4,14 +4,14 @@ const GrandExchangeSettings = {
   logo: "/logo/betbhailogo.png",
   SOCKET_URL: "https://socket.trovetown.co/",
   apiurl: "https://apidiamond.trovetown.co/v1/",
-  domainName: "GRANDEXCH",
+  domainName: "BETBHAI9",
   colors: {
     "--primary": "#8a4e00",
     "--bluebtn": "#007bff",
     "--secondary": "#116257",
     "--matchLagai": "#72bbef",
     "--matchKhai": "#FAA9BA",
-    
+
     "--result-color": "#355e3b",
     "--rule-bg": '#CCCCCC',
     "--sports-tab": '#266894',

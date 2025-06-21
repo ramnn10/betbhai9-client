@@ -241,7 +241,7 @@ function InplayMatches({ activeTab, matchlistItems }) {
                       <span>2</span>
                     </p>
                   </div>
-                  <div className="lg:w-[40%] w-full grid grid-cols-6 text-sm font-bold text-black">
+                  <div className="lg:w-[40%] w-full grid grid-cols-6 text-sm font-bold lg:text-[#273A47] text-black">
 
                     {Array?.from({ length: 6 })?.map((_, i) => {
                       const isLagai = i % 2 === 0;

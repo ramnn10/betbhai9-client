@@ -25,15 +25,9 @@ function setMultipleRootCssVariables(colors) {
 
 function App() {
   const dispatch = useDispatch();
-  !localStorage.getItem('dashboardActiveTabKey') && localStorage.setItem('dashboardActiveTabKey', 4)
-
-
-  
+  !localStorage.getItem('dashboardActiveTabKey') && localStorage.setItem('dashboardActiveTabKey', 0)
 
   useEffect(() => {
-
-
-
     if (settings.title) {
       document.title = settings.title;
     }

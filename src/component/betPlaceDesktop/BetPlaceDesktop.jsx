@@ -290,8 +290,8 @@ export function BetPlaceDesktop(props) {
                   <tr className='grid grid-cols-4 gap-[3px] py-1 items-center !border-0 px-1'>
                     {betchipdata?.map((item, index) => {
                       return (
-                        <td key={index} className="flex py-1.5 justify-center items-center bg-[#CCCCCC] !border-0 " onClick={() => arrayData(item, true)}>
-                          <span className='text-black text-md font-[700]'>+ {formatNumber(item)}</span>
+                        <td key={index} className="flex py-1 justify-center items-center bg-[#CCC] rounded-[0.25rem] !border-0 " onClick={() => arrayData(item, true)}>
+                          <span className='text-[#273a47] text-md font-[500]'>{formatNumber(item)}</span>
                         </td>
                       )
                     })}
@@ -306,30 +306,49 @@ export function BetPlaceDesktop(props) {
                       </div>
                     </td>
                   </tr> */}
-                  <tr className=''>
-                    <div className='flex justify-end items-center pb-1 px-2'>
-                      <button type="reset" className="align-left text-black/70 underline" onClick={handleClear}><b>Clear</b></button>
+                  <tr className='grid grid-cols-4 gap-[3px] items-center !border-0 px-1 text-white text-[12px] font-[500]'>
+                    <div className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem] text-[#273a47] bg-[#ffbc00]'>
+                      <button type="button" className="align-center"
+                      // onClick={handleClear}
+                      >MIN STAKE</button>
+                    </div>
+                    <div className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#334579]'>
+                      <button type="button" className="align-center"
+                      // onClick={handleClear}
+                      >MAX STAKE</button>
+                    </div>
+                    <div className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#008000]'>
+                      <button type="reset" className="align-center"
+                      // onClick={handleClear}
+                      >EDIT STAKE</button>
+                    </div>
+                    <div className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#ff0000]'>
+                      <button type="reset" className="align-center" onClick={handleClear}><b>CLEAR</b></button>
                     </div>
                   </tr>
                   <tr>
                     <div className='flex items-center justify-between p-1'>
-                      <button className="bg-[#097c93] hover:bg-[#097c93]/90 flex justify-center items-center text-white text-[14px] px-3 py-2 h-[35px] w-[16%] cursor-pointer"
-                        // onClick={() => handleClose()}
+                      <div className={` px-4 py-1.5 rounded-[0.25rem] font-[500] btn bg-[#bd1828] hover:opacity-90 border-[1px] border-[#bd1828] hover:border-[#FC4242]/90 text-white ld-over cursor-pointer `}
+                        onClick={() => openBets()}>Reset
+                        <div className="ld ld-ball ld-flip">
+                        </div>
+                      </div>
+                      {/* <button className="bg-[#097c93] hover:bg-[#097c93]/90 flex justify-center items-center text-white text-[14px] px-3 py-2 h-[35px] w-[16%] cursor-pointer"
                         onClick={() => {
                           handleButtonValues();
                         }}
                       >
                         Edit
-                      </button>
+                      </button> */}
 
 
                       <div className='flex gap-1'>
-                        <div className={` px-4 py-2 font-[500] btn bg-[#bd1828] hover:bg-[#FC4242]/90 border-[1px] border-[#bd1828] hover:border-[#FC4242]/90 text-white ld-over cursor-pointer `}
+                        {/* <div className={` px-4 py-2 font-[500] btn bg-[#bd1828] hover:bg-[#FC4242]/90 border-[1px] border-[#bd1828] hover:border-[#FC4242]/90 text-white ld-over cursor-pointer `}
                           onClick={() => openBets()}>Reset
                           <div className="ld ld-ball ld-flip">
                           </div>
-                        </div>
-                        <div className={` px-4 py-2 font-[500] btn bg-[#0b7d36] hover:bg-[#0b7d36]/90 border-[1px] border-[#0b7d36] hover:border-[#0b7d36]/90 text-white ld-over cursor-pointer ${betLoading ? "opacity-50 border-2 border-green-900" : ""}`}
+                        </div> */}
+                        <div className={` px-4 py-1.5 rounded-[0.25rem] font-[500] btn bg-[#0b7d36] hover:bg-[#0b7d36]/90 border-[1px] border-[#0b7d36] hover:border-[#0b7d36]/90 text-white ld-over cursor-pointer ${betLoading ? "opacity-50 border-2 border-green-900" : ""}`}
                           onClick={() => { placeBet() }}>
                           <b className='flex justify-center items-center'>
                             Submit

@@ -25,8 +25,8 @@ export default function PlaceBetMobile(props) {
             }));
         }
     };
-   
-    
+
+
     const betchipdata = localStorage.getItem("clientbetChipsData") ? Object.values(JSON.parse(localStorage.getItem("clientbetChipsData"))) : "";
 
     const myArray = Object.values(betChipsData);
@@ -235,11 +235,11 @@ export default function PlaceBetMobile(props) {
                         <div className="flex flex-col">
                             <span className="text-center text-[12px]">Odds</span>
                             <div className="flex items-center w-full overflow-hidden bg-white border border-gray-300">
-                                <button className="h-7 py-[5px] px-1.5 text-white font-bold cursor-pointer bg-[var(--secondary)]" onClick={decreaseCount}>
+                                <button className="h-7 py-[5px] px-1.5 text-white font-bold cursor-pointer bg-[#334579]" onClick={decreaseCount}>
                                     <FaMinus size={13} />
                                 </button>
                                 <div className="py-[3px] text-left px-2 text-sm w-full h-7">{count && count ? count : 0}</div>
-                                <button className="h-7 py-[5px] px-1.5 font-bold text-white cursor-pointer bg-[var(--secondary)]" onClick={increaseCount}>
+                                <button className="h-7 py-[5px] px-1.5 font-bold text-white cursor-pointer bg-[#334579]" onClick={increaseCount}>
                                     <FaPlus size={13} />
                                 </button>
                             </div>
@@ -278,9 +278,12 @@ export default function PlaceBetMobile(props) {
                         ))} */}
 
                         {betchipdata && betchipdata.length > 0 && betchipdata.map((item, chip) => (
-                            <button key={chip} className="flex px-1.5 py-1 justify-center items-center bg-[#6C2D2CD9] !border-0 "
+                            <button key={chip} className="flex px-1.5 py-1 justify-center items-center bg-[#ffffff] !border-0 "
                                 onClick={() => updateStackOnclic(item)}>
-                                <span className='text-white text-sm font-[700]'>+ {formatNumber(item)}</span>
+                                <span className='text-black text-sm font-[500] flex gap-1'>
+                                    <p className='text-green-600'>+</p>
+                                    {formatNumber(item)}
+                                </span>
                             </button>
                         ))}
                         {/* <button className="px-1.5 py-1 text-xs bg-[var(--secondary)] text-white font-bold" onClick={() => updateStackOnclic("500")}>500</button>
@@ -293,22 +296,43 @@ export default function PlaceBetMobile(props) {
                         <button className="px-1.5 py-1 text-xs bg-[var(--secondary)] text-white font-bold" onClick={() => updateStackOnclic("20000")}>20000</button> */}
                     </div>
 
-                    <div className="px-2 pt-0 pb-2">
-                        <div className="grid grid-cols-4">
-                            <div onClick={() => handleClear()} className=" flex text-[#0d6efd] font-[700] cursor-pointer justify-start items-center underline px-4 py-1">
+                    <div className='grid grid-cols-4 gap-[3px] items-center !border-0 px-2 text-white text-[12px] font-[500]'>
+                        <div className='flex justify-center items-center pb-1 px-2  py-1 text-[#273a47] bg-[#ffbc00]'>
+                            <button type="button" className="align-center"
+                            // onClick={handleClear}
+                            >MIN STAKE</button>
+                        </div>
+                        <div className='flex justify-center items-center pb-1 px-2  py-1  bg-[#334579]'>
+                            <button type="button" className="align-center"
+                            // onClick={handleClear}
+                            >MAX STAKE</button>
+                        </div>
+                        <div className='flex justify-center items-center pb-1 px-2  py-1  bg-[#008000]'>
+                            <button type="reset" className="align-center"
+                            // onClick={handleClear}
+                            >EDIT STAKE</button>
+                        </div>
+                        <div className='flex justify-center items-center pb-1 px-2  py-1  bg-[#ff0000]'>
+                            <button type="reset" className="align-center" onClick={handleClear}><b>CLEAR</b></button>
+                        </div>
+                    </div>
+
+                    <div className="px-2 pt-1 pb-2">
+                        <div className="grid grid-cols-2 gap-1 ">
+                            {/* <div onClick={() => handleClear()} className=" flex text-[#0d6efd] font-[700] cursor-pointer justify-start items-center underline px-4 py-1">
                                 Clear
-                            </div>
-                            <button className="bg-[#097c93] hover:bg-[#097c93]/90 font-[700] flex justify-center items-center text-white text-[14px] px-4 py-1.5 h-[35px] "
+                            </div> */}
+                            {/* <button className="bg-[#097c93] hover:bg-[#097c93]/90 font-[700] flex justify-center items-center text-white text-[14px] px-4 py-1.5 h-[35px] "
                                 onClick={() => handleButtonValues()}
                             >
                                 Edit
-                            </button>
+                            </button> */}
 
-                            <button className="bg-[#bd1828] hover:bg-[#FC4242]/90 font-[700] flex justify-center items-center text-white text-[14px] px-2 py-1.5 h-[35px] " onClick={() => handleClose()}>
-                                Reset
+                            <button className="bg-[#FF6A6A] hover:bg-[#FC4242]/90 font-[900] flex justify-center items-center text-white text-[14px] px-2 py-1.5 h-[35px] uppercase" onClick={() => handleClose()}>
+                                Cancel
                             </button>
-                            <button className="bg-[#086f3f] hover:bg-[#0b7d36]/90 font-[700] flex justify-center items-center text-white text-[14px] px-2 py-1.5 h-[35px] " onClick={() => placeBet()}>
-                                <b className='flex justify-center items-center'>
+                            <button className="bg-[#00A105] hover:bg-[#0b7d36]/90 font-[900] flex justify-center items-center text-white text-[14px] px-2 py-1.5 h-[35px] " onClick={() => placeBet()}>
+                                <p className='flex justify-center items-center uppercase'>
                                     {/* {
                                         betLoading ?
                                             <div className=' relative flex justify-center items-center'>
@@ -318,12 +342,12 @@ export default function PlaceBetMobile(props) {
                                             : */}
                                     Place Bet
                                     {/* // } */}
-                                </b>
+                                </p>
                                 <div className="ld ld-ball ld-flip"></div>
                             </button>
                         </div>
 
-                        <div className="text-black text-[12px] pt-2">Range: 100 to 3L</div>
+                        {/* <div className="text-black text-[12px] pt-2">Range: 100 to 3L</div> */}
                     </div>
 
                 </div>

@@ -18,6 +18,7 @@ import ButtonValues from '../../views/buttonvalues/ButtonValues'
 import ProfitLossReport from '../../views/profitlossReport/ProfitLossReport'
 import BetHistory from '../../views/bethistory/BetHistory'
 import UnsettledBets from '../../views/unsettledbets/UnsettledBets'
+import RuleModel from '../ruleModal/RuleModal'
 
 
 
@@ -28,6 +29,7 @@ const AppContent = () => {
       <Route path='/dashboard' element={<Dashboard />} />
       <Route path='/account-statement' element={<AccountSatement />} />
       <Route path='/bet-history' element={<BetHistory />} />
+      <Route path='/rules-page' element={<RuleModel />} />
       <Route path='/unsettled-bets' element={<UnsettledBets />} />
       <Route path='/profitloss-report' element={<ProfitLossReport />} />
       <Route path='/sport-view/:marketId?/:eventId?/:sportId?' element={<ViewMatches />} />

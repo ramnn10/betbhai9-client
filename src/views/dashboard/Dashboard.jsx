@@ -38,13 +38,12 @@ export const sportlistArray = [
 
 ]
 
-
 export const AllSportsArray = [
-  // {
-  //   sportName: "Inplay",
-  //   sportId: 0,
-  //   icons: <FaFootballBall />
-  // },
+  {
+    sportName: "Inplay",
+    sportId: 0,
+    icons: <FaFootballBall />
+  },
   {
     sportName: "Cricket",
     sportId: 4,
@@ -153,16 +152,12 @@ export const AllSportsArray = [
   }
 ];
 
-
-
-
-
 const Dashboard = () => {
 
   const dashboardModalOpen = JSON.parse(localStorage?.getItem("dashboardModalOpen"));
   const { sportMatchList } = useSelector((state) => state.sport);
-  const [activeAllSporttab, setactiveAllSporttab] = useState(localStorage.getItem('dashboardActiveTabKey'))
-
+  const [activeAllSporttab, setactiveAllSporttab] = useState(0)
+  // localStorage.getItem('dashboardActiveTabKey')
   const [matchData, setMatchData] = useState([]);
   const matchlistLocal = localStorage.getItem("matchList")
     ? JSON.parse(localStorage.getItem("matchList"))

@@ -887,37 +887,43 @@ const ViewMatches = () => {
                 </div>
             )} */}
 
-            <div className="xl:hidden block">
-                {inplayMatch &&
-                    inplayMatch?.matchName ? (
-                    <div className="bg-[var(--secondary)] item-center px-2 py-1 flex justify-between">
-                        <span className="text-white text-[12px] font-semibold">{inplayMatch?.matchName}</span>
-                        <span className="text-white text-[12px] font-semibold"> {inplayMatch?.matchDate}</span>
-                    </div>
-                ) : null}
-            </div>
+
 
             <div className="flex justify-between items-center xl:hidden whitespace-nowrap w-full border-t-[1px] border-black/30 bg-[var(--primary)] text-white">
+                <div className="flex justify-start items-center gap-2">
+                    <button
+                        onClick={() => handleMatchClick(1)}
+                        className={` ${matchTab === 1 ? "border-t-[1px]" : ""} border-white px-3 py-2 text-center uppercase w-1/2 text-[12px] font-bold  cursor-pointer`}>
+                        <span>odds</span>
+                    </button>
+                    <button
+                        onClick={() => handleMatchClick(2)}
+                        className={`${matchTab === 2 ? "border-t-[1px]" : ""} border-white  border-l-[1px] px-3 py-2 text-center uppercase w-1/2 text-[12px] font-bold  cursor-pointer`}>
+                        <span className=''>Matched Bets</span>
+                    </button>
+                </div>
 
-                <button
-                    onClick={() => handleMatchClick(1)}
-                    className={` ${matchTab === 1 ? "border-t-[1px]" : ""} border-white px-3 py-2 text-center uppercase shadow-xl w-1/2 text-[12px] font-bold  cursor-pointer`}>
-                    <span>odds</span>
-                </button>
-                <button
-                    onClick={() => handleMatchClick(2)}
-                    className={`${matchTab === 2 ? "border-t-[1px]" : ""} border-white  border-l-[1px] pr-3 py-2 text-center uppercase shadow-xl w-1/2 text-[12px] font-bold  cursor-pointer`}>
-                    <span className=''>Matched Bets</span>
-                </button>
-                <button
-                    // onClick={() => handleMatchClick(3)}
-                    onClick={() => {
-                        handleMatchClick(3);
-                        handelTvModal();
-                    }}
-                    className={`${matchTab === 3 ? "border-t-[1px]" : ""} border-white  border-l-[1px] pr-3 py-2 text-center uppercase flex justify-center items-center shadow-xl w-1/2 text-[12px] font-bold  cursor-pointer`}>
-                    <span className=''><FaTv size={18} /></span>
-                </button>
+                <div className="flex justify-end items-center">
+                    <button
+                        onClick={() => {
+                            handleScore()
+                        }}
+                        className={`px-2 py-1 flex justify-center items-center w-1/2 cursor-pointer`}>
+                        <span className=''>
+                            <img src='/images/scorecard-icon.webp' className="filter invert-[1]" />
+                        </span>
+                    </button>
+                    <button
+                        // onClick={() => handleMatchClick(3)}
+                        onClick={() => {
+                            handleMatchClick(3);
+                            handelTvModal();
+                            // handleScore()
+                        }}
+                        className={`px-2 py-1 flex justify-center items-center w-1/2 cursor-pointer`}>
+                        <span className=''><FaTv size={20} /></span>
+                    </button>
+                </div>
 
             </div>
 
@@ -925,6 +931,7 @@ const ViewMatches = () => {
                 {(matchTab === 1 || matchTab === 3) && (
                     <div className="xl:w-[calc(100%-402px)] 2xl:w-[calc(100%-452px)] w-full overflow-y-auto p-0">
                         <div className="">
+
                             {matchTab === 3 && (
                                 <div className="xl:hidden block">
                                     {/* <div className="bg-[var(--secondary)] cursor-pointer flex justify-between items-center py-1.5 px-4 text-white text-sm font-semibold" onClick={() => handelTvModal()}>
@@ -943,7 +950,15 @@ const ViewMatches = () => {
                                         : null}
                                 </div>
                             )}
-
+                            <div className="xl:hidden block">
+                                {inplayMatch &&
+                                    inplayMatch?.matchName ? (
+                                    <div className="bg-[var(--secondary)] px-2 py-1.5 flex justify-between items-center ">
+                                        <span className="text-white text-[12px] font-semibold">{inplayMatch?.matchName}</span>
+                                        <span className="text-white text-[12px] font-semibold"> {inplayMatch?.matchDate}</span>
+                                    </div>
+                                ) : null}
+                            </div>
                             <div className="xl:block hidden">
                                 {inplayMatch &&
                                     inplayMatch?.matchName ? (
@@ -1157,9 +1172,14 @@ const ViewMatches = () => {
                 )}
                 <div className="space-y-1.5 xl:w-[402px] 2xl:w-[452px] sticky top-0  lg:h-[calc(100vh-400px)] xl:block hidden ">
                     <div>
-                        <div className="bg-[var(--secondary)] cursor-pointer flex justify-between items-center py-1.5 px-4 text-white text-sm font-semibold" onClick={() => handelTvModal()}>
+                        <div className="bg-[var(--secondary)] flex justify-between items-center py-1.5 px-4 text-white text-sm font-semibold" >
                             <span>Live Match</span>
-                            <button className="flex justify-end space-x-2 font-semibold" > </button>
+                            <button
+                                onClick={() => handelTvModal()}
+                                className="flex justify-end items-center cursor-pointer space-x-2 font-semibold" >
+                                <FaTv />
+                                <span>Live Stream Started</span>
+                            </button>
                         </div>
                         {inplayMatch.isTv ? <>
                             {tvShow && <div className="bg-white w-full h-48">

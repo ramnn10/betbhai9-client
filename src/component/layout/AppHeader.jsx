@@ -198,7 +198,10 @@ const AppHeader = () => {
 
               <div className="text-white hidden xl:block font-bold  text-base cursor-pointer  pt-4  items-center ">
                 <div
-                  onClick={() => setModalTrue()}
+                  // onClick={() => setModalTrue()}
+                  onClick={() => {
+                    navigate("/rules-page");
+                  }}
                   className="text-white font-bold text-base pr-2 cursor-pointer"
                 >
                   Rules

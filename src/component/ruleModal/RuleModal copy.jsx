@@ -4,37 +4,31 @@ import { useState } from 'react';
 
 export default function RuleModel(props) {
     const [showRules, setShowRules] = useState(1);
-    // const [activeItem, setActiveItem] = useState(1);
+    const [activeItem, setActiveItem] = useState(1);
 
-    const toggleSection = (id) => {
-        setShowRules(prev => (prev === id ? null : id));
-    };
 
-    // const viewRulesSection = (data) => {
-    //     setShowRules(data)
-    //     setActiveItem(data);
-    // }
+    const viewRulesSection = (data) => {
+        setShowRules(data)
+        setActiveItem(data);
+    }
 
-    // const { setModalFalse } = props;
+    const { setModalFalse } = props;
 
     return (
 
-        <div className=' w-full mb-4'>
-            <div className='border rounded-none bg-white  border-gray-300 overflow-y-auto'>
-                <div className='flex justify-between  rounded-none  bg-[var(--secondary)]  text-black p-1.5 pl-5'>
-                    <h2 className='text-[16px] lg:text-[20px] text-white'>Rules</h2>
-                </div>
-                {/* <div className=" w-full h-full bg-[var(--primary)] flex justify-between colour_sky px-2 py-3.5 items-center">
+        <div className="fixed h-full w-full inset-0 z-[99999] flex items-center justify-center bg-black bg-opacity-50">
+            <div className='w-full  fixed top-2 flex items-center justify-center'>
+                <div class="xl:w-[60%] lg:w-[80%] w-full bg-white text-black absolute top-0">
+                    <div className=" w-full h-full bg-[var(--primary)] flex justify-between colour_sky px-2 py-3.5 items-center">
                         <h2 className="text-white font-semibold text-[20px]">
                             Rules
                         </h2>
                         <span onClick={() => setModalFalse()}>
                             <RiCloseFill size={24} className='text-white cursor-pointer' />
                         </span>
-                    </div> */}
-                <div className='px-[10px] py-[9px] overflow-y-auto'>
-
-                    {/* <div className='w-full overflow-auto flex colour_sky text-black capitalize font-normal text-base bg-[var(--rule-bg)]'>
+                    </div>
+                    <div className=' md:flex px-[10px] py-[9px]  overflow-y-auto rules-main'>
+                        <div className='md:w-[239px]    w-full overflow-auto flex md:flex-col flex-row colour_sky text-black capitalize font-normal text-base bg-[var(--rule-bg)]'>
                             <div onClick={() => viewRulesSection(1)} className={`px-2.5 py-1 border-b border-black whitespace-nowrap text-center text-[16px] cursor-pointer ${activeItem === 1 ? 'bg-[var(--primary)] text-white font-semibold' : 'bg-[var(--rule-bg)]'}`}>
                                 <span>horse racing</span>
                             </div>
@@ -117,20 +111,14 @@ export default function RuleModel(props) {
                             <div onClick={() => viewRulesSection(27)} className={`px-2.5 py-1 border-b border-black whitespace-nowrap text-center text-[16px] cursor-pointer ${activeItem === 27 ? 'bg-[var(--primary)] text-white font-semibold' : 'bg-[var(--rule-bg)]'}`}>
                                 <span>Binary</span>
                             </div>
-                        </div> */}
-                    <div className='w-full rules-scrolldata font-normal text-black '>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(1)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Horse Racing
-                            </button>
-
-                            {showRules === 1 && (
+                        </div>
+                        <div className='md:w-[85%] w-full rules-scrolldata font-normal text-black '>
+                            {showRules === 1 ?
                                 <>
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Horse Racing
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300 text-[17px]'>
                                             <div className='text-red-500 p-3'>
                                                 Genral
@@ -228,23 +216,14 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
+                                : null}
 
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(2)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Handball
-                            </button>
-
-                            {showRules === 2 && (
+                            {showRules === 2 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Handball
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Handball
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -264,23 +243,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(3)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Table Tennis
-                            </button>
-                            {showRules === 3 && (
+                                : null}
+                            {showRules === 3 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Table Tennis
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Table Tennis
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match odds: -Predict which player will win the match. In the event of any of the named players in a match changing before the match starts then all bets are void. In the event of a match starting but not being completed, all bets will be void.
@@ -294,22 +263,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(4)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Basketball
-                            </button>
-                            {showRules === 4 && (
+                                : null}
+                            {showRules === 4 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Basketball
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Basketball
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match Odds :- Predict which team will be the winner. There must be 5 minutes or less of scheduled game time left for bets to have action.
@@ -326,22 +286,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(5)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Vollyball
-                            </button>
-                            {showRules === 5 && (
+                                : null}
+                            {showRules === 5 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Vollyball
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Vollyball
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -355,22 +306,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(6)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Ice Hockey
-                            </button>
-                            {showRules === 6 && (
+                                : null}
+                            {showRules === 6 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Ice Hockey
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Ice Hockey
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -387,22 +329,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(7)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Football
-                            </button>
-                            {showRules === 7 && (
+                                : null}
+                            {showRules === 7 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Football
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Football
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -422,22 +355,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(8)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Tennis
-                            </button>
-                            {showRules === 8 && (
+                                : null}
+                            {showRules === 8 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Tennis
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Tennis
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match odds: -Predict which player will win the match. In the event of any of the named players in a match changing before the match starts then all bets are void. In the event of a match starting but not being completed, all bets will be void.
@@ -451,22 +375,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(9)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Snooker
-                            </button>
-                            {showRules === 9 && (
+                                : null}
+                            {showRules === 9 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Snooker
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Snooker
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match Odds :- Predict which team will be the winner. There must be 5 minutes or less of scheduled game time left for bets to have action.
@@ -483,22 +398,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(10)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                E-Games
-                            </button>
-                            {showRules === 10 && (
+                                : null}
+                            {showRules === 10 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            E-Games
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        E-Games
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -512,22 +418,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(11)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Fustal
-                            </button>
-                            {showRules === 11 && (
+                                : null}
+                            {showRules === 11 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Fustal
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Fustal
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -544,22 +441,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white ">
-                            <button
-                                onClick={() => toggleSection(12)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Big Bash League
-                            </button>
-                            {showRules === 12 && (
+                                : null}
+                            {showRules === 12 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Big Bash League
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Big Bash League
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -579,22 +467,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(13)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Lunch Favourite
-                            </button>
-                            {showRules === 13 && (
+                                : null}
+                            {showRules === 13 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Lunch Favourite
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Lunch Favourite
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match odds: -Predict which player will win the match. In the event of any of the named players in a match changing before the match starts then all bets are void. In the event of a match starting but not being completed, all bets will be void.
@@ -608,22 +487,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(14)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Politics
-                            </button>
-                            {showRules === 14 && (
+                                : null}
+                            {showRules === 14 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Politics
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Politics
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match Odds :- Predict which team will be the winner. There must be 5 minutes or less of scheduled game time left for bets to have action.
@@ -640,22 +510,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(15)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Bookmaker
-                            </button>
-                            {showRules === 15 && (
+                                : null}
+                            {showRules === 15 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Bookmaker
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Bookmaker
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -669,22 +530,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(16)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Teenpatti
-                            </button>
-                            {showRules === 16 && (
+                                : null}
+                            {showRules === 16 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Teenpatti
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Teenpatti
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -701,22 +553,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(17)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Cricket Casino
-                            </button>
-                            {showRules === 17 && (
+                                : null}
+                            {showRules === 17 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            CricketCasino
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        CricketCasino
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -736,22 +579,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(18)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Fancy Market 1
-                            </button>
-                            {showRules === 18 && (
+                                : null}
+                            {showRules === 18 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Fancy Market 1
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Fancy Market 1
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match odds: -Predict which player will win the match. In the event of any of the named players in a match changing before the match starts then all bets are void. In the event of a match starting but not being completed, all bets will be void.
@@ -765,22 +599,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(19)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Football Fancy
-                            </button>
-                            {showRules === 19 && (
+                                : null}
+                            {showRules === 19 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Football Fancy
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Football Fancy
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match Odds :- Predict which team will be the winner. There must be 5 minutes or less of scheduled game time left for bets to have action.
@@ -797,22 +622,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(20)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                IPL
-                            </button>
-                            {showRules === 20 && (
+                                : null}
+                            {showRules === 20 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            IPL
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        IPL
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -826,22 +642,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(21)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Kabaddi
-                            </button>
-                            {showRules === 21 && (
+                                : null}
+                            {showRules === 21 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Kabaddi
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Kabaddi
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -858,22 +665,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(22)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                World Cup
-                            </button>
-                            {showRules === 22 && (
+                                : null}
+                            {showRules === 22 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            World Cup
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        World Cup
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -890,22 +688,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(23)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Khado
-                            </button>
-                            {showRules === 23 && (
+                                : null}
+                            {showRules === 23 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Khado
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Khado
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -925,22 +714,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(24)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Election
-                            </button>
-                            {showRules === 24 && (
+                                : null}
+                            {showRules === 24 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Election
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Election
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match odds: -Predict which player will win the match. In the event of any of the named players in a match changing before the match starts then all bets are void. In the event of a match starting but not being completed, all bets will be void.
@@ -954,22 +734,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(25)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Fancy
-                            </button>
-                            {showRules === 25 && (
+                                : null}
+                            {showRules === 25 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Fancy
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Fancy
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-black p-2 leading-none'>
                                                 Match Odds :- Predict which team will be the winner. There must be 5 minutes or less of scheduled game time left for bets to have action.
@@ -986,22 +757,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(26)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Match
-                            </button>
-                            {showRules === 26 && (
+                                : null}
+                            {showRules === 26 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Match
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Match
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -1015,22 +777,13 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
-                        </div>
-
-                        <div className="mb-2 border border-white">
-                            <button
-                                onClick={() => toggleSection(27)}
-                                className="w-full text-left bg-[#01635c] text-white font-semibold px-4 py-2"
-                            >
-                                Binary
-                            </button>
-                            {showRules === 27 && (
+                                : null}
+                            {showRules === 27 ?
                                 <>
-                                    {/* <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
-                                            Binary
-                                        </h2> */}
-                                    <div className='md:px-5 px-0 py-2'>
+                                    <h2 className="text-white bg-[var(--secondary)] m-2 text-xl colour_sky px-2 py-1">
+                                        Binary
+                                    </h2>
+                                    <div className='md:px-5 px-0 py-1'>
                                         <div className='border-2 border-gray-300 divide-y-2 divide-gray-300'>
                                             <div className='text-red-500 p-2'>
                                                 Match
@@ -1047,15 +800,15 @@ export default function RuleModel(props) {
                                         </div>
                                     </div>
                                 </>
-                            )}
+                                : null}
                         </div>
                     </div>
-                </div>
-                {/* <div className='flex justify-end p-6  items-center'>
+                    <div className='flex justify-end p-6  items-center'>
                         <span className='bg-[#BD1828] text-white text-[14px] py-2 px-4' onClick={() => setModalFalse()}>
                             CLOSE
                         </span>
-                    </div> */}
+                    </div>
+                </div>
             </div>
         </div>
     );

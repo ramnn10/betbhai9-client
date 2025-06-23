@@ -15,12 +15,14 @@ function LiveMatches({ matchList }) {
                 const inputMoment = moment(element?.matchDate, "DD-MM-YYYY HH:mm:ss A");
                 const currentMoment = moment().add(60, "minutes");
                 return currentMoment.isSameOrAfter(inputMoment) ? (
-                    <div onClick={() => { handleResponseGameotherDetails(element) }} key={index} className="  text-nowrap flex flex-nowrap justify-between items-center p-1.5 xl:p-1 xl:px-1.5 bg-[var(--secondary)] text-white overflow-x-auto rounded min-w-[50%] w-full xl:min-w-[calc(20%+20px)] xl:w-auto xl:max-w-full xl:h-full">
+                    <div 
+                    // onClick={() => { handleResponseGameotherDetails(element) }} 
+                    key={index} className="  text-nowrap flex flex-nowrap justify-between items-center p-1.5 xl:p-1 xl:px-1.5 bg-[var(--secondary)] text-white overflow-x-auto rounded min-w-[50%] w-full xl:min-w-[calc(15%+20px)] xl:w-auto xl:max-w-full xl:h-full">
                         {/*  */}
                         <div className="blinking-text">
                             {sportlistArray?.find((sport) => sport.sportId === element?.sportId)?.icon}
                         </div>
-                        <div className="blinking-text text-ellipsis text-sm xl:text-base ml-[5px] overflow-hidden max-w-[calc(100%-42px)] font-[500]">
+                        <div className="blinking-text text-sm xl:text-base ml-[5px] overflow-x-auto max-w-[calc(100%-42px)] font-[500]">
                             {element?.matchName}
                         </div>
                         <div>

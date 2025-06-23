@@ -8,7 +8,7 @@ import BetLocked from "../casinoComponent/BetLocked";
 
 function InplayMatches({ activeTab, matchlistItems }) {
 
-  const [subTab, setSubTab] = useState('AU')
+  const [subTab, setSubTab] = useState('0');
   const implayMatchFunc = (element) => {
     const inputMoment = moment(element?.matchDate, "DD-MM-YYYY HH:mm:ss A");
     const currentMoment = moment().add(60, "minutes");
@@ -16,10 +16,28 @@ function InplayMatches({ activeTab, matchlistItems }) {
   };
 
 
-  const filteredMatches = matchlistItems?.filter(
-    (element) => element.sportId == activeTab
-  ).sort((a, b) => moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")) ? -1 : 1);
+  // const filteredMatches = matchlistItems?.filter(
+  //   (element) => element.sportId == activeTab
+  // ).sort((a, b) => moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")) ? -1 : 1);
+
+  const filteredMatches = useMemo(() => {
+    if (activeTab === 0) {
+      const today = moment().format("DD-MM-YYYY");
+      return matchlistItems?.filter((match) => {
+        const matchDay = moment(match.matchDate, "DD-MM-YYYY HH:mm:ss").format("DD-MM-YYYY");
+        return matchDay === today;
+      }) || [];
+    } else {
+      return matchlistItems?.filter((element) => element.sportId == activeTab)
+        ?.sort((a, b) =>
+          moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")) ? -1 : 1
+        ) || [];
+    }
+  }, [matchlistItems, activeTab]);
+
+
   const groupedBySeries = {};
+
   if (filteredMatches?.length > 0) {
     filteredMatches.forEach((match) => {
       const series = match.countryCode || "Other Series";
@@ -30,6 +48,7 @@ function InplayMatches({ activeTab, matchlistItems }) {
 
     });
   }
+
   const functiongroupbyRacingmatch = (matchArray) => {
     const groupedByRacingMatch = {};
     if (matchArray?.length > 0) {
@@ -54,17 +73,14 @@ function InplayMatches({ activeTab, matchlistItems }) {
   let content;
 
   useEffect(() => {
-
     const seriesKeys = Object.keys(groupedBySeries);
-
     if (seriesKeys.length > 0 && !subTab) {
       setSubTab(seriesKeys[0]);
     }
   }, [groupedBySeries, subTab]);
+
   useEffect(() => {
-
     setSubTab()
-
   }, [activeTab]);
 
   if (activeTab == 4339 || activeTab == 7) {

@@ -28,6 +28,7 @@ import OtherMarketsComponent from "./marketMatch/OtherLineMarket";
 
 import TiedOddsComponent from "./marketMatch/TiedOdssMarket ";
 import CashOutSystemTesting from "./CashoutTesting copy";
+import MatchRulesModal from "../../component/matchRulesModal/MatchRulesModal";
 
 
 
@@ -97,8 +98,6 @@ const ViewMatches = () => {
 
 
     // const [betPlaceModalMobile, setBetPlaceModalMobile] = useState(false);
-
-
     // let { marketId, eventId } = useParams();
     const { marketId, eventId, sportId } = useParams();
 
@@ -110,7 +109,7 @@ const ViewMatches = () => {
     const handleTabClick = (tab) => {
         setActiveTab(tab);
     };
-    document.title = `${inplayMatch?.matchName} | BPEXCH`;
+    document.title = `${inplayMatch?.matchName} | BETBHAI9`;
 
 
     useEffect(() => {
@@ -842,12 +841,23 @@ const ViewMatches = () => {
         return acc;
     }, {});
 
+    const [rulesModalOpen, setRulesModalOpen] = useState(false);
+    const setModalTrue = () => {
+        setRulesModalOpen(true);
+    };
 
+    const setModalFalse = () => {
+        setRulesModalOpen(false);
+    };
 
 
     return (isLoading ? <span className="animate-spin h-5 w-5"></span> :
         <div>
+
+            {rulesModalOpen ? <MatchRulesModal setModalFalse={setModalFalse} /> : null}
+
             {isRulesOpen && <div>Rule</div>}
+
             {inplayMatch && inplayMatch?.notification && (
                 <span className="w-full flex-1 text-xs websiteThemeSoundColor  text-black flex items-center">
                     <marquee className="">{inplayMatch?.notification}</marquee>
@@ -1020,6 +1030,7 @@ const ViewMatches = () => {
                                 toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 formatNumber={formatNumber}
+                                setModalTrue={setModalTrue}
                             />
                             <OtherMarketsComponent
                                 activeTab={activeTab}
@@ -1029,6 +1040,7 @@ const ViewMatches = () => {
                                 returnDataObject={returnDataObject}
                                 handleBackOpen={handleBackOpen}
                                 formatNumber={formatNumber}
+                                setModalTrue={setModalTrue}
                             />
 
 
@@ -1045,6 +1057,22 @@ const ViewMatches = () => {
                                 toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 formatNumber={formatNumber}
+                                setModalTrue={setModalTrue}
+
+                            //      openBets={openBets}
+                            //   closeRow={closeRow}
+                            //   matchName={inplayMatch?.matchName}
+                            //   betSlipData={betSlipData}
+                            //   placeBet={placeBet}
+                            //   errorMessage={errorMessage}
+                            //   successMessage={successMessage}
+                            //   count={betSlipData.count}
+                            //   betLoading={betLoading}
+                            //   increaseCount={increaseCount}
+                            //   decreaseCount={decreaseCount}
+                            //   handleClose={handleBackclose}
+                            //   setBetSlipData={setBetSlipData}
+                            //   handleButtonValues={handleButtonValues}
                             />
 
                             <TossDataComponent
@@ -1058,6 +1086,7 @@ const ViewMatches = () => {
                                 marketId={marketId}
                                 returnDataObject={returnDataObject}
                                 formatNumber={formatNumber}
+                                setModalTrue={setModalTrue}
                             />
 
                             <NormalFancyComponent
@@ -1070,6 +1099,7 @@ const ViewMatches = () => {
                                 marketId={marketId}
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
+                                setModalTrue={setModalTrue}
                             />
 
 
@@ -1085,6 +1115,7 @@ const ViewMatches = () => {
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
+                                setModalTrue={setModalTrue}
                             />
 
                             {/* Fancy 1 */}
@@ -1099,6 +1130,7 @@ const ViewMatches = () => {
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
+                                setModalTrue={setModalTrue}
                             />
                             {/* khedo Fancy  */}
                             <KhadoFancyComponent
@@ -1112,6 +1144,7 @@ const ViewMatches = () => {
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
+                                setModalTrue={setModalTrue}
                             />
 
                             {/* meter Fancy  */}
@@ -1126,6 +1159,7 @@ const ViewMatches = () => {
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
+                                setModalTrue={setModalTrue}
                             />
 
                             {/* oddeven  Fancy*/}
@@ -1141,6 +1175,7 @@ const ViewMatches = () => {
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
+                                setModalTrue={setModalTrue}
                             />
 
                             {/* groupBy Fancy  */}
@@ -1153,6 +1188,7 @@ const ViewMatches = () => {
                                 handleBackOpen={handleBackOpen}
                                 marketId={marketId}
                                 returnDataFancyObject={returnDataFancyObject}
+                                setModalTrue={setModalTrue}
                             />
                             <TiedOddsComponent
                                 inplayMatch={inplayMatch}
@@ -1164,6 +1200,7 @@ const ViewMatches = () => {
                                 toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 formatNumber={formatNumber}
+                                setModalTrue={setModalTrue}
                             />
 
                             {/* <CashOutSystemTesting /> */}

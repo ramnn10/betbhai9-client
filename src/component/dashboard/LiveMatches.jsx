@@ -9,7 +9,7 @@ function LiveMatches({ matchList }) {
         window.location.href = `/sport-view/${data.marketId}/${data.eventId}`
     };
     return (
-        <div className="flex gap-2 overflow-x-auto mx-auto w-[100%] px-2 xl:py-0 pt-1.5 xl:pt-0 pb-0 xl:pb-1  xl:px-0">
+        <div className="flex gap-2 overflow-x-auto mx-auto w-[100%] px-2 xl:py-0 pt-1.5 xl:pt-0 pb-0 xl:pb-2  xl:px-0">
 
             {matchList?.filter(element => element.sportId === 4)?.map((element, index) => {
                 const inputMoment = moment(element?.matchDate, "DD-MM-YYYY HH:mm:ss A");

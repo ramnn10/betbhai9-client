@@ -43,7 +43,9 @@ function App() {
     if (settings.colors) {
       setMultipleRootCssVariables(settings.colors)
     }
-    return () => { clearInterval(sportInterval); }
+    return () => {
+      // clearInterval(sportInterval); 
+    }
   }, [dispatch])
 
 

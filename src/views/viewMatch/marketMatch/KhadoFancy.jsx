@@ -1,5 +1,6 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const KhadoFancyComponent = ({
   inplayMatch,
@@ -11,7 +12,8 @@ const KhadoFancyComponent = ({
   marketId,
   returnDataFancyObject,
   formatNumber,
-  handleFancyPositionModal
+  handleFancyPositionModal,
+  setModalTrue
 }) => {
   return (
     inplayMatch?.isFancy && (activeTab === "fancy" || activeTab === "all") && (
@@ -19,16 +21,19 @@ const KhadoFancyComponent = ({
         {KhadoFancy && KhadoFancy?.length > 0 ? (
           <>
             <header className="mt-1">
-              <div className="bg-[var(--secondary)] items-center flex justify-between relative z-0 py-1 px-2">
+              <div className="bg-[var(--secondary)] gap-2 flex justify-between items-center  relative z-0 py-1 px-2">
                 <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold">
-                  khedo
+                  Khedo
+                </div>
+                <div onClick={() => setModalTrue()}>
+                  <FaInfoCircle className='text-white cursor-pointer' />
                 </div>
               </div>
             </header>
 
             <div className="grid xl:grid-cols-1 grid-cols-1">
               <div className="xl:flex hidden relative decoration-none border-b border-gray-300 whitespace-normal max-w-full">
-                <div className="xl:w-[85%] w-[65%] flex px-2">
+                <div className="xl:w-[75%] w-[65%] flex px-2">
                   <div className="w-full leading-3 flex items-center">
                     <span className="lg:hidden flex z-20 pr-1">
                       <span className="text-black flex items-center justify-center"></span>
@@ -40,22 +45,22 @@ const KhadoFancyComponent = ({
                     </span>
                   </div>
                 </div>
-                <div className="xl:w-[15%] w-[35%] grid md:grid-cols-2 grid-cols-1">
-                  <span className="lg:block hidden bg-[#8DD2F0]">
-                    <div className="py-1 flex justify-center items-center bg-[#8DD2F0]">
+                <div className="xl:w-[25%] w-[35%] grid md:grid-cols-3 grid-cols-1">
+                  <span className="lg:block hidden lg:col-span-2 bg-[#72bbef]">
+                    <div className="py-1 flex justify-center items-center bg-[#72bbef]">
                       <div className="text-center leading-3">
-                        <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
+                        <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">BACK</span>
                       </div>
                     </div>
                   </span>
                   <span className="lg:hidden block">
-                    <div className="py-1 flex justify-center items-center bg-[#8DD2F0]">
+                    <div className="py-1 flex justify-center items-center bg-[#72bbef]">
                       <div className="text-center leading-3">
-                        <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
+                        <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">BACK</span>
                       </div>
                     </div>
                   </span>
-                  <span className="xl:flex items-center text-end px-1 w-full justify-end hidden z-20 text-cyan-500 text-[9px] 2xl:text-[13px] overflow-hidden"></span>
+                  <span className="lg:flex items-center text-end px-1 w-full justify-end hidden z-20 text-cyan-500 text-[9px] 2xl:text-[13px] overflow-hidden"></span>
                 </div>
               </div>
             </div>
@@ -64,7 +69,7 @@ const KhadoFancyComponent = ({
               {KhadoFancy?.map((commList, index) => (
                 <div key={index}>
                   <div className="border-b border-gray-300 relative flex decoration-none whitespace-normal max-w-full">
-                    <div className="xl:w-[85%] w-[65%] flex px-2">
+                    <div className="xl:w-[75%] w-[65%] flex px-2">
                       <div className="w-full leading-3 flex items-center">
                         <span className="lg:hidden flex z-20 pr-1">
                           <span
@@ -95,9 +100,9 @@ const KhadoFancyComponent = ({
                         </span>
                       </div>
                     </div>
-                    <div className="xl:w-[15%] w-[35%] grid md:grid-cols-2 grid-cols-1">
+                    <div className="xl:w-[25%] w-[35%] grid md:grid-cols-3 grid-cols-1">
                       <span
-                        className="lg:block hidden cursor-pointer"
+                        className="lg:block lg:col-span-2 hidden cursor-pointer"
                         onClick={() => {
                           toggleRowVisibility(commList.session_id);
                           handleBackOpen({
@@ -121,7 +126,7 @@ const KhadoFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsYes}
                           size={(commList.oddsYes * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#8DD2F0]"}
+                          color={"bg-[#72bbef]"}
                           blinkColor={"bg-[#00B2FF]"}
                           textColors={"text-black"}
                           boderColors={"border-[#489bbd]"}
@@ -152,23 +157,23 @@ const KhadoFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsYes}
                           size={(commList.oddsYes * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#8DD2F0]"}
+                          color={"bg-[#72bbef]"}
                           blinkColor={"bg-[#00B2FF]"}
                           textColors={"text-black"}
                           boderColors={"border-[#489bbd]"}
                         />
                       </span>
-                      <span className="xl:flex items-center text-end px-2 w-full justify-end hidden z-20 text-[#097C93] font-bold text-[9px] xl:text-[11px] 2xl:text-[13px] overflow-hidden bg-gray-200">
-                        Min:100
-                        <br />
-                        Max:{formatNumber(commList?.max)}
-                      </span>
+
+                      <span className="xl:flex hidden items-center text-end px-2 gap-1 w-full justify-end z-20 text-[#000000] font-[500] text-[9px] xl:text-[5px] 2xl:text-[10px] overflow-hidden bg-gray-50">
+                        <p> Min:100</p>
+                        <p>Max:{formatNumber(commList?.max)}</p>
+                      </span> 
 
                       {commList && commList.running_status &&
                         (commList.running_status === "SUSPENDED" ||
                           commList.running_status === "CLOSE" ||
                           commList.running_status === "Ball Running") ? (
-                        <div className="xl:w-[15%] lg:w-1/2 w-[35%] px-0.5 right-0 h-full absolute bg-[var(--suspended-color)] flex justify-center items-center z-30">
+                        <div className="xl:w-[25%] lg:w-1/2 w-[35%] px-0.5 right-0 h-full absolute bg-[var(--suspended-color)] flex justify-center items-center z-30">
                           <div className="2xl:px-14 lg:px-14 py-2 px-2 text-nowrap rounded font-bold bg-transparent opacity-90">
                             <span className="text-red-500 xl:text-lg text-sm font-bold uppercase">
                               {commList.running_status}

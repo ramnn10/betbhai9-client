@@ -480,7 +480,6 @@ const AppHeader = () => {
                 </div>
               </div>
             </div>
-
           )
         }
 

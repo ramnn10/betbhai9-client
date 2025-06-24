@@ -10,14 +10,14 @@ const GrandExchangeSettings = {
     "--bluebtn": "#007bff",
     "--secondary": "#116257",
     "--matchLagai": "#72bbef",
-    "--matchKhai": "#FAA9BA",
+    "--matchKhai": "#faa9ba",
+    "--success-color": "#fab418",
 
     "--result-color": "#355e3b",
     "--rule-bg": '#CCCCCC',
     "--sports-tab": '#266894',
     "--suspended-color": 'rgba(0,0,0,0.7)',
     "--blink-color": "#fdcf13",
-    "--success-color": "#086f3f"
   },
   demoCredentials: {
     username: "demo",

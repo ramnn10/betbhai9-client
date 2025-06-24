@@ -1,5 +1,6 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const GroupedFancyComponent = ({
   inplayMatch,
@@ -8,7 +9,8 @@ const GroupedFancyComponent = ({
   toggleRowVisibility,
   handleBackOpen,
   marketId,
-  returnDataFancyObject
+  returnDataFancyObject,
+  setModalTrue
 }) => {
   return (
     inplayMatch?.isFancy && (activeTab === "fancy" || activeTab === "all") && (
@@ -17,8 +19,11 @@ const GroupedFancyComponent = ({
           Object.entries(groupedData).map(([sessionName, items], index) => (
             <div key={index} className="mb-4 overflow-hidden">
               {/* Header */}
-              <div className="bg-[#763e3e] text-white p-2 text-sm font-bold uppercase">
-                {sessionName}
+              <div className="bg-[var(--secondary)] text-white p-2 text-sm font-bold uppercase flex justify-between items-center">
+                <span>{sessionName}</span>
+                <div onClick={() => setModalTrue()}>
+                  <FaInfoCircle className='text-white cursor-pointer' />
+                </div>
               </div>
 
               {/* Min/Max */}
@@ -26,7 +31,7 @@ const GroupedFancyComponent = ({
                 <div className="text-[11px] text-[teal] px-2 py-1 font-medium">
                   Min: 100 Max: 1L
                 </div>
-                <div className={`py-1 flex justify-center items-center bg-[#8DD2F0]`}>
+                <div className={`py-1 flex justify-center items-center bg-[#72bbef]`}>
                   <div className='text-center leading-3'>
                     <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
                   </div>
@@ -65,7 +70,7 @@ const GroupedFancyComponent = ({
                     <BlinkingComponent
                       price={commList.runsYes}
                       size={(commList.oddsYes * 100).toFixed(2).replace(/\.00$/, "")}
-                      color={"bg-[#8DD2F0]"}
+                      color={"bg-[#72bbef]"}
                       blinkColor={"bg-[#00B2FF]"}
                       textColors={"text-black"}
                       boderColors={"border-[#489bbd]"}

@@ -181,7 +181,6 @@ export default function PlaceBetMobile(props) {
             })
         }
 
-
         betSlipData.oldPos = betSlipData.position
         betSlipData.position = positionArray
 
@@ -355,4 +354,3 @@ export default function PlaceBetMobile(props) {
         </div>
     );
 }
-

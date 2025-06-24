@@ -50,7 +50,7 @@ function AllSports({ activeAllSporttab, setactiveAllSporttab }) {
                     </div>
                 ))}
             </div>
-            <div className="py-1 md:px-4 px-1.5 bg-white">
+            <div className="py-1 md:px-1 px-1.5 bg-white">
                 <div className="flex md:justify-end justify-between items-center gap-3 text-[var(--primary)] text-[13px]">
                     <div className="flex justify-center items-center gap-2">
                         <div className="rounded-xl md:px-5 px-2.5 py-0 border border-[var(--primary)] ">- LIVE</div>

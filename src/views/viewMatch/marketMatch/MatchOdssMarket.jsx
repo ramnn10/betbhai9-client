@@ -1,6 +1,7 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import CashOutSystem from '../CashoutTesting';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const MatchOddsComponent = ({
   inplayMatch,
@@ -11,7 +12,8 @@ const MatchOddsComponent = ({
   returnDataObject,
   toggleRowVisibility,
   handleBackOpen,
-  formatNumber
+  formatNumber,
+  setModalTrue,
 }) => {
   if (!inplayMatch?.isMatchOdds || activeTab !== "all") {
     return null;
@@ -23,31 +25,38 @@ const MatchOddsComponent = ({
         element.marketType === "Match Odds" && (
           <div className="" key={index}>
             <header className="mt-1">
-              <div className="bg-[var(--secondary)] items-center flex justify-between relative z-0 py-1 px-2">
-                <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold">
-                  Match_Odds
+              <div className="bg-[var(--secondary)] gap-2 flex justify-between items-center  relative z-0 py-1 px-2">
+                <div className="flex justify-start items-center gap-1">
+                  <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold">
+                    Match_Odds
+                  </div>
+                  <div >
+                    {element?.runners?.length > 0 && (
+                      <CashOutSystem
+                        marketList={element.runners.map(runner => ({
+                          selectionid: runner.selectionId,
+                          team_name: runner.selectionName,
+                          lgaai: runner.ex?.availableToBack?.[0]?.price || 0,
+                          khaai: runner.ex?.availableToLay?.[0]?.price || 0,
+                          selectionName: runner.selectionName,
+                          ex: {
+                            availableToBack: runner.ex?.availableToBack || [],
+                            availableToLay: runner.ex?.availableToLay || []
+                          }
+                        }))}
+                        positionObj={positionObj}
+                        handleBackOpen={handleBackOpen}
+                        toggleRowVisibility={toggleRowVisibility}
+                        marketId={element.marketId}
+                        betFor={"matchOdds"}
+                        oddsType={element.marketType}
+                      />
+                    )}
+                  </div>
                 </div>
-                {element?.runners?.length > 0 && (
-                  <CashOutSystem
-                    marketList={element.runners.map(runner => ({
-                      selectionid: runner.selectionId,
-                      team_name: runner.selectionName,
-                      lgaai: runner.ex?.availableToBack?.[0]?.price || 0,
-                      khaai: runner.ex?.availableToLay?.[0]?.price || 0,
-                      selectionName: runner.selectionName,
-                      ex: {
-                        availableToBack: runner.ex?.availableToBack || [],
-                        availableToLay: runner.ex?.availableToLay || []
-                      }
-                    }))}
-                    positionObj={positionObj}
-                    handleBackOpen={handleBackOpen}
-                    toggleRowVisibility={toggleRowVisibility}
-                    marketId={element.marketId}
-                    betFor={"matchOdds"}
-                    oddsType={element.marketType}
-                  />
-                )}
+                <div onClick={() => setModalTrue()}>
+                  <FaInfoCircle className='text-white cursor-pointer' />
+                </div>
               </div>
             </header>
 

@@ -313,7 +313,7 @@ const CashOutSystem = (props) => {
     <button
       onClick={handleCashout}
       disabled={!isCashoutAvailable}
-      className={`text-sm text-white px-3 py-1 rounded shadow ${isCashoutAvailable
+      className={`text-[12px] uppercase text-black font-[900] px-1 py-[0px] rounded-[2px] shadow border-[1px] border-[#f9d011] ${isCashoutAvailable
           ? 'bg-[var(--success-color)] hover:bg-green-600 cursor-pointer'
           : 'bg-[var(--success-color)] opacity-35 cursor-not-allowed'
         }`}

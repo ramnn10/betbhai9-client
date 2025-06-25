@@ -5,17 +5,47 @@ import CrashC from "../crashC/CrashC";
 
 const menuItems = [
   { id: 1, label: "Home", url: "/", inplay: false },
-  { id: 2, label: "Lottery", sportId: 2005, inplay: false },
   { id: 3, label: "Cricket", url: `in-play/4`, inplay: true },
-  { id: 5, label: "Tennis", url: `in-play/2`, inplay: true },
   { id: 6, label: "Football", url: `in-play/1`, inplay: true },
+  { id: 5, label: "Tennis", url: `in-play/2`, inplay: true },
+  // { id: 2, label: "Lottery", sportId: 2005, inplay: false },
+  { id: 4, label: "Casino", url: '/casino-layout/our-casino', inplay: false },
+  { id: 9, label: "SportsBook", url: '/', inplay: false },
 
-  { id: 8, label: "Table Tennis", url: "in-play/3232", inplay: true },
   { id: 11, label: "Baccarat", url: "/casino-layout/Baccarat", inplay: false },
   { id: 12, label: "32 Cards", url: "/casino-layout/Card_32", inplay: false },
   { id: 13, label: "Teenpatti", url: "/casino-layout/TeenPatti", inplay: false },
   { id: 14, label: "Poker", url: "/casino-layout/Poker" },
   { id: 15, label: "Lucky 7", url: "/casino-layout/Lucky_7", inplay: false },
+
+  { id: 16, label: "Horse Racing", url: "/", inplay: false },
+
+  { id: 17, label: "Greyhound Racing", url: "/", inplay: false },
+
+  { id: 18, label: "Binary", url: "/", inplay: false },
+
+  { id: 19, label: "Kabaddi", url: "/", inplay: false },
+
+  { id: 20, label: "Politics", url: "/", inplay: false },
+
+  { id: 21, label: "Basketball", url: "/", inplay: false },
+
+  { id: 22, label: "Baseball", url: "/", inplay: false },
+
+  { id: 8, label: "Table Tennis", url: "in-play/3232", inplay: true },
+
+
+  { id: 23, label: "Volleyball", url: "/", inplay: false },
+
+  { id: 24, label: "Icehockey", url: "/", inplay: false },
+  { id: 25, label: "Rugby", url: "/", inplay: false },
+  { id: 26, label: "Mixed Martial Arts", url: "/", inplay: false },
+
+  { id: 27, label: "Darts", url: "/", inplay: false },
+  { id: 27, label: "Futsal", url: "/", inplay: false },
+
+
+
 ];
 
 const SubHeader = () => {
@@ -36,13 +66,11 @@ const SubHeader = () => {
   };
 
 
-
-
   return (
     <>
       <div className="bg-[var(--secondary)] text-white xl:flex hidden font-bold text-[14px] py-2.5">
         <div
-          className="items-center flex overflow-x-auto 2xl:overflow-hidden whitespace-nowrap scrollbar-height-0 px-1"
+          className="items-center flex overflow-x-auto whitespace-nowrap scrollbar-height-0 px-1"
           style={{ scrollbarWidth: "none" }}
         >
           {menuItems?.map((item) => {
@@ -66,8 +94,8 @@ const SubHeader = () => {
               </div>
             );
           })}
-<div className="w-12 h-6 hover:border-white hover:border-b-2 transition-all duration-150 relative">
-          <CrashC /></div>
+          {/* <div className="w-12 h-6 hover:border-white hover:border-b-2 transition-all duration-150 relative">
+            <CrashC /></div> */}
         </div>
       </div>
     </>

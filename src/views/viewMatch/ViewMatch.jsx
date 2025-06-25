@@ -129,6 +129,7 @@ const ViewMatches = () => {
 
 
     let data = localStorage.getItem(`${marketId}_BookmakerData`)
+
     const setDataFromLocalstorage = async (marketId) => {
         if (data) {
             setMatchScoreDetails(JSON.parse(data).result);
@@ -148,7 +149,6 @@ const ViewMatches = () => {
             setFinalSocketDetails(JSON.parse(data));
         }
     }
-
 
     useEffect(() => {
         setDataFromLocalstorage()
@@ -174,8 +174,6 @@ const ViewMatches = () => {
     const [oddsbetdata, setOddsbetData] = useState();
     const [incomletedFancy, setIncompletedFancy] = useState();
     const [compltedFancy, setCompletedFancy] = useState();
-
-
 
     useEffect(() => {
         if (positioBetData) {
@@ -246,13 +244,8 @@ const ViewMatches = () => {
                 }
             });
 
-
-
-
             setFancyPositionObj(finalPositionInfoFancy)
             setFancybetData(filteredFancyBetData);
-
-
             setPositionObj(finalPositionInfo)
             setOddsbetData(sortedOddsBetData);
             setCompletedFancy(showCompletedFancy);
@@ -263,7 +256,6 @@ const ViewMatches = () => {
             );
         }
     }, [positioBetData]);
-
 
 
     useEffect(() => {
@@ -279,11 +271,6 @@ const ViewMatches = () => {
 
     }, [fancypositionModal])
 
-
-
-
-
-
     const setupAsyncActions = async (marketId) => {
         await getMatchDataByMarketID(marketId);
         fetchBetLists();
@@ -295,8 +282,6 @@ const ViewMatches = () => {
             setSocketState(null);
         }
     };
-
-
 
     const getMatchDataByMarketID = async (marketId) => {
         try {
@@ -322,7 +307,6 @@ const ViewMatches = () => {
         }
         finally {
             setIsLoading(false);
-
         }
     };
 
@@ -364,14 +348,10 @@ const ViewMatches = () => {
             min: maxCoinData?.minimum_match_bet,
         });
 
-
-
     }, [inplayMatch]);
 
 
     const callSocket = async (socketUrl, matchId) => {
-
-
         if (socketState && socketState.connected) {
             return;
         }
@@ -415,7 +395,6 @@ const ViewMatches = () => {
         }
     };
 
-
     const callCache = async (cacheUrl) => {
         try {
             const interval = setInterval(async () => {
@@ -443,7 +422,6 @@ const ViewMatches = () => {
             console.error("Error fetching cache data:", error);
         }
     };
-
 
     const filterData = (matchDetailsForSocketNew) => {
 
@@ -506,6 +484,7 @@ const ViewMatches = () => {
         setTvShow(false);
         setBetShowMobile(false)
     };
+
     const handelTvModal = () => {
         setTvShow(!tvShow);
         setScoreShow(false);
@@ -518,7 +497,6 @@ const ViewMatches = () => {
         setScoreShow(!scoreShow);
 
     };
-
 
     const openBets = () => {
         setBetShow(true);
@@ -537,9 +515,6 @@ const ViewMatches = () => {
         setBetShow(false);
     };
 
-
-
-
     const toggleAccordion = (index) => {
         setActive((prevState) => ({
             ...prevState,
@@ -547,10 +522,7 @@ const ViewMatches = () => {
         }));
     };
 
-
-
     // bets Palce Modal write 
-
     const handleBackOpen = (data) => {
         console.log(data, "cashout system design");
         if (data?.odds === 0) return;
@@ -567,6 +539,7 @@ const ViewMatches = () => {
             });
         }
     };
+
     const handleBackclose = () => {
         setBetSlipData({
             stake: '0',
@@ -586,14 +559,14 @@ const ViewMatches = () => {
         }
     };
 
+    const closeRow = (id) => {
+        setHiddenRows(hiddenRows.filter(rowId => rowId !== id));
+    }
 
     const placeBet = async () => {
         if (betSlipData.stake <= 0) {
             return;
         }
-
-
-
         try {
             const betObject = {
                 "odds": betSlipData.count + "",
@@ -678,10 +651,9 @@ const ViewMatches = () => {
             handleBackclose()
             closeRow()
             openBets()
+            setHiddenRows([]);
         }
     };
-
-
 
     const fetchBetLists = async () => {
         try {
@@ -709,15 +681,12 @@ const ViewMatches = () => {
         }
     };
 
-
     const matchOddsPos = async () => {
         let matchOddsPos = await apiCall("POST", 'reports/matchOddsRunningPos');
         if (matchOddsPos) {
             localStorage.setItem('matchOddsRunningPos', JSON.stringify(matchOddsPos.data));
         }
     }
-
-
 
     const handleFancyPositionModal = (data) => {
 
@@ -733,13 +702,6 @@ const ViewMatches = () => {
         setFancypositionModal(false)
     };
 
-
-    const closeRow = (id) => {
-        setHiddenRows(hiddenRows.filter(rowId => rowId !== id));
-    }
-
-
-
     const increaseCount = () => {
         try {
             setBetSlipData(prevData => {
@@ -753,11 +715,13 @@ const ViewMatches = () => {
             console.error('Error increasing count:', error);
         }
     };
+
     const openBetInMobile = () => {
         setBetShowMobile(!betShowMobile)
         setTvShow(false);
         setScoreShow(false);
     }
+
     const decreaseCount = () => {
         try {
             setBetSlipData(prevData => {
@@ -771,7 +735,6 @@ const ViewMatches = () => {
             console.error('Error decreasing count:', error);
         }
     };
-
 
     let domainSetting = JSON.parse(localStorage.getItem("clientdomainSetting"));
 
@@ -863,7 +826,7 @@ const ViewMatches = () => {
                     <marquee className="">{inplayMatch?.notification}</marquee>
                 </span>
             )}
-            {betSlipData?.name && <PlaceBetMobile
+            {/* {betSlipData?.name && <PlaceBetMobile
                 openBets={openBets}
                 closeRow={closeRow}
                 matchName={inplayMatch?.matchName}
@@ -878,7 +841,7 @@ const ViewMatches = () => {
                 handleClose={handleBackclose}
                 setBetSlipData={setBetSlipData}
                 handleButtonValues={handleButtonValues}
-            />}
+            />} */}
 
             {/* {buttonValue && (
                 <div
@@ -1054,25 +1017,26 @@ const ViewMatches = () => {
                                 marketId={marketId}
                                 returnDataObject={returnDataObject}
                                 returnDataFancyObject={returnDataFancyObject}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 formatNumber={formatNumber}
                                 setModalTrue={setModalTrue}
 
-                            //      openBets={openBets}
-                            //   closeRow={closeRow}
-                            //   matchName={inplayMatch?.matchName}
-                            //   betSlipData={betSlipData}
-                            //   placeBet={placeBet}
-                            //   errorMessage={errorMessage}
-                            //   successMessage={successMessage}
-                            //   count={betSlipData.count}
-                            //   betLoading={betLoading}
-                            //   increaseCount={increaseCount}
-                            //   decreaseCount={decreaseCount}
-                            //   handleClose={handleBackclose}
-                            //   setBetSlipData={setBetSlipData}
-                            //   handleButtonValues={handleButtonValues}
+                                hiddenRows={hiddenRows}
+                                toggleRowVisibility={toggleRowVisibility}
+                                openBets={openBets}
+                                closeRow={closeRow}
+                                matchName={inplayMatch?.matchName}
+                                betSlipData={betSlipData}
+                                placeBet={placeBet}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                count={betSlipData.count}
+                                betLoading={betLoading}
+                                increaseCount={increaseCount}
+                                decreaseCount={decreaseCount}
+                                handleClose={handleBackclose}
+                                setBetSlipData={setBetSlipData}
+                                handleButtonValues={handleButtonValues}
                             />
 
                             <TossDataComponent
@@ -1081,12 +1045,28 @@ const ViewMatches = () => {
                                 matchScoreDetails={matchScoreDetails}
                                 isTossCoin={isTossCoin}
                                 positionObj={positionObj}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 marketId={marketId}
                                 returnDataObject={returnDataObject}
                                 formatNumber={formatNumber}
                                 setModalTrue={setModalTrue}
+
+                                hiddenRows={hiddenRows}
+                                toggleRowVisibility={toggleRowVisibility}
+                                openBets={openBets}
+                                closeRow={closeRow}
+                                matchName={inplayMatch?.matchName}
+                                betSlipData={betSlipData}
+                                placeBet={placeBet}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                count={betSlipData.count}
+                                betLoading={betLoading}
+                                increaseCount={increaseCount}
+                                decreaseCount={decreaseCount}
+                                handleClose={handleBackclose}
+                                setBetSlipData={setBetSlipData}
+                                handleButtonValues={handleButtonValues}
                             />
 
                             <NormalFancyComponent
@@ -1094,12 +1074,28 @@ const ViewMatches = () => {
                                 activeTab={activeTab}
                                 NormalFancy={NormalFancy}
                                 fancyPositionObj={fancyPositionObj}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 marketId={marketId}
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 setModalTrue={setModalTrue}
+
+                                hiddenRows={hiddenRows}
+                                toggleRowVisibility={toggleRowVisibility}
+                                openBets={openBets}
+                                closeRow={closeRow}
+                                matchName={inplayMatch?.matchName}
+                                betSlipData={betSlipData}
+                                placeBet={placeBet}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                count={betSlipData.count}
+                                betLoading={betLoading}
+                                increaseCount={increaseCount}
+                                decreaseCount={decreaseCount}
+                                handleClose={handleBackclose}
+                                setBetSlipData={setBetSlipData}
+                                handleButtonValues={handleButtonValues}
                             />
 
 
@@ -1109,13 +1105,29 @@ const ViewMatches = () => {
                                 activeTab={activeTab}
                                 OverByOverFancy={OverByOverFancy}
                                 fancyPositionObj={fancyPositionObj}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 marketId={marketId}
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
                                 setModalTrue={setModalTrue}
+
+                                hiddenRows={hiddenRows}
+                                toggleRowVisibility={toggleRowVisibility}
+                                openBets={openBets}
+                                closeRow={closeRow}
+                                matchName={inplayMatch?.matchName}
+                                betSlipData={betSlipData}
+                                placeBet={placeBet}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                count={betSlipData.count}
+                                betLoading={betLoading}
+                                increaseCount={increaseCount}
+                                decreaseCount={decreaseCount}
+                                handleClose={handleBackclose}
+                                setBetSlipData={setBetSlipData}
+                                handleButtonValues={handleButtonValues}
                             />
 
                             {/* Fancy 1 */}
@@ -1138,28 +1150,61 @@ const ViewMatches = () => {
                                 activeTab={activeTab}
                                 KhadoFancy={KhadoFancy}
                                 fancyPositionObj={fancyPositionObj}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 marketId={marketId}
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
                                 setModalTrue={setModalTrue}
+
+                                hiddenRows={hiddenRows}
+                                toggleRowVisibility={toggleRowVisibility}
+                                openBets={openBets}
+                                closeRow={closeRow}
+                                matchName={inplayMatch?.matchName}
+                                betSlipData={betSlipData}
+                                placeBet={placeBet}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                count={betSlipData.count}
+                                betLoading={betLoading}
+                                increaseCount={increaseCount}
+                                decreaseCount={decreaseCount}
+                                handleClose={handleBackclose}
+                                setBetSlipData={setBetSlipData}
+                                handleButtonValues={handleButtonValues}
                             />
 
                             {/* meter Fancy  */}
 
                             <MeterFancyComponent
+                                inplayMatch={inplayMatch}
                                 activeTab={activeTab}
                                 MeterFancy={MeterFancy}
                                 fancyPositionObj={fancyPositionObj}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 marketId={marketId}
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
                                 setModalTrue={setModalTrue}
+
+                                hiddenRows={hiddenRows}
+                                toggleRowVisibility={toggleRowVisibility}
+                                openBets={openBets}
+                                closeRow={closeRow}
+                                matchName={inplayMatch?.matchName}
+                                betSlipData={betSlipData}
+                                placeBet={placeBet}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                count={betSlipData.count}
+                                betLoading={betLoading}
+                                increaseCount={increaseCount}
+                                decreaseCount={decreaseCount}
+                                handleClose={handleBackclose}
+                                setBetSlipData={setBetSlipData}
+                                handleButtonValues={handleButtonValues}
                             />
 
                             {/* oddeven  Fancy*/}
@@ -1169,13 +1214,29 @@ const ViewMatches = () => {
                                 activeTab={activeTab}
                                 OddEvenFancy={OddEvenFancy}
                                 fancyPositionObj={fancyPositionObj}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 marketId={marketId}
                                 returnDataFancyObject={returnDataFancyObject}
                                 formatNumber={formatNumber}
                                 handleFancyPositionModal={handleFancyPositionModal}
                                 setModalTrue={setModalTrue}
+
+                                hiddenRows={hiddenRows}
+                                toggleRowVisibility={toggleRowVisibility}
+                                openBets={openBets}
+                                closeRow={closeRow}
+                                matchName={inplayMatch?.matchName}
+                                betSlipData={betSlipData}
+                                placeBet={placeBet}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                count={betSlipData.count}
+                                betLoading={betLoading}
+                                increaseCount={increaseCount}
+                                decreaseCount={decreaseCount}
+                                handleClose={handleBackclose}
+                                setBetSlipData={setBetSlipData}
+                                handleButtonValues={handleButtonValues}
                             />
 
                             {/* groupBy Fancy  */}
@@ -1184,11 +1245,27 @@ const ViewMatches = () => {
                                 inplayMatch={inplayMatch}
                                 activeTab={activeTab}
                                 groupedData={groupedData}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 marketId={marketId}
                                 returnDataFancyObject={returnDataFancyObject}
                                 setModalTrue={setModalTrue}
+
+                                hiddenRows={hiddenRows}
+                                toggleRowVisibility={toggleRowVisibility}
+                                openBets={openBets}
+                                closeRow={closeRow}
+                                matchName={inplayMatch?.matchName}
+                                betSlipData={betSlipData}
+                                placeBet={placeBet}
+                                errorMessage={errorMessage}
+                                successMessage={successMessage}
+                                count={betSlipData.count}
+                                betLoading={betLoading}
+                                increaseCount={increaseCount}
+                                decreaseCount={decreaseCount}
+                                handleClose={handleBackclose}
+                                setBetSlipData={setBetSlipData}
+                                handleButtonValues={handleButtonValues}
                             />
                             <TiedOddsComponent
                                 inplayMatch={inplayMatch}
@@ -1197,10 +1274,26 @@ const ViewMatches = () => {
                                 isMatchCoin={isMatchCoin}
                                 positionObj={positionObj}
                                 returnDataObject={returnDataObject}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 formatNumber={formatNumber}
                                 setModalTrue={setModalTrue}
+
+                            // hiddenRows={hiddenRows}
+                            // toggleRowVisibility={toggleRowVisibility}
+                            // openBets={openBets}
+                            // closeRow={closeRow}
+                            // matchName={inplayMatch?.matchName}
+                            // betSlipData={betSlipData}
+                            // placeBet={placeBet}
+                            // errorMessage={errorMessage}
+                            // successMessage={successMessage}
+                            // count={betSlipData.count}
+                            // betLoading={betLoading}
+                            // increaseCount={increaseCount}
+                            // decreaseCount={decreaseCount}
+                            // handleClose={handleBackclose}
+                            // setBetSlipData={setBetSlipData}
+                            // handleButtonValues={handleButtonValues}
                             />
 
                             {/* <CashOutSystemTesting /> */}
@@ -1230,11 +1323,11 @@ const ViewMatches = () => {
                             : null}
                     </div>
                     <div>
+                        <div className="bg-[var(--secondary)] flex justify-start items-center py-1.5 px-4 text-white text-sm font-semibold rounded-sm">
+                            <span>Place Bet </span>
+                        </div>
                         {!betShow && (
                             <>
-                                <div className="bg-[var(--secondary)] flex justify-start items-center py-1.5 px-4 text-white text-sm font-semibold rounded-sm">
-                                    <span>Place Bet </span>
-                                </div>
                                 <BetPlaceDesktop
                                     openBets={openBets}
                                     closeRow={closeRow}

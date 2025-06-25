@@ -1,19 +1,21 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import { FaInfoCircle } from 'react-icons/fa';
+import PlaceBetMobile from '../../../component/betplaceMobile/PlaceBetMobile';
 
 const OddEvenFancyComponent = ({
   inplayMatch,
   activeTab,
   OddEvenFancy,
   fancyPositionObj,
-  toggleRowVisibility,
   handleBackOpen,
   marketId,
   returnDataFancyObject,
   formatNumber,
   handleFancyPositionModal,
-  setModalTrue
+  setModalTrue,
+  hiddenRows, toggleRowVisibility,
+  openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount, handleBackclose, setBetSlipData, handleButtonValues
 }) => {
   return (
     inplayMatch?.isFancy && (activeTab === "fancy" || activeTab === "all") && (
@@ -59,7 +61,7 @@ const OddEvenFancyComponent = ({
                     </div>
                   </span>
                   <span className="lg:hidden block">
-                    <div className="py-1 flex justify-center items-center bg-[#faa9ba]">
+                    <div className="py-1 flex justify-center items-center lg:bg-[#faa9ba] bg-[#f9c9d4]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">No</span>
                       </div>
@@ -73,7 +75,7 @@ const OddEvenFancyComponent = ({
                     </div>
                   </span>
                   <span className="lg:hidden block">
-                    <div className="py-1 flex justify-center items-center bg-[#72bbef]">
+                    <div className="py-1 flex justify-center items-center lg:bg-[#72bbef] bg-[#a7d8fd]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
                       </div>
@@ -104,7 +106,7 @@ const OddEvenFancyComponent = ({
                     </div>
                   </span>
                   <span className="lg:hidden block">
-                    <div className="py-1 flex justify-center items-center bg-[#faa9ba]">
+                    <div className="py-1 flex justify-center items-center lg:bg-[#faa9ba] bg-[#f9c9d4]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">No</span>
                       </div>
@@ -118,7 +120,7 @@ const OddEvenFancyComponent = ({
                     </div>
                   </span>
                   <span className="lg:hidden block">
-                    <div className="py-1 flex justify-center items-center bg-[#72bbef]">
+                    <div className="py-1 flex justify-center items-center lg:bg-[#72bbef] bg-[#a7d8fd]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
                       </div>
@@ -219,7 +221,7 @@ const OddEvenFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsNo}
                           size={(commList.oddsNo * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#faa9ba]"}
+                          color={"bg-[#f9c9d4]"}
                           blinkColor={"bg-[#FE7A7F]"}
                           textColors={"text-black"}
                           boderColors={"border-[#f996ab]"}
@@ -281,7 +283,7 @@ const OddEvenFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsYes}
                           size={(commList.oddsYes * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#72bbef]"}
+                          color={"bg-[#a7d8fd]"}
                           blinkColor={"bg-[#00B2FF]"}
                           textColors={"text-black"}
                           boderColors={"border-[#489bbd]"}
@@ -314,6 +316,25 @@ const OddEvenFancyComponent = ({
                   {commList?.remark &&
                     <div className="px-1 text-[#097c93] text-left text-[11px] w-full">{commList?.remark}</div>
                   }
+                  {hiddenRows?.includes(commList.session_id) && (
+                    <PlaceBetMobile
+                      openBets={openBets}
+                      closeRow={closeRow}
+                      closeSec={commList.selectionid}
+                      matchName={inplayMatch?.matchName}
+                      betSlipData={betSlipData}
+                      placeBet={placeBet}
+                      count={betSlipData.count}
+                      betLoading={betLoading}
+                      increaseCount={increaseCount}
+                      decreaseCount={decreaseCount}
+                      handleClose={handleBackclose}
+                      setBetSlipData={setBetSlipData}
+                      errorMessage={errorMessage}
+                      successMessage={successMessage}
+                      handleButtonValues={handleButtonValues}
+                    />
+                  )}
                 </div>
               ))}
             </div>

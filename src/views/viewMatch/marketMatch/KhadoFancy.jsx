@@ -1,19 +1,21 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import { FaInfoCircle } from 'react-icons/fa';
+import PlaceBetMobile from '../../../component/betplaceMobile/PlaceBetMobile';
 
 const KhadoFancyComponent = ({
   inplayMatch,
   activeTab,
   KhadoFancy,
   fancyPositionObj,
-  toggleRowVisibility,
   handleBackOpen,
   marketId,
   returnDataFancyObject,
   formatNumber,
   handleFancyPositionModal,
-  setModalTrue
+  setModalTrue,
+  hiddenRows, toggleRowVisibility,
+  openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount, handleBackclose, setBetSlipData, handleButtonValues
 }) => {
   return (
     inplayMatch?.isFancy && (activeTab === "fancy" || activeTab === "all") && (
@@ -32,7 +34,7 @@ const KhadoFancyComponent = ({
             </header>
 
             <div className="grid xl:grid-cols-1 grid-cols-1">
-              <div className="xl:flex hidden relative decoration-none border-b border-gray-300 whitespace-normal max-w-full">
+              <div className="flex relative decoration-none border-b border-gray-300 whitespace-normal max-w-full">
                 <div className="xl:w-[75%] w-[65%] flex px-2">
                   <div className="w-full leading-3 flex items-center">
                     <span className="lg:hidden flex z-20 pr-1">
@@ -45,16 +47,16 @@ const KhadoFancyComponent = ({
                     </span>
                   </div>
                 </div>
-                <div className="xl:w-[25%] w-[35%] grid md:grid-cols-3 grid-cols-1">
-                  <span className="lg:block hidden lg:col-span-2 bg-[#72bbef]">
+                <div className="xl:w-[25%] w-[35%] grid lg:grid-cols-3 grid-cols-2">
+                  <span className="lg:block hidden lg:col-span-2">
                     <div className="py-1 flex justify-center items-center bg-[#72bbef]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">BACK</span>
                       </div>
                     </div>
                   </span>
-                  <span className="lg:hidden block">
-                    <div className="py-1 flex justify-center items-center bg-[#72bbef]">
+                  <span className="lg:hidden block col-span-2">
+                    <div className="py-1 flex justify-center items-center lg:bg-[#72bbef] bg-[#a7d8fd]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">BACK</span>
                       </div>
@@ -100,7 +102,7 @@ const KhadoFancyComponent = ({
                         </span>
                       </div>
                     </div>
-                    <div className="xl:w-[25%] w-[35%] grid md:grid-cols-3 grid-cols-1">
+                    <div className="xl:w-[25%] w-[35%] grid lg:grid-cols-3 grid-cols-1">
                       <span
                         className="lg:block lg:col-span-2 hidden cursor-pointer"
                         onClick={() => {
@@ -133,7 +135,7 @@ const KhadoFancyComponent = ({
                         />
                       </span>
                       <span
-                        className="cursor-pointer lg:hidden block"
+                        className="cursor-pointer lg:hidden block col-span-2"
                         onClick={() => {
                           toggleRowVisibility(commList.session_id);
                           handleBackOpen({
@@ -157,7 +159,7 @@ const KhadoFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsYes}
                           size={(commList.oddsYes * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#72bbef]"}
+                          color={"bg-[#a7d8fd]"}
                           blinkColor={"bg-[#00B2FF]"}
                           textColors={"text-black"}
                           boderColors={"border-[#489bbd]"}
@@ -167,7 +169,7 @@ const KhadoFancyComponent = ({
                       <span className="xl:flex hidden items-center text-end px-2 gap-1 w-full justify-end z-20 text-[#000000] font-[500] text-[9px] xl:text-[5px] 2xl:text-[10px] overflow-hidden bg-gray-50">
                         <p> Min:100</p>
                         <p>Max:{formatNumber(commList?.max)}</p>
-                      </span> 
+                      </span>
 
                       {commList && commList.running_status &&
                         (commList.running_status === "SUSPENDED" ||
@@ -186,6 +188,25 @@ const KhadoFancyComponent = ({
                   {commList?.remark &&
                     <div className="px-1 text-[#097c93] text-left text-[11px] w-full">{commList?.remark}</div>
                   }
+                  {hiddenRows?.includes(commList.session_id) && (
+                    <PlaceBetMobile
+                      openBets={openBets}
+                      closeRow={closeRow}
+                      closeSec={commList.selectionid}
+                      matchName={inplayMatch?.matchName}
+                      betSlipData={betSlipData}
+                      placeBet={placeBet}
+                      count={betSlipData.count}
+                      betLoading={betLoading}
+                      increaseCount={increaseCount}
+                      decreaseCount={decreaseCount}
+                      handleClose={handleBackclose}
+                      setBetSlipData={setBetSlipData}
+                      errorMessage={errorMessage}
+                      successMessage={successMessage}
+                      handleButtonValues={handleButtonValues}
+                    />
+                  )}
                 </div>
               ))}
             </div>

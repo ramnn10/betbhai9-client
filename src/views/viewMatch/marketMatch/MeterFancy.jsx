@@ -1,18 +1,21 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import { FaInfoCircle } from 'react-icons/fa';
+import PlaceBetMobile from '../../../component/betplaceMobile/PlaceBetMobile';
 
 const MeterFancyComponent = ({
+  inplayMatch,
   activeTab,
   MeterFancy,
   fancyPositionObj,
-  toggleRowVisibility,
   handleBackOpen,
   marketId,
   returnDataFancyObject,
   formatNumber,
   handleFancyPositionModal,
-  setModalTrue
+  setModalTrue,
+  hiddenRows, toggleRowVisibility,
+  openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount, handleBackclose, setBetSlipData, handleButtonValues
 }) => {
   return (
     (activeTab === "fancy" || activeTab === "all") && (
@@ -59,7 +62,7 @@ const MeterFancyComponent = ({
                       </div>
                     </div>
                   </span>
-                  <span className="lg:block hidden bg-[#72bbef]">
+                  <span className="lg:block hidden">
                     <div className="py-1 flex justify-center items-center bg-[#72bbef]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
@@ -90,21 +93,21 @@ const MeterFancyComponent = ({
                   </div>
                 </div>
                 <div className="xl:w-[50%] w-[35%] grid grid-cols-2 xl:grid-cols-3">
-                  <span className="lg:block hidden bg-[#faa9ba]">
-                    <div className="py-1 flex justify-center items-center bg-[#faa9ba]">
+                  <span className="lg:block hidden">
+                    <div className="py-1 flex justify-center items-center md:bg-[#faa9ba] bg-[#f9c9d4]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">No</span>
                       </div>
                     </div>
                   </span>
                   <span className="lg:hidden block">
-                    <div className="py-1 flex justify-center items-center bg-[#faa9ba]">
+                    <div className="py-1 flex justify-center items-center lg:bg-[#faa9ba] bg-[#f9c9d4]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">No</span>
                       </div>
                     </div>
                   </span>
-                  <span className="lg:block hidden bg-[#72bbef]">
+                  <span className="lg:block hidden">
                     <div className="py-1 flex justify-center items-center bg-[#72bbef]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
@@ -112,7 +115,7 @@ const MeterFancyComponent = ({
                     </div>
                   </span>
                   <span className="lg:hidden block">
-                    <div className="py-1 flex justify-center items-center bg-[#72bbef]">
+                    <div className="py-1 flex justify-center items-center lg:bg-[#72bbef] bg-[#a7d8fd]">
                       <div className="text-center leading-3">
                         <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">Back</span>
                       </div>
@@ -127,7 +130,7 @@ const MeterFancyComponent = ({
               {MeterFancy?.map((commList, index) => (
                 <div key={index}>
                   <div className="border-b border-gray-300 relative flex decoration-none whitespace-normal max-w-full">
-                    <div className="xl:w-[50%] w-[65%] flex px-2">
+                    <div className="xl:w-[50%] w-[65%] bg-[#f2f2f2] flex px-2">
                       <div className="w-full leading-3 flex items-center">
                         <span className="lg:hidden flex z-20 pr-1">
                           <span
@@ -213,7 +216,7 @@ const MeterFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsNo}
                           size={(commList.oddsNo * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#faa9ba]"}
+                          color={"bg-[#f9c9d4]"}
                           blinkColor={"bg-[#FE7A7F]"}
                           textColors={"text-black"}
                           boderColors={"border-[#f996ab]"}
@@ -275,7 +278,7 @@ const MeterFancyComponent = ({
                         <BlinkingComponent
                           price={commList.runsYes}
                           size={(commList.oddsYes * 100).toFixed(2).replace(/\.00$/, "")}
-                          color={"bg-[#72bbef]"}
+                          color={"bg-[#a7d8fd]"}
                           blinkColor={"bg-[#00B2FF]"}
                           textColors={"text-black"}
                           boderColors={"border-[#489bbd]"}
@@ -308,6 +311,25 @@ const MeterFancyComponent = ({
                   {commList?.remark &&
                     <div className="px-1 text-[#097c93] text-left text-[11px] w-full">{commList?.remark}</div>
                   }
+                  {hiddenRows?.includes(commList.session_id) && (
+                    <PlaceBetMobile
+                      openBets={openBets}
+                      closeRow={closeRow}
+                      closeSec={commList.selectionid}
+                      matchName={inplayMatch?.matchName}
+                      betSlipData={betSlipData}
+                      placeBet={placeBet}
+                      count={betSlipData.count}
+                      betLoading={betLoading}
+                      increaseCount={increaseCount}
+                      decreaseCount={decreaseCount}
+                      handleClose={handleBackclose}
+                      setBetSlipData={setBetSlipData}
+                      errorMessage={errorMessage}
+                      successMessage={successMessage}
+                      handleButtonValues={handleButtonValues}
+                    />
+                  )}
                 </div>
               ))}
             </div>

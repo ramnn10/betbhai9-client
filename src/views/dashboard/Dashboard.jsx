@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import TopHeader from "../../component/dashboard/TopHeader";
 import { MdHowToVote, MdOutlineSportsEsports, MdSportsCricket } from "react-icons/md";
 import { IoFootballSharp, IoTennisball } from "react-icons/io5";
-import { FaFootballBall, FaHorseHead, FaMotorcycle } from 'react-icons/fa';
+import { FaFootballBall, FaHorseHead, FaMotorcycle, FaRegPlayCircle } from 'react-icons/fa';
 import { IoIosColorWand } from 'react-icons/io';
 import { FaBasketball, FaTableTennisPaddleBall } from "react-icons/fa6";
 import InplayMatches from "../../component/dashboard/InplayMatches";
 import CasinoList from "../../component/dashboard/CasinoList";
 import DashboardModal from "../../component/dashboardModal/DashboardModal";
-import { CiBasketball } from "react-icons/ci";
+import { CiBaseball, CiBasketball } from "react-icons/ci";
 import { BiCricketBall } from "react-icons/bi";
 import { GiBoxingGlove, GiPoolTriangle, GiTennisRacket } from "react-icons/gi";
 import { PiFootballHelmetFill } from "react-icons/pi";
@@ -18,7 +18,9 @@ export const sportlistArray = [
   {
     sportId: 4,
     sportName: "Cricket",
-    icon: <MdSportsCricket />
+    icon: <BiCricketBall />,
+    // image: '/dashbaord/sportsicon/balls.png',
+
   },
   {
     sportId: 1,
@@ -42,7 +44,7 @@ export const AllSportsArray = [
   {
     sportName: "Inplay",
     sportId: 0,
-    icons: <FaFootballBall />
+    icons: <FaRegPlayCircle />
   },
   {
     sportName: "Cricket",
@@ -178,7 +180,7 @@ const Dashboard = () => {
 
       <TopHeader activeAllSporttab={activeAllSporttab} setactiveAllSporttab={setactiveAllSporttab} matchList={matchData} />
       <InplayMatches activeTab={activeAllSporttab} matchlistItems={matchData} />
-      <div className="w-full py-4 px-1">
+      <div className="w-full py-4">
         <CasinoList />
       </div>
     </section>

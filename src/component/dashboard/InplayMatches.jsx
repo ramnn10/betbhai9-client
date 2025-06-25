@@ -135,7 +135,7 @@ function InplayMatches({ activeTab, matchlistItems }) {
               <span>2</span>
             </p>
           </div>
-          <div className="border-b  px-3 py-1 text-[13px]">
+          <div className="border-b px-2 py-1 text-[13px]">
             No Records found
           </div>
         </>
@@ -144,7 +144,7 @@ function InplayMatches({ activeTab, matchlistItems }) {
       content = (
         <>
           <div className="lg:flex hidden justify-between px-1.5 py-1 w-full border-b border-t border-[#C6D2D8]">
-            <h2 className="text-sm font-bold text-black w-[60%] px-2">Game</h2>
+            <h2 className="text-sm font-bold text-black w-[60%] px-1">Game</h2>
             <p className="w-[40%] grid grid-cols-3 text-center text-sm font-bold">
               <span>1</span>
               <span>X</span>

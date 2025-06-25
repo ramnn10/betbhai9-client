@@ -15,13 +15,11 @@ const BookmakerComponent = ({
   marketId,
   returnDataObject,
   returnDataFancyObject,
-  toggleRowVisibility,
   handleBackOpen,
   formatNumber,
   setModalTrue,
-
-  // openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount,handleBackclose, setBetSlipData, handleButtonValues
-
+  hiddenRows, toggleRowVisibility,
+  openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount, handleBackclose, setBetSlipData, handleButtonValues
 }) => {
   if (!inplayMatch?.isBookmaker || !(activeTab === "bookmaker" || activeTab === "all")) {
     return null;
@@ -79,14 +77,14 @@ const BookmakerComponent = ({
                 <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                 <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                 <span className="lg:col-span-1 col-span-3 rounded-md">
-                  <div className="py-1 flex justify-center items-center bg-[#72bbef]">
+                  <div className="py-1 flex justify-center items-center lg:bg-[#72bbef] bg-[#a7d8fd]">
                     <div className="text-center leading-3">
                       <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">BACK</span>
                     </div>
                   </div>
                 </span>
                 <span className="lg:col-span-1 col-span-3 rounded-md">
-                  <div className="py-1 flex justify-center items-center bg-[#faa9ba]">
+                  <div className="py-1 flex justify-center items-center lg:bg-[#faa9ba] bg-[#f9c9d4]">
                     <div className="text-center leading-3">
                       <span className="2xl:text-[16px] lg:text-[16px] text-xs text-gray-800 font-bold">LAY</span>
                     </div>
@@ -96,10 +94,10 @@ const BookmakerComponent = ({
                 <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
               </div>
             </div>
-            {matchScoreDetails.team_data.map((commList, index) => (
-              <div>
-                <div key={index} className="relative border-b border-gray-300 flex decoration-none whitespace-normal max-w-full">
-                  <div className="lg:w-1/2 xl:w-[40%] w-[65%] flex">
+            {matchScoreDetails?.team_data.map((commList, index) => (
+              <div key={index} >
+                <div className="relative border-b border-gray-300 flex decoration-none whitespace-normal max-w-full">
+                  <div className="lg:w-1/2 xl:w-[40%] w-[65%] bg-[#f2f2f2] flex">
                     <div className="w-full leading-3 flex items-center capitalize text-[#333333]">
                       <span className="text-[13px] px-2 font-bold">
                         <span>{commList.team_name}</span>
@@ -200,7 +198,7 @@ const BookmakerComponent = ({
                       <BlinkingComponent
                         price={(commList.lgaai * 100).toFixed(2)}
                         size={(commList.khaai * 100).toFixed(2)}
-                        color={"bg-[#72bbef]"}
+                        color={"bg-[#a7d8fd]"}
                         blinkColor={"bg-[#00B2FF]"}
                         textColors={"text-black"}
                         boderColors={"border-[#489bbd]"}
@@ -288,7 +286,7 @@ const BookmakerComponent = ({
                       <BlinkingComponent
                         price={(commList.khaai * 100).toFixed(2)}
                         size={(commList.lgaai * 100).toFixed(2)}
-                        color={"bg-[#faa9ba]"}
+                        color={"bg-[#f9c9d4]"}
                         blinkColor={"bg-[#FE7A7F]"}
                         textColors={"text-black"}
                         boderColors={"border-[#f996ab]"}
@@ -306,8 +304,29 @@ const BookmakerComponent = ({
                     </div>
                   )}
                 </div>
+                {hiddenRows?.includes(commList.selectionid) && (
+                  <PlaceBetMobile
+                    openBets={openBets}
+                    closeRow={closeRow}
+                    closeSec={commList.selectionid}
+                    matchName={inplayMatch?.matchName}
+                    betSlipData={betSlipData}
+                    placeBet={placeBet}
+                    count={betSlipData.count}
+                    betLoading={betLoading}
+                    increaseCount={increaseCount}
+                    decreaseCount={decreaseCount}
+                    handleClose={handleBackclose}
+                    setBetSlipData={setBetSlipData}
+                    errorMessage={errorMessage}
+                    successMessage={successMessage}
+                    handleButtonValues={handleButtonValues}
+                  />
+                )}
+              </div>
+            ))}
 
-                {/* {betSlipData?.name &&
+            {/* {betSlipData?.name &&
                   <PlaceBetMobile
                     openBets={openBets}
                     closeRow={closeRow}
@@ -324,11 +343,6 @@ const BookmakerComponent = ({
                     setBetSlipData={setBetSlipData}
                     handleButtonValues={handleButtonValues}
                   />} */}
-
-
-              </div>
-            ))}
-
 
           </>
         )}

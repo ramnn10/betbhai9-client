@@ -1,19 +1,21 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import { FaInfoCircle } from 'react-icons/fa';
+import PlaceBetMobile from '../../../component/betplaceMobile/PlaceBetMobile';
 
 const OverByOverFancyComponent = ({
   inplayMatch,
   activeTab,
   OverByOverFancy,
   fancyPositionObj,
-  toggleRowVisibility,
   handleBackOpen,
   marketId,
   returnDataFancyObject,
   formatNumber,
   handleFancyPositionModal,
-  setModalTrue
+  setModalTrue,
+  hiddenRows, toggleRowVisibility,
+  openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount, handleBackclose, setBetSlipData, handleButtonValues
 }) => {
   return (
     inplayMatch?.isFancy && (activeTab === "fancy" || activeTab === "all") && (
@@ -304,6 +306,25 @@ const OverByOverFancyComponent = ({
                   {commList?.remark &&
                     <div className="px-1 text-[#097c93] text-left text-[11px] w-full">{commList?.remark}</div>
                   }
+                  {hiddenRows?.includes(commList.session_id) && (
+                    <PlaceBetMobile
+                      openBets={openBets}
+                      closeRow={closeRow}
+                      closeSec={commList.selectionid}
+                      matchName={inplayMatch?.matchName}
+                      betSlipData={betSlipData}
+                      placeBet={placeBet}
+                      count={betSlipData.count}
+                      betLoading={betLoading}
+                      increaseCount={increaseCount}
+                      decreaseCount={decreaseCount}
+                      handleClose={handleBackclose}
+                      setBetSlipData={setBetSlipData}
+                      errorMessage={errorMessage}
+                      successMessage={successMessage}
+                      handleButtonValues={handleButtonValues}
+                    />
+                  )}
                 </div>
               ))}
             </div>

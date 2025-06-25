@@ -1,16 +1,18 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import { FaInfoCircle } from 'react-icons/fa';
+import PlaceBetMobile from '../../../component/betplaceMobile/PlaceBetMobile';
 
 const GroupedFancyComponent = ({
   inplayMatch,
   activeTab,
   groupedData,
-  toggleRowVisibility,
   handleBackOpen,
   marketId,
   returnDataFancyObject,
-  setModalTrue
+  setModalTrue,
+  hiddenRows, toggleRowVisibility,
+  openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount, handleBackclose, setBetSlipData, handleButtonValues
 }) => {
   return (
     inplayMatch?.isFancy && (activeTab === "fancy" || activeTab === "all") && (
@@ -40,42 +42,62 @@ const GroupedFancyComponent = ({
 
               {/* Odds Rows */}
               {items.map((commList, i) => (
-                <div
-                  key={i}
-                  className="grid grid-cols-[80%_20%] gap-2 border-t text-sm"
-                >
-                  <div className="px-2">{i} Number</div>
+                <div key={i}>
                   <div
-                    className="text-center bg-red-900 text-black cursor-pointer"
-                    onClick={() => {
-                      toggleRowVisibility(commList.session_id);
-                      handleBackOpen({
-                        data: commList,
-                        type: "Yes",
-                        odds: commList.oddsYes,
-                        name: commList.session_name,
-                        nameSession: commList.session_name,
-                        betFor: "fancy",
-                        oddsType: "fancy",
-                        betType: "Y",
-                        run: commList.runsYes,
-                        selectionId: commList.session_id,
-                        betfairMarketId: marketId,
-                        price: commList.runsYes,
-                        size: commList.oddsYes,
-                        position: returnDataFancyObject,
-                      });
-                    }}
+                    className="grid grid-cols-[80%_20%] gap-2 border-t text-sm"
                   >
-                    <BlinkingComponent
-                      price={commList.runsYes}
-                      size={(commList.oddsYes * 100).toFixed(2).replace(/\.00$/, "")}
-                      color={"bg-[#72bbef]"}
-                      blinkColor={"bg-[#00B2FF]"}
-                      textColors={"text-black"}
-                      boderColors={"border-[#489bbd]"}
-                    />
+                    <div className="px-2">{i} Number</div>
+                    <div
+                      className="text-center bg-red-900 text-black cursor-pointer"
+                      onClick={() => {
+                        toggleRowVisibility(commList.session_id);
+                        handleBackOpen({
+                          data: commList,
+                          type: "Yes",
+                          odds: commList.oddsYes,
+                          name: commList.session_name,
+                          nameSession: commList.session_name,
+                          betFor: "fancy",
+                          oddsType: "fancy",
+                          betType: "Y",
+                          run: commList.runsYes,
+                          selectionId: commList.session_id,
+                          betfairMarketId: marketId,
+                          price: commList.runsYes,
+                          size: commList.oddsYes,
+                          position: returnDataFancyObject,
+                        });
+                      }}
+                    >
+                      <BlinkingComponent
+                        price={commList.runsYes}
+                        size={(commList.oddsYes * 100).toFixed(2).replace(/\.00$/, "")}
+                        color={"bg-[#72bbef]"}
+                        blinkColor={"bg-[#00B2FF]"}
+                        textColors={"text-black"}
+                        boderColors={"border-[#489bbd]"}
+                      />
+                    </div>
                   </div>
+                  {hiddenRows?.includes(commList.session_id) && (
+                    <PlaceBetMobile
+                      openBets={openBets}
+                      closeRow={closeRow}
+                      closeSec={commList.selectionid}
+                      matchName={inplayMatch?.matchName}
+                      betSlipData={betSlipData}
+                      placeBet={placeBet}
+                      count={betSlipData.count}
+                      betLoading={betLoading}
+                      increaseCount={increaseCount}
+                      decreaseCount={decreaseCount}
+                      handleClose={handleBackclose}
+                      setBetSlipData={setBetSlipData}
+                      errorMessage={errorMessage}
+                      successMessage={successMessage}
+                      handleButtonValues={handleButtonValues}
+                    />
+                  )}
                 </div>
               ))}
             </div>

@@ -11,6 +11,10 @@ const GrandExchangeSettings = {
     "--secondary": "#116257",
     "--matchLagai": "#72bbef",
     "--matchKhai": "#faa9ba",
+
+    "--matchLagai50": "#a7d8fd",
+    "--matchKhai50": "#f9c9d4",
+
     "--success-color": "#fab418",
 
     "--result-color": "#355e3b",

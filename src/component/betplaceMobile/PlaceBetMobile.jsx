@@ -89,11 +89,11 @@ export default function PlaceBetMobile(props) {
     });
 
 
-    if (betSlipData.oddsType == "fancy") {
+    if (betSlipData?.oddsType == "fancy") {
         // filterdata = runCount.session.filter(session => session.Selection_id == betSlipData.data.Selection_id);
     }
 
-    if (betSlipData.oddsType == "bookmaker") {
+    if (betSlipData?.oddsType == "bookmaker") {
         // filterdata = runCount.team_data.filter(session => session.selectionid == betSlipData.data.selectionid);
 
     }
@@ -200,26 +200,26 @@ export default function PlaceBetMobile(props) {
 
     return (
         <div>
-            <div className=' w-full z-50 fixed  h-screen bg-black/60 xl:hidden flex justify-center items-start  inset-0'>
-                <div className={`lg:w-[50%] w-full relative  z-50 mx-auto ${betSlipData.type === "No"
-                    ? "bg-[var(--matchKhai)] "
-                    : "bg-[var(--matchLagai)]"
+            <div className=' w-full bg-black/60 xl:hidden flex justify-center items-start  inset-0'>
+                <div className={`lg:w-[50%] w-full relative  z-50 mx-auto ${betSlipData?.type === "No"
+                    ? "bg-[var(--matchKhai50)] "
+                    : "bg-[var(--matchLagai50)]"
                     } `}>
                     {betLoading && <div className='absolute top-0 left-0 h-full w-full flex justify-center items-center bg-[#ffffffc5] '>
                         <span className="loaderbetPlace"></span>
                     </div>
                     }
-                    <div className=" w-full  h-full flex justify-between bg-[var(--primary)] pt-1.5 pb-3 px-2 items-center">
+                    {/* <div className=" w-full  h-full flex justify-between bg-[var(--primary)] pt-1.5 pb-3 px-2 items-center">
                         <h2 className="text-white text-[16px] font-[700]" >
                             Placebet
                         </h2>
                         <div className='text-center pl-2' onClick={() => handleClose()}>
                             <IoCloseSharp className='text-white cursor-pointer ' size={24} />
                         </div>
-                    </div>
+                    </div> */}
                     <div className="flex  justify-between items-center space-x-1 text-black px-2 pt-2.5">
                         <div className='p-1 font-medium text-[12px] capitalize'>
-                            {betSlipData.name}
+                            {betSlipData?.name}
                         </div>
                         <div className='text-black text-[12px]'>Profit: 0</div>
                         {/* <div className="bg-white my-1 rounded flex divide-x divide-gray-300">
@@ -246,7 +246,7 @@ export default function PlaceBetMobile(props) {
 
                         <div className="flex flex-col w-full">
                             <span className="text-center text-[12px]">Amount</span>
-                            <input className="focus:outline-none text-sm w-full text-start px-2 py-1.5 bg-white h-7 border border-black" type="number" placeholder="0" value={betSlipData.stake} onChange={updateInputValue} />
+                            <input className="focus:outline-none text-sm w-full text-start px-2 py-1.5 bg-white h-7 border border-black" type="number" placeholder="0" value={betSlipData?.stake} onChange={updateInputValue} />
                         </div>
 
                     </div>

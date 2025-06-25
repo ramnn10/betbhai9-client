@@ -18,12 +18,12 @@ function LiveMatches({ matchList }) {
                 return currentMoment.isSameOrAfter(inputMoment) ? (
                     <div
                         onClick={() => { handleResponseGameotherDetails(element) }}
-                        key={index} className="  text-nowrap flex flex-nowrap justify-between items-center py-[2px] xl:px-1.5 bg-[var(--secondary)] text-white overflow-x-auto rounded min-w-[50%] w-full xl:min-w-[calc(10%+20px)] xl:w-auto xl:max-w-full xl:h-full cursor-pointer">
+                        key={index} className="  text-nowrap flex flex-nowrap justify-between items-center py-[2px] xl:px-1.5 px-1 bg-[var(--secondary)] text-white overflow-x-auto rounded min-w-[45%] w-full xl:min-w-[calc(10%+20px)] xl:w-auto xl:max-w-full xl:h-full cursor-pointer">
                         {/*  */}
                         <div className="blinking-text">
                             {sportlistArray?.find((sport) => sport.sportId === element?.sportId)?.icon}
                         </div>
-                        <div className="blinking-text text-sm xl:text-base overflow-x-auto max-w-[calc(100%-42px)] font-[500]">
+                        <div className="blinking-text text-sm xl:text-base overflow-x-auto max-w-[calc(100%-37px)] font-[500]">
                             {element?.matchName}
                         </div>
                         <div>

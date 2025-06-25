@@ -1,7 +1,3 @@
-
-
-
-
 export const SPORTSCONSTANT = [
   {
     text: 'Cricket',
@@ -127,50 +123,26 @@ export const SPORTSCONSTANT = [
 
 export const slotsArray = [
   {
-    name: "Lottery",
-    id: 1,
+    name: "INPLAY",
+    // id: 1,
   },
   {
-    name: "sports",
-    id: 2,
+    name: "SPORTS",
+    // id: 2,
   },
   {
-    name: "Our casino",
-    id: 1,
+    name: "CASINO",
+    // id: 1,
   },
   {
-    name: "Live Casino",
-    id: 2,
+    name: "SPORTSBOOK",
+    // id: 2,
   },
   {
-    name: "Slot",
-    id: 2,
-  },
-  {
-    name: "Fantacy",
-    id: 2,
+    name: "OTHERS",
+    // id: 2,
   },
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export const casinoListJson = [
   {

@@ -28,7 +28,7 @@ const Layout = () => {
 
     return (
         <div>
-            <div className='h-[76px] sm:h-[75px] xl:h-[73px] bg-[var(--primary)]'>
+            <div className='h-[80px] sm:h-[80px] xl:h-[73px] bg-[var(--primary)]'>
                 <AppHeader />
             </div>
             <SubHeader />

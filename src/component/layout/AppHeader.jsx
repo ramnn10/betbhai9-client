@@ -153,8 +153,8 @@ const AppHeader = () => {
           />
         ) : null} */}
 
-      <div className=" bg-header_bg-900 ">
-        <div className=" flex justify-between  top-0 z-30 ">
+      <div className="">
+        <div className=" flex justify-between top-0 z-30 px-1">
           <div className="flex items-center md:space-x-2 gap-1.5 w-1/2 pl-1 md:py-0 py-2">
             <span
               onClick={() => {
@@ -227,9 +227,9 @@ const AppHeader = () => {
                   </span>
                 </div>
               </div>
-              <div className="text-white  gap-1 mt-1  flex flex-col  text-[12px]  ">
+              <div className="text-white  gap-1 mt-1  flex flex-col  text-[13px]  ">
                 <div className={` flex xl:hidden justify-end ${balanceChecked ? '' : 'hidden'}`}>
-                  <div className="px-1 flex gap-1 justify-center items-center">
+                  <div className="px-1 flex gap-1 justify-center items-center font-bold">
                     {/* <span>Balance</span> */}
                     <img src='/dashbaord/casino/landmark-icon.webp' className="h-[14px]" />
                     {`: ${balance && balance.coins ? Number(balance.coins).toFixed(2) : "0"}`}
@@ -238,7 +238,7 @@ const AppHeader = () => {
                 <div className="flex justify-between  xl:bg-transparent  px-1 gap-1 items-center">
                   {/* {isExposureChecked && ( */}
                   <div
-                    className={`underline text-[12px]  xl:hidden block ${isExposureChecked ? '' : 'hidden'}  cursor-pointer`}
+                    className={`underline text-[13px]  xl:hidden block ${isExposureChecked ? '' : 'hidden'}  cursor-pointer`}
                   // onClick={() => setExpModalTrue()}
                   >
                     {`Exp: ${balance && balance.exposure ? Number(balance.exposure).toFixed(2) : "0"
@@ -328,7 +328,10 @@ const AppHeader = () => {
                               </div>
                               <div
                                 className=" px-1.5  w-full flex text-black font-normal hover:underline xl:hidden"
-                                onClick={() => setModalTrue()}
+                                // onClick={() => setModalTrue()}
+                                onClick={() => {
+                                  navigate("/rules-page");
+                                }}
                               >
                                 Rules
                               </div>
@@ -393,7 +396,7 @@ const AppHeader = () => {
             </div> */}
           </div>
         </div>
-        <div className="text-white flex xl:hidden font-bold xl:pt-4 p-1 justify-center  items-center text-base cursor-pointer">
+        <div className="text-white flex xl:hidden font-bold xl:pt-4 px-2 justify-center  items-center text-base cursor-pointer">
           <input
             placeholder="Search here"
             className={`text-[14px]  transition-all duration-1000 ease-in-out bg-white ${searchIcon ? "w-[140px] ml-[5px] px-[5px]" : "w-0 px-0"
@@ -403,13 +406,14 @@ const AppHeader = () => {
           <div className="bg-white rounded-full flex justify-center items-center p-[6px]">
             <FaSearch
               className="font-semibold text-black"
-              size={13}
+              size={17}
               onClick={handleSearchIcon}
             />
           </div>
-          <div className=" w-full mr-2  overflow-hidden">
-            <div className=" px-1 font-[600] animate-[marquee_20s_linear_infinite]  text-white text-[12px] whitespace-nowrap italic">
-              🏏𝐎𝐔𝐑 𝐄𝐗𝐂𝐋𝐔𝐒𝐈𝐕𝐄 𝐏𝐑𝐄𝐌𝐈𝐔𝐌 𝐌𝐀𝐑𝐊𝐄𝐓 𝐅𝐎𝐑 (𝐒𝐑𝐋) 𝐈𝐒 𝐍𝐎𝐖 𝐒𝐓𝐀𝐑𝐓𝐄𝐃 𝐈𝐍 𝐎𝐔𝐑 𝐄𝐗𝐂𝐇𝐀𝐍𝐆𝐄 🏏, 𝐃𝐑𝐄𝐀𝐌 𝐁𝐈𝐆 𝐖𝐈𝐍 𝐁𝐈𝐆
+          <div className=" w-full overflow-hidden">
+            <div className=" px-1 font-[700] animate-[marquee_20s_linear_infinite]  text-white text-[12px] whitespace-nowrap uppercase tracking-wider">
+              🏏 OUR EXCLUSIVE PREMIUM MARKET FOR (SRL) IS NOW STARTED IN OUR EXCHANGE  🏏, DREAM BIG WIN BIG
+              {/* 𝐎𝐔𝐑 𝐄𝐗𝐂𝐋𝐔𝐒𝐈𝐕𝐄 𝐏𝐑𝐄𝐌𝐈𝐔𝐌 𝐌𝐀𝐑𝐊𝐄𝐓 𝐅𝐎𝐑 (𝐒𝐑𝐋) 𝐈𝐒 𝐍𝐎𝐖 𝐒𝐓𝐀𝐑𝐓𝐄𝐃 𝐈𝐍 𝐎𝐔𝐑 𝐄𝐗𝐂𝐇𝐀𝐍𝐆𝐄 🏏, 𝐃𝐑𝐄𝐀𝐌 𝐁𝐈𝐆 𝐖𝐈𝐍 𝐁𝐈𝐆 */}
             </div>
             <style>
               {`
@@ -439,7 +443,6 @@ const AppHeader = () => {
             </div>
           </div>
         )}
-
         {
           exposureModal && (
             <div className="fixed inset-0 top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 max-h-full overflow-auto flex justify-center items-start">

@@ -135,19 +135,15 @@ const CasinoLayout = () => {
 
 
   return (
-    <div className="w-[100%] ">
-      <div className="p-2 bg-[var(--primary)] text-white font-[600] flex justify-start items-center gap-1">
-        <img src='/dashbaord/casino/casino-icon.png' className="w-[20px] h-[20px]"/>
-        <p>CASINO</p>
-      </div>
-      <div className="flex justify-between items-center overflow-x-auto whitespace-nowrap mt-1 overflow-auto bg-[#cccccc]">
+    <div className="w-[100%]  grid lg:grid-cols-[0.3fr_1.7fr] grid-cols-1">
+      <div className=" lg:block flex justify-between items-center overflow-x-auto whitespace-nowrap  overflow-auto bg-[var(--primary)]">
         {casinoNameList?.map((element, index) => {
           return (
             <div
               onClick={() => {
                 handleCasinoClick(element?.payload)
               }}
-              className={`cursor-pointer text-center text-black py-1.5 font-[400] lg:text-[16px] text-[14px] px-4 ${casino_id === element.payload ? ' text-white bg-[var(--secondary)]' : ''
+              className={`cursor-pointer text-center text-white py-1.5 font-[500] lg:text-[16px] text-[14px] px-4 ${casino_id === element.payload ? ' bg-[#266894]' : ''
                 }`}
             >
               {element?.name}

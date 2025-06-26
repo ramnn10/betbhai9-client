@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../component/casinoComponent/Loader";
+import { apiCall } from "../../../config/HTTP";
 
 
 
@@ -45,7 +46,7 @@ const IframeQtech = (props) => {
                 "mode": "real"
             };
            
-            let casinoLoginResponse = await httpPost('user/qtechLoginUrl', casinoLogin);
+            let casinoLoginResponse = await apiCall("POST",'user/qtechLoginUrl', casinoLogin);
 
             if (casinoLoginResponse) {
                 setLoading(true);

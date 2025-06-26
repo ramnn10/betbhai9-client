@@ -3,7 +3,7 @@ import InplayMatches from '../../component/dashboard/InplayMatches'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
-const InPlayMatche = () => {
+const InPlayMatch = () => {
     const {gameId} = useParams();
     console.log(gameId,'fdfdfd')
       const { sportMatchList } = useSelector((state) => state.sport);
@@ -25,4 +25,4 @@ const InPlayMatche = () => {
   )
 }
 
-export default InPlayMatche
+export default InPlayMatch;

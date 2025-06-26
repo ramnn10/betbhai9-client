@@ -397,7 +397,7 @@ const AppHeader = () => {
           </div>
         </div>
         <div className="text-white flex xl:hidden font-bold xl:pt-4 px-2 justify-center  items-center text-base cursor-pointer">
-          <input
+          {/* <input
             placeholder="Search here"
             className={`text-[14px]  transition-all duration-1000 ease-in-out bg-white ${searchIcon ? "w-[140px] ml-[5px] px-[5px]" : "w-0 px-0"
               }`}
@@ -409,7 +409,32 @@ const AppHeader = () => {
               size={17}
               onClick={handleSearchIcon}
             />
+          </div> */}
+          <div className="flex items-center gap-1 relative">
+            <input
+              placeholder=""
+              className={`text-[14px] transition-all duration-500 ease-in-out bg-white border rounded-full flex justify-center items-center h-[30px] px-[15px] ${searchIcon ? "w-[190px] px-[10px]" : "w-0 px-0 overflow-hidden"
+                }`}
+            />
+            {!searchIcon && (
+              <div
+                className="bg-white rounded-full absolute z-50 flex justify-center items-center p-[7px] cursor-pointer right-0"
+                onClick={handleSearchIcon}
+              >
+                <FaSearch className="text-black" size={16} />
+              </div>
+            )}
+            {searchIcon && (
+              <div
+                className="absolute right-2 z-50 text-black cursor-pointer"
+                onClick={handleSearchIcon}
+              >
+                <FaTimes size={16} />
+              </div>
+            )}
           </div>
+
+
           <div className=" w-full overflow-hidden">
             <div className=" px-1 font-[700] animate-[marquee_20s_linear_infinite]  text-white text-[12px] whitespace-nowrap uppercase tracking-wider">
               🏏 OUR EXCLUSIVE PREMIUM MARKET FOR (SRL) IS NOW STARTED IN OUR EXCHANGE  🏏, DREAM BIG WIN BIG

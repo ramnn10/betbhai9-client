@@ -19,7 +19,6 @@ const menuItems = [
   { id: 15, label: "Lucky 7", url: "/casino-layout/Lucky_7", inplay: false },
 
   { id: 16, label: "Horse Racing", url: "in-play/7", inplay: false },
-
   { id: 17, label: "Greyhound Racing", url: "in-play/4339", inplay: false },
 
   { id: 18, label: "Binary", url: "/", inplay: false },

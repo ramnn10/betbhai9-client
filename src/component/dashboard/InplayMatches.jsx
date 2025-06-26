@@ -5,8 +5,9 @@ import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
 import { TbDeviceTvOld } from "react-icons/tb";
 import BetLocked from "../casinoComponent/BetLocked";
-import { FaFutbol } from "react-icons/fa";
+import { FaFutbol, FaTv } from "react-icons/fa";
 import { MdSportsTennis } from "react-icons/md";
+import { useParams } from "react-router-dom";
 
 function InplayMatches({ activeTab, matchlistItems }) {
 
@@ -16,7 +17,7 @@ function InplayMatches({ activeTab, matchlistItems }) {
     const currentMoment = moment().add(60, "minutes");
     return currentMoment.isSameOrAfter(inputMoment);
   };
-
+  const { gameId } = useParams();
   const currentMoment = moment();
 
   const filteredMatches = matchlistItems
@@ -37,8 +38,6 @@ function InplayMatches({ activeTab, matchlistItems }) {
         ? -1
         : 1
     );
-
-
 
   // const filteredMatches = matchlistItems?.filter(
   //   (element) => element.sportId == activeTab
@@ -109,12 +108,18 @@ function InplayMatches({ activeTab, matchlistItems }) {
 
   if (activeTab == 4339 || activeTab == 7) {
     content = (
-      <div className="px-3 py-2 text-gray-700 text-[16px]">
+      <div className=" text-gray-700 text-[16px]">
+        {gameId === "7" && (
+          <div className="text-lg font-[400] uppercase text-white px-2 w-fit bg-[var(--secondary)]">Horse Racing</div>
+        )}
+        {gameId === "4339" && (
+          <div className="text-lg font-[400] uppercase text-white px-2 w-fit whitespace-nowrap bg-[var(--secondary)]">Greyhound Racing</div>
+        )}
         <div className="flex items-center">
           {Object.keys(groupedBySeries)?.map((el, index) => {
             return (
               <>
-                <div onClick={() => setSubTab(el)} className={`${subTab === el ? "bg-[var(--secondary)] px-2 py-1 text-white" : "bg-[#cccc] px-2 py-1 text-black"}`} key={index}>
+                <div onClick={() => setSubTab(el)} className={`border border-r-[var(--secondary)]  ${subTab === el ? "bg-[var(--secondary)] px-4 py-1 text-white" : "bg-[#cccc] px-4 py-1 text-black"}`} key={index}>
                   {el}
                 </div>
               </>
@@ -122,29 +127,43 @@ function InplayMatches({ activeTab, matchlistItems }) {
           })}
         </div>
         <div className="bg-[#F2F2F2] ">
-          {functiongroupbyRacingmatch(groupedBySeries[subTab]) ? functiongroupbyRacingmatch(groupedBySeries[subTab])?.map((match, index) => (
-            <div key={index} className="flex xl:items-center p-1.5 xl:justify-start md:grid md:grid-cols-[0.5fr_1.5fr]  xl:flex-row flex-col items-start justify-between gap-1 my-0.5 border-b border-gray-300">
-              <div className="flex flex-row justify-start items-center gap-2">
-                <TbDeviceTvOld className="text-black" />
-                <div className="xl:min-w-[400px] text-[15px] min-w-full">{match?.key}</div>
+          {groupedBySeries[subTab] && functiongroupbyRacingmatch(groupedBySeries[subTab])?.length > 0 ? (
+            functiongroupbyRacingmatch(groupedBySeries[subTab])?.map((match, index) => (
+              <div key={index} className="flex xl:items-center p-1.5 xl:justify-start md:grid md:grid-cols-[0.5fr_1.5fr]  xl:flex-row flex-col items-start justify-between gap-1 my-0.5 border-b border-gray-300">
+                <div className="flex flex-row justify-start items-center gap-2">
+                  <FaTv className="text-black" />
+                  <div className="xl:min-w-[400px] text-[15px] min-w-full">{match?.key}</div>
+                </div>
+                {<div className="xl:min-w-[400px]  min-w-full flex  flex-wrap justify-start items-center gap-1">
+
+                  {match?.value?.map((allMatchTime, newindex) => (
+                    <div onClick={() => {
+                      window.location.href = `/sport-view-racing/${allMatchTime?.marketId}/${allMatchTime?.eventId}/${allMatchTime?.sportId}`
+                    }} key={newindex} className="bg-[#cccc] rounded-[4px] text-black px-3 py-1 text-center cursor-pointer">
+                      {moment(allMatchTime?.matchDate, 'YYYY-MM-DD HH:mm:ss', true).isValid() ? (
+                        moment(allMatchTime.matchDate, 'YYYY-MM-DD HH:mm:ss').format("HH:mm")
+                      ) : null}
+
+                    </div>
+                  ))}
+                </div>}
               </div>
-              {<div className="xl:min-w-[400px]  min-w-full flex  flex-wrap justify-start items-center gap-1">
-
-                {match?.value?.map((allMatchTime, newindex) => (
-                  <div onClick={() => {
-                    window.location.href = `/sport-view-racing/${allMatchTime?.marketId}/${allMatchTime?.eventId}/${allMatchTime?.sportId}`
-                  }} key={newindex} className="bg-[#cccc] rounded-[4px] text-black px-3 py-1 cursor-pointer">
-                    {moment(allMatchTime?.matchDate, 'YYYY-MM-DD HH:mm:ss', true).isValid() ? (
-                      moment(allMatchTime.matchDate, 'YYYY-MM-DD HH:mm:ss').format("HH:mm")
-                    ) : null}
-
-                  </div>
-                ))}
-              </div>}
-            </div>
-          )) : <div>No Data Found</div>}
+            ))
+          ) : (
+            <>
+              <div className="lg:flex hidden justify-between px-1.5 py-1 w-full border-b border-t border-[#C6D2D8]">
+                <h2 className="text-sm font-bold text-black w-[60%] px-2">Game</h2>
+                <p className="w-[40%] grid grid-cols-3 text-center text-sm font-bold">
+                  <span>1</span>
+                  <span>X</span>
+                  <span>2</span>
+                </p>
+              </div>
+              <div className="border-b px-2 py-1 text-[13px]">
+                No Records found
+              </div>
+            </>)}
         </div>
-
       </div>
     );
   } else {

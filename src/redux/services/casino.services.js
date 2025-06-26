@@ -27,7 +27,9 @@ async function getCasinoListByCateogeory(data) {
   try {
     const casinoListByCateogeory = await apiCall("POST", "website/getCasinoListByCateogeory", data);
     if (casinoListByCateogeory) {
+   
       return casinoListByCateogeory;
+      
     }
   } catch (error) {
     console.error("user Update error:", error);

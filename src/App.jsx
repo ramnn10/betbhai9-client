@@ -14,6 +14,9 @@ import ResponsibleGaming from './views/responsible_gaming/ResponsibleGaming'
 import CustomReactFlipCounter from './component/counter/CustomReactFlipCounter'
 import { getUserBalance } from './redux/reducers/user_reducer'
 import { getInternationalGroupCasinoList } from './redux/reducers/casino.reducer'
+import IframeCasino from './views/casino/IframeCasino/IframeCasino'
+import IframeCasinonew from './views/casino/IframeCasino/IframeCasinonew'
+import IframeQtech from './views/casino/IframeCasino/IframeQtech'
 
 
 
@@ -81,9 +84,9 @@ function App() {
             <Route path="/term-conditions" element={<TermCondition />} />
             <Route path="*" element={<AuthRoute element={<Layout />} />} />
             <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
-            {/* <Route path="/iframe-casino/:gameId?" element={element = <IframeCasino />} />
-            <Route path="/iframe-casino-new/:provider?/:gameId?" element={element = <IframeCasinonew />} />
-            <Route path="/iframe-qtech-casino/:gameId?" element={element = <IframeQtech />} /> */}
+            <Route path="/iframe-casino/:gameId?" element={<AuthRoute element={<IframeCasino />} />} />
+            <Route path="/iframe-casino-new/:provider?/:gameId?" element={<AuthRoute element={<IframeCasinonew />} />} />
+            <Route path="/iframe-qtech-casino/:gameId?" element={<AuthRoute element={<IframeQtech />} />} />
           </Routes>
         </BrowserRouter>
       </BalanceProvider>

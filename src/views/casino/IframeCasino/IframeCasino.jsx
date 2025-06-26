@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import Loader from "../../Loader/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../component/casinoComponent/Loader";
-// import { httpPost } from "../../../middelware/Http";
+import { apiCall } from "../../../config/HTTP";
 
 const IframeCasino = (props) => {
     const [casinoData, setCasinoData] = useState(null)
@@ -38,12 +37,12 @@ const IframeCasino = (props) => {
             let casinoLogin = {
                 "gameId": gameId,
                 "platformId": "mobile",
-                "redirectUrl": `${window.location.origin}/dashboard`, 
+                "redirectUrl": `${window.location.origin}/dashboard`,
                 "theme": "bmx",
             };
-      
 
-            let casinoLoginResponse = await httpPost('user/casinoLoginUrl', casinoLogin);
+
+            let casinoLoginResponse = await apiCall("POST", 'user/casinoLoginUrl', casinoLogin);
 
             if (casinoLoginResponse) {
                 setLoading(true);

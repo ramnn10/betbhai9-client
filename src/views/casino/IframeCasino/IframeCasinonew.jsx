@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../component/casinoComponent/Loader";
+import { apiCall } from "../../../config/HTTP";
 
 
 const IframeCasinonew = () => {
@@ -39,7 +40,9 @@ const IframeCasinonew = () => {
                 "providerName": provider,
             };
 
-            const casinoLoginResponse = await httpPost('user/casinoLoginUrl', casinoLogin);
+            const casinoLoginResponse = await apiCall("POST",'user/casinoLoginUrl', casinoLogin);
+
+            
             if (!casinoLoginResponse.error) {
                 setLoading(true);
                 setCasinoData(casinoLoginResponse.data || {});

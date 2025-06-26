@@ -3,7 +3,6 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import Dashboard from '../../views/dashboard/Dashboard'
 import AccountSatement from '../../views/accountstatement/AccountStatement'
 import ViewMatches from '../../views/viewMatch/ViewMatch'
-import InPlayMatche from '../../views/in_play/InPlayMatche'
 import CasinoLayout from '../../views/casino_layout/CasinoLayout'
 import CasinoScreen from '../../views/casino/CasinoScreen'
 import CurrentBet from '../../views/current_bet/CurrentBet'
@@ -20,9 +19,7 @@ import BetHistory from '../../views/bethistory/BetHistory'
 import UnsettledBets from '../../views/unsettledbets/UnsettledBets'
 import RuleModel from '../ruleModal/RuleModal'
 import AllGames from '../../views/casino_layout/AllGames'
-import IframeCasino from '../../views/casino/IframeCasino/IframeCasino'
-import IframeCasinonew from '../../views/casino/IframeCasino/IframeCasinonew'
-import IframeQtech from '../../views/casino/IframeCasino/IframeQtech'
+import InPlayMatch from '../../views/in_play/InPlayMatch'
 
 
 
@@ -39,7 +36,7 @@ const AppContent = () => {
       <Route path='/sport-view/:marketId?/:eventId?/:sportId?' element={<ViewMatches />} />
       <Route path='/sport-view-racing/:marketId?/:eventId?/:sportId?' element={<ViewMatchRacing />} />
       <Route path='/casino/:shortName/:eventId' element={<CasinoScreen />} />
-      <Route path='/in-play/:gameId?' element={<InPlayMatche />} />
+      <Route path='/in-play/:gameId?' element={<InPlayMatch />} />
       <Route path='/casino-layout/:casino_id?' element={<CasinoLayout />} />
       <Route path='/current-bet' element={<CurrentBet />} />
       <Route path='/casino-results' element={<CasinoResult />} />
@@ -50,10 +47,6 @@ const AppContent = () => {
       <Route path="/active-logs" element={<ActiveLog />} />
       <Route path='/aviator-list' element={<AviatorList />} />
       <Route path="/all-games" element={<AllGames />} />
-      {/* <Route path="/iframe-casino/:gameId?" element={element = <IframeCasino />} /> */}
-      {/* <Route path="/iframe-casino-new/:provider?/:gameId?" element={element = <IframeCasinonew />} /> */}
-      {/* <Route path="/iframe-qtech-casino/:gameId?" element={element = <IframeQtech />} /> */}
-
     </Routes>
 
   )

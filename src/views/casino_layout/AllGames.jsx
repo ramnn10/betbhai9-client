@@ -7,7 +7,7 @@ import useGroupCasinoList from "../../component/IntGroupCasinoList/IntGroupCasin
 import { useDispatch, useSelector } from "react-redux";
 import { getCasinoListByCateogeory, getCasinoListByProviderName } from "../../redux/reducers/casino.reducer";
 import Loader from "../../component/casinoComponent/Loader";
-import { FaSearchPlus } from "react-icons/fa";
+import { FaSearch, FaSearchPlus } from "react-icons/fa";
 
 function AllGames() {
     const [providerWiseCasinoList, setProviderWiseCasinoList] = useState([]);
@@ -16,8 +16,9 @@ function AllGames() {
     const [categoryWiseCasinoList, setCategoryWiseCasinoList] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("Slot games");
     const groupCasinoList = useGroupCasinoList();
+    const [selectedProvider, setSelectedProvider] = useState(null);
+    const { getCasinoListByProviderNameData, loading, getCasinoListByCateogeoryData } = useSelector((state) => state.casino);
 
-    const { getCasinoListByProviderNameData, loading, getCasinoListByCateogeoryData } = useSelector((state) => state.user);
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -26,10 +27,10 @@ function AllGames() {
     // }, [dispatch]);
 
     const handlProviderCasinoList = (value) => {
-        // alert("222")
         const reqData = { provider: value };
         dispatch(getCasinoListByProviderName(reqData));
         setIsCasinoModal(true)
+        setSelectedProvider(value);
     }
 
     useEffect(() => {
@@ -57,6 +58,7 @@ function AllGames() {
 
     // Update category-wise list when the API data is received
     useEffect(() => {
+
         if (getCasinoListByCateogeoryData) {
             setCategoryWiseCasinoList(getCasinoListByCateogeoryData);
         }
@@ -75,6 +77,9 @@ function AllGames() {
         }
     };
 
+
+
+
     const sortedList = categoryWiseCasinoList?.filter(item => item.priority !== 0)
         .sort((a, b) => b.priority - a.priority);
 
@@ -83,38 +88,38 @@ function AllGames() {
         ...sortedList
     ];
 
+
     return (
         <div className="w-[100%]">
-            <div className="p-2 bg-[var(--primary)] text-white font-[600] flex justify-between items-center ">
+            <div className="md:p-2 p-1 m-[1px] bg-[var(--primary)] text-white font-[600] flex justify-between items-center ">
                 <div className="flex justify-start items-center gap-1">
                     <img src='/dashbaord/casino/casino-icon.png' className="w-[20px] h-[20px]" />
                     <p>CASINO</p>
                 </div>
-
-                <div className="text-white flex font-semibold gap-1 items-center text-base cursor-pointer">
+                <div className="text-white flex font-semibold items-center text-base cursor-pointer">
                     <input
-                        placeholder="Search here"
-                        className={`py-1.5 transition-all text-black duration-1000 ease-in-out bg-white `}
-                    // ${searchIcon ? "w-[200px] px-[10px]" : "w-0 px-0"}
+                        placeholder="Search Game..."
+                        className={`md:p-1 p-[2px] transition-all text-black duration-1000 ease-in-out bg-white `}
                     />
-                    <FaSearchPlus
-                        className="font-bold"
-                        size={25}
-                    // onClick={handleSearchIcon}
-                    />
+                    <div className="bg-[#BB1919] md:p-1.5 p-[4px] px-1">
+                        <FaSearch size={18} />
+                    </div>
                 </div>
             </div>
-            <div className="rounded-md my-4 pb-2 border border-secondary bg-black ">
-                <div className="flex bg-secondary justify-between items-center mb-2 px-3 py-1">
-                    <h2 className="text-white md:text-[14px] text-[12px] font-bold">Provider</h2>
-                </div>
-                <div className="flex overflow-x-auto space-x-3 px-2 py-2">
-                    {/* {console.log(groupCasinoList?.providerList, "groupCasinoList")} */}
+            <div className="my-1 border border-secondary bg-[#cccccc] ">
+                {/* <div className="flex bg-secondary justify-between items-center m-2 px-3 py-1">
+                    <h2 className="text-black md:text-[16px] text-[12px] font-bold uppercase">Provider</h2>
+                </div> */}
+                <div className="flex justify-start items-center overflow-x-auto ">
                     {groupCasinoList?.providerList?.map((item, idx) => {
+                        const isSelected = selectedProvider === item;
                         return (
-                            <div key={idx} className="!w-auto flex-shrink-0" onClick={() => handlProviderCasinoList(item)}>
-                                <div className="text-gray-300 font-bold md:text-lg text-xs flex justify-center items-center">
-                                    <div className="md:h-32 px-2 py-2 md:w-32 md:rounded-full rounded bg-conic flex justify-center items-center">{item}</div>
+                            <div key={idx} className="!w-auto flex-shrink-0 cursor-pointer" onClick={() => handlProviderCasinoList(item)}>
+                                <div className="text-black text-[16px] flex justify-center items-center">
+                                    <div
+                                        className={`px-4 py-1 flex justify-center items-center border border-r-[var(--secondary)]  ${isSelected ? 'md:bg-[var(--secondary)] bg-[var(--primary)] text-white md:font-[400] font-[500]' : 'md:bg-[#cccccc] bg-[var(--secondary)] md:text-black md:font-[400] font-[500] text-white'}`}
+                                    >
+                                        {item}</div>
                                 </div>
                             </div>
                         );
@@ -125,13 +130,14 @@ function AllGames() {
             <div>
                 {loading ? <Loader /> :
                     <>
-                        <div className="rounded-md my-4 pb-2 px-2  ">
-                            <div className="grid grid-cols-3 sm:grid-cols-3 bg-black md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2 py-4">
+                        <div className="">
+                            <div className="flex justify-start items-center overflow-x-auto   ">
                                 {categories?.map((category, idx) => (
                                     <button
                                         key={idx}
                                         onClick={() => setSelectedCategory(category)}
-                                        className={`px-4 py-2 h-16 text-sm font-bold capitalize rounded-lg ${selectedCategory === category ? 'bg-orange-600 text-white' : 'bg-gray-800'}`}
+                                        className={`px-4 w-fit h-10 whitespace-nowrap flex justify-center items-center text-sm  uppercase  border-[1px] 
+                                            border-r-[var(--secondary)]  ${selectedCategory === category ? 'bg-[var(--secondary)]  text-white' : 'md:bg-[#cccccc] bg-white text-black'}`}
                                     >
                                         {category}
                                     </button>
@@ -141,16 +147,17 @@ function AllGames() {
 
                         {isCasinoModal && (
                             <>
-                                <div className="grid grid-cols-3 bg-black sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-10 xl:gap-6 lg:gap-5 md:gap-4 sm:gap-3 gap-2 px-3  mb-20 py-3">
+                                <div className="grid grid-cols-3 bg-white sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-10 xl:gap-6 lg:gap-5 md:gap-4 sm:gap-3 gap-2 px-3  mb-20 py-3">
                                     {finalList?.map((item, idx) => {
                                         return (
-                                            <div key={idx} className="flex flex-col items-center md:gap-2 border-2 border-orange-500  rounded-lg">
+                                            <div key={idx} className="flex flex-col items-center md:gap-2">
                                                 <img
                                                     onClick={() => handleResponseCasino(item)}
                                                     src={item?.urlThumb}
                                                     alt={item?.gameName}
-                                                    className="w-36 h-32 md:w-44 md:h-40 object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                                                    className=" object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
                                                 />
+                                                {/* <div className="bg-red-500 p-1">{item?.gameName}</div> */}
                                             </div>
                                         );
                                     })}

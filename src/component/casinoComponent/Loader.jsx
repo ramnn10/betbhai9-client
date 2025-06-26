@@ -11,9 +11,3 @@ export default function Loader({ active }) {
         </>
     );
 }
-
-
-
-
-
-

@@ -990,10 +990,26 @@ const ViewMatches = () => {
                                 isMatchCoin={isMatchCoin}
                                 positionObj={positionObj}
                                 returnDataObject={returnDataObject}
-                                toggleRowVisibility={toggleRowVisibility}
                                 handleBackOpen={handleBackOpen}
                                 formatNumber={formatNumber}
                                 setModalTrue={setModalTrue}
+
+                                // hiddenRows={hiddenRows}
+                                // toggleRowVisibility={toggleRowVisibility}
+                                // openBets={openBets}
+                                // closeRow={closeRow}
+                                // matchName={inplayMatch?.matchName}
+                                // betSlipData={betSlipData}
+                                // placeBet={placeBet}
+                                // errorMessage={errorMessage}
+                                // successMessage={successMessage}
+                                // count={betSlipData.count}
+                                // betLoading={betLoading}
+                                // increaseCount={increaseCount}
+                                // decreaseCount={decreaseCount}
+                                // handleClose={handleBackclose}
+                                // setBetSlipData={setBetSlipData}
+                                // handleButtonValues={handleButtonValues}
                             />
                             <OtherMarketsComponent
                                 activeTab={activeTab}

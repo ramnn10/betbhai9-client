@@ -189,11 +189,11 @@ const Login = () => {
                 <span className="px-3 w-full"></span>
                 <span className="tracking-wide w-full"> Login</span>
                 <span className="flex justify-end tracking-wide w-full">
-                  {/* {login_loading ? (
-                    <div className="w-4 h-4 rounded-full animate-spin border-2 "></div>
-                  ) : ( */}
-                  <FaSignInAlt />
-                  {/* )} */}
+                  {login_loading ? (
+                    <span className="loginloaderbetPlace"></span>
+                  ) : (
+                    <FaSignInAlt />
+                  )}
                 </span>
               </button>
               <button
@@ -205,9 +205,7 @@ const Login = () => {
                 <div className="grid grid-cols-[1.5fr_auto]">
                   <div className="tracking-wide flex justify-center items-center w-full  text-center "> Login with demo ID</div>
                   <div className="flex items-center justify-end tracking-wide w-full">
-
                     <FaSignInAlt />
-
                   </div>
                 </div>
               </button>

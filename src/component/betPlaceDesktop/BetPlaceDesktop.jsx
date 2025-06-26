@@ -385,24 +385,10 @@ export function BetPlaceDesktop(props) {
           </tr>
         </tbody>
       </table>
-      {betLoading && <div className='absolute top-0 left-0 h-full w-full flex justify-center items-center bg-[#ffffffc5] '>
+      {betLoading && <div className='absolute top-0 left-0 h-full w-full flex justify-center items-center bg-white/20 '>
         <span className="loaderbetPlace"></span>
       </div>
       }
     </div>
   )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

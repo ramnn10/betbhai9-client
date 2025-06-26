@@ -1,6 +1,7 @@
 import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import CashOutSystem from '../CashoutTesting';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const TiedOddsComponent = ({
   inplayMatch,
@@ -11,7 +12,8 @@ const TiedOddsComponent = ({
   returnDataObject,
   toggleRowVisibility,
   handleBackOpen,
-  formatNumber
+  formatNumber,
+  setModalTrue,
 }) => {
 
   console.log("finalSocket", finalSocket);
@@ -30,31 +32,38 @@ const TiedOddsComponent = ({
                 element.marketType === "Tied Match" && (
                   <div className="" key={index}>
                     <header className="mt-1">
-                      <div className="bg-[var(--secondary)] items-center flex justify-between relative z-0 py-1 px-2">
-                        <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold">
-                          Tied_Match
+                      <div className="bg-[var(--secondary)] gap-2 flex justify-between items-center  relative z-0 py-1 px-2">
+                        <div className="flex justify-start items-center gap-1">
+                          <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold">
+                            Tied_Match
+                          </div>
+                          <div >
+                            {element?.runners?.length > 0 && (
+                              <CashOutSystem
+                                marketList={element.runners.map(runner => ({
+                                  selectionid: runner.selectionId,
+                                  team_name: runner.selectionName,
+                                  lgaai: runner.ex?.availableToBack?.[0]?.price || 0,
+                                  khaai: runner.ex?.availableToLay?.[0]?.price || 0,
+                                  selectionName: runner.selectionName,
+                                  ex: {
+                                    availableToBack: runner.ex?.availableToBack || [],
+                                    availableToLay: runner.ex?.availableToLay || []
+                                  }
+                                }))}
+                                positionObj={positionObj}
+                                handleBackOpen={handleBackOpen}
+                                toggleRowVisibility={toggleRowVisibility}
+                                marketId={element.marketId}
+                                betFor={"tiedMatch"}
+                                oddsType={element.marketType}
+                              />
+                            )}
+                          </div>
                         </div>
-                        {element?.runners?.length > 0 && (
-                          <CashOutSystem
-                            marketList={element.runners.map(runner => ({
-                              selectionid: runner.selectionId,
-                              team_name: runner.selectionName,
-                              lgaai: runner.ex?.availableToBack?.[0]?.price || 0,
-                              khaai: runner.ex?.availableToLay?.[0]?.price || 0,
-                              selectionName: runner.selectionName,
-                              ex: {
-                                availableToBack: runner.ex?.availableToBack || [],
-                                availableToLay: runner.ex?.availableToLay || []
-                              }
-                            }))}
-                            positionObj={positionObj}
-                            handleBackOpen={handleBackOpen}
-                            toggleRowVisibility={toggleRowVisibility}
-                            marketId={element.marketId}
-                            betFor={"tiedMatch"}
-                            oddsType={element.marketType}
-                          />
-                        )}
+                        <div onClick={() => setModalTrue()}>
+                          <FaInfoCircle className='text-white cursor-pointer' />
+                        </div>
                       </div>
                     </header>
 

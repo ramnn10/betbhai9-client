@@ -213,7 +213,7 @@ function InplayMatches({ activeTab, matchlistItems }) {
                       className="flex justify-start items-center cursor-pointer"
                     >
                       <span className="lg:flex justify-start items-center gap-1 hidden text-black text-sm px-2 font-normal hover:underline">
-                        {getSportIcon(element?.sportId)}
+                        {activeTab === 0 && getSportIcon(element?.sportId)}
                         {element?.matchName} / {element?.matchDate}
                       </span>
                       <div className="lg:hidden block px-1">

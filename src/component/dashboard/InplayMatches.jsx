@@ -90,7 +90,7 @@ function InplayMatches({ activeTab, matchlistItems }) {
     setSubTab()
   }, [activeTab]);
 
-  if (activeTab == 4339 || activeTab == 7) {
+  if (activeTab == 7) {
     content = (
       <div className="px-3 py-2 text-gray-700 text-[16px]">
         <div className="flex items-center">

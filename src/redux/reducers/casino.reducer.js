@@ -37,7 +37,7 @@ export const intCasinoCateogeoryWiseList = createAsyncThunk(
 );
 
 export const getCasinoListByCateogeory = createAsyncThunk(
-  "website/getCasinoListByCateogeory",
+  "websit/getCasinoListByCateogeory",
   async (payload, { rejectWithValue }) => {
     try {
       const casinoListByCateogeory = await casinoServices.getCasinoListByCateogeory(payload);
@@ -51,7 +51,7 @@ export const getCasinoListByCateogeory = createAsyncThunk(
 );
 
 export const getCasinoListByProviderName = createAsyncThunk(
-  "website/getCasinoListByProviderName",
+  "websit/getCasinoListByProviderName",
   async (payload, { rejectWithValue }) => {
     try {
       const cosinoGroupList = await casinoServices.getCasinoListByProviderName(payload);
@@ -65,7 +65,7 @@ export const getCasinoListByProviderName = createAsyncThunk(
 );
 
 export const getInternationalGroupCasinoList = createAsyncThunk(
-  "website/getInternationalGroupCasinoList",
+  "websit/getInternationalGroupCasinoList",
   async (payload, { rejectWithValue }) => {
     try {
       const cosinoGroupList = await casinoServices.getInternationalGroupCasinoList(payload);

@@ -42,7 +42,7 @@ const menuItems = [
   { id: 26, label: "Mixed Martial Arts", url: "/", inplay: false },
 
   { id: 27, label: "Darts", url: "/", inplay: false },
-  { id: 27, label: "Futsal", url: "/", inplay: false },
+  { id: 28, label: "Futsal", url: "/", inplay: false },
 
 
 

@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 import useGroupCasinoList from "../../component/IntGroupCasinoList/IntGroupCasinoList";
 // import Providers from "../component/Dashboard/Provider";
-// import { getCasinoListByCateogeory, getCasinoListByProviderName } from "../redux/_reducers/_user_reducers";
 import { useDispatch, useSelector } from "react-redux";
-// import Loader from "../component/Loader/Loader";
 import { getCasinoListByCateogeory, getCasinoListByProviderName } from "../../redux/reducers/casino.reducer";
 import Loader from "../../component/casinoComponent/Loader";
 import { FaSearchPlus } from "react-icons/fa";
@@ -19,6 +16,7 @@ function AllGames() {
     const [categoryWiseCasinoList, setCategoryWiseCasinoList] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("Slot games");
     const groupCasinoList = useGroupCasinoList();
+
     const { getCasinoListByProviderNameData, loading, getCasinoListByCateogeoryData } = useSelector((state) => state.user);
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -28,6 +26,7 @@ function AllGames() {
     // }, [dispatch]);
 
     const handlProviderCasinoList = (value) => {
+        // alert("222")
         const reqData = { provider: value };
         dispatch(getCasinoListByProviderName(reqData));
         setIsCasinoModal(true)
@@ -44,7 +43,7 @@ function AllGames() {
         if (getCasinoListByProviderNameData) {
             setProviderWiseCasinoList(getCasinoListByProviderNameData);
             // Extract unique categories from the fetched provider data
-            const uniqueCategories = [...new Set(getCasinoListByProviderNameData.map(item => item.category))];
+            const uniqueCategories = [...new Set(getCasinoListByProviderNameData?.map(item => item.category))];
             setCategories(uniqueCategories);  // Set categories for dynamic tabs
         }
     }, [getCasinoListByProviderNameData]);
@@ -110,6 +109,7 @@ function AllGames() {
                     <h2 className="text-white md:text-[14px] text-[12px] font-bold">Provider</h2>
                 </div>
                 <div className="flex overflow-x-auto space-x-3 px-2 py-2">
+                    {/* {console.log(groupCasinoList?.providerList, "groupCasinoList")} */}
                     {groupCasinoList?.providerList?.map((item, idx) => {
                         return (
                             <div key={idx} className="!w-auto flex-shrink-0" onClick={() => handlProviderCasinoList(item)}>
@@ -126,12 +126,12 @@ function AllGames() {
                 {loading ? <Loader /> :
                     <>
                         <div className="rounded-md my-4 pb-2 px-2  ">
-                            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2 py-4">
-                                {categories.map((category, idx) => (
+                            <div className="grid grid-cols-3 sm:grid-cols-3 bg-black md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2 py-4">
+                                {categories?.map((category, idx) => (
                                     <button
                                         key={idx}
                                         onClick={() => setSelectedCategory(category)}
-                                        className={`px-4 py-2 h-16 text-sm font-bold capitalize rounded-lg ${selectedCategory === category ? 'bg-orange-600 text-white' : 'bg-gray-200'}`}
+                                        className={`px-4 py-2 h-16 text-sm font-bold capitalize rounded-lg ${selectedCategory === category ? 'bg-orange-600 text-white' : 'bg-gray-800'}`}
                                     >
                                         {category}
                                     </button>
@@ -141,7 +141,7 @@ function AllGames() {
 
                         {isCasinoModal && (
                             <>
-                                <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-10 xl:gap-6 lg:gap-5 md:gap-4 sm:gap-3 gap-2 px-3  mb-20 py-3">
+                                <div className="grid grid-cols-3 bg-black sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-10 xl:gap-6 lg:gap-5 md:gap-4 sm:gap-3 gap-2 px-3  mb-20 py-3">
                                     {finalList?.map((item, idx) => {
                                         return (
                                             <div key={idx} className="flex flex-col items-center md:gap-2 border-2 border-orange-500  rounded-lg">

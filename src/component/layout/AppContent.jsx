@@ -20,6 +20,9 @@ import BetHistory from '../../views/bethistory/BetHistory'
 import UnsettledBets from '../../views/unsettledbets/UnsettledBets'
 import RuleModel from '../ruleModal/RuleModal'
 import AllGames from '../../views/casino_layout/AllGames'
+import IframeCasino from '../../views/casino/IframeCasino/IframeCasino'
+import IframeCasinonew from '../../views/casino/IframeCasino/IframeCasinonew'
+import IframeQtech from '../../views/casino/IframeCasino/IframeQtech'
 
 
 
@@ -47,6 +50,10 @@ const AppContent = () => {
       <Route path="/active-logs" element={<ActiveLog />} />
       <Route path='/aviator-list' element={<AviatorList />} />
       <Route path="/all-games" element={<AllGames />} />
+      {/* <Route path="/iframe-casino/:gameId?" element={element = <IframeCasino />} /> */}
+      {/* <Route path="/iframe-casino-new/:provider?/:gameId?" element={element = <IframeCasinonew />} /> */}
+      {/* <Route path="/iframe-qtech-casino/:gameId?" element={element = <IframeQtech />} /> */}
+
     </Routes>
 
   )

@@ -11,9 +11,6 @@ export const useGroupCasinoList = () => {
 
     const cosinoGroupList = JSON.parse(localStorage.getItem('cosinoGroupList'))
 
-   
-    
-
     // useEffect(() => {
     //     const ReqData = {
     //         "categoriesList": true,
@@ -32,7 +29,9 @@ export const useGroupCasinoList = () => {
         }
     }, [getInternationalGroupCasinoListData]);
 
+    console.log("groupCasinoList", groupCasinoList);
     return groupCasinoList;
+
 };
 
 export default useGroupCasinoList;

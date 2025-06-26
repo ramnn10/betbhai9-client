@@ -13,6 +13,7 @@ import TermCondition from './views/term_conditions/TermCondition'
 import ResponsibleGaming from './views/responsible_gaming/ResponsibleGaming'
 import CustomReactFlipCounter from './component/counter/CustomReactFlipCounter'
 import { getUserBalance } from './redux/reducers/user_reducer'
+import { getInternationalGroupCasinoList } from './redux/reducers/casino.reducer'
 
 
 
@@ -24,8 +25,11 @@ function setMultipleRootCssVariables(colors) {
 }
 
 function App() {
+
   const dispatch = useDispatch();
   !localStorage.getItem('dashboardActiveTabKey') && localStorage.setItem('dashboardActiveTabKey', 0)
+
+  const cosinoGroupList = JSON.parse(localStorage.getItem('cosinoGroupList'))
 
   useEffect(() => {
     if (settings.title) {
@@ -43,10 +47,28 @@ function App() {
     if (settings.colors) {
       setMultipleRootCssVariables(settings.colors)
     }
+    casinoGroupWise()
     return () => {
       // clearInterval(sportInterval); 
     }
-  }, [dispatch])
+  }, [dispatch]);
+
+  const casinoGroupWise = () => {
+    const ReqData = {
+      "categoriesList": true,
+      "providerList": true,
+      "lobbygames": true,
+      "trendingGames": true,
+      "popularGames": true,
+      "liveGames": true
+    };
+    {
+      !cosinoGroupList && (
+        dispatch(getInternationalGroupCasinoList(ReqData))
+      )
+    }
+
+  }
 
 
   return (
@@ -59,6 +81,9 @@ function App() {
             <Route path="/term-conditions" element={<TermCondition />} />
             <Route path="*" element={<AuthRoute element={<Layout />} />} />
             <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
+            {/* <Route path="/iframe-casino/:gameId?" element={element = <IframeCasino />} />
+            <Route path="/iframe-casino-new/:provider?/:gameId?" element={element = <IframeCasinonew />} />
+            <Route path="/iframe-qtech-casino/:gameId?" element={element = <IframeQtech />} /> */}
           </Routes>
         </BrowserRouter>
       </BalanceProvider>

@@ -5,6 +5,8 @@ import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
 import { TbDeviceTvOld } from "react-icons/tb";
 import BetLocked from "../casinoComponent/BetLocked";
+import { FaFutbol } from "react-icons/fa";
+import { MdSportsTennis } from "react-icons/md";
 
 function InplayMatches({ activeTab, matchlistItems }) {
 
@@ -42,6 +44,21 @@ function InplayMatches({ activeTab, matchlistItems }) {
   //   (element) => element.sportId == activeTab
   // ).sort((a, b) => moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")) ? -1 : 1);
 
+
+  const getSportIcon = (sportId) => {
+    switch (sportId) {
+      case 4: // Cricket
+        return <img src='/dashbaord/cricket-black.png' className="w-[14px] h-[14px] filter invert-[1]" />;
+      case 1: // Soccer
+        return <img src='/dashbaord/football-black.png' className="w-[14px] h-[14px] filter invert-[1]" />;
+      case 2: // Tennis
+        return <img src='/dashbaord/tennis-black.png' className="w-[14px] h-[14px] filter invert-[1]" />;
+      case 7: // Horse
+        return <img src='/dashbaord/horseracing-black.png' className="w-[14px] h-[14px] filter invert-[1]" />;
+      default:
+        return null;
+    }
+  };
 
   const groupedBySeries = {};
 
@@ -90,14 +107,14 @@ function InplayMatches({ activeTab, matchlistItems }) {
     setSubTab()
   }, [activeTab]);
 
-  if (activeTab == 7) {
+  if (activeTab == 4339 || activeTab == 7) {
     content = (
       <div className="px-3 py-2 text-gray-700 text-[16px]">
         <div className="flex items-center">
           {Object.keys(groupedBySeries)?.map((el, index) => {
             return (
               <>
-                <div onClick={() => setSubTab(el)} className={`${subTab === el ? "bg-[var(--primary)] px-2 py-1 text-white" : "bg-[#cccc] px-2 py-1 text-black"}`} key={index}>
+                <div onClick={() => setSubTab(el)} className={`${subTab === el ? "bg-[var(--secondary)] px-2 py-1 text-white" : "bg-[#cccc] px-2 py-1 text-black"}`} key={index}>
                   {el}
                 </div>
               </>
@@ -176,7 +193,8 @@ function InplayMatches({ activeTab, matchlistItems }) {
                       href={`/sport-view/${element?.marketId}/${element?.eventId}/${element?.sportId}`}
                       className="flex justify-start items-center cursor-pointer"
                     >
-                      <span className="lg:block hidden text-black text-sm px-2 font-normal hover:underline">
+                      <span className="lg:flex justify-start items-center gap-1 hidden text-black text-sm px-2 font-normal hover:underline">
+                        {getSportIcon(element?.sportId)}
                         {element?.matchName} / {element?.matchDate}
                       </span>
                       <div className="lg:hidden block px-1">
@@ -204,58 +222,6 @@ function InplayMatches({ activeTab, matchlistItems }) {
                       {element?.isBookmaker && (<span className="font-bold text-[12px]">BM</span>)}
                     </div>
                   </div>
-
-                  {/* Odds Section */}
-                  {/* <div className="lg:w-[40%] w-full grid grid-cols-6 text-sm font-bold text-gray-700">
-                    <div className="relative ">
-                      <div className="bg-[var(--matchLagai)] p-1 flex justify-center items-center w-full h-full">
-                        {Math.floor(Math.random() * 20)}
-                      </div>
-
-                      <div className="absolute top-0 left-0 bg-black/50 p-1 flex justify-center items-center w-full h-full cursor-not-allowed">
-                        <FaLock size={16} className="text-white" />
-                      </div>
-                    </div>
-                    <div className="bg-[var(--matchKhai)] flex justify-center items-center">
-                      {Math.floor(Math.random() * 40)}
-                    </div>
-                    <div className="relative w-full h-full">
-                      <div className="bg-[var(--matchLagai)] flex justify-center items-center w-full h-full">
-                        {Math.floor(Math.random() * 100)}
-                      </div>
-                      <BetLocked />
-                    </div>
-                    <div className="bg-[var(--matchKhai)] flex justify-center items-center">
-                      {Math.floor(Math.random() * 100)}
-                    </div>
-                    <div className="relative ">
-                      <div className="bg-[var(--matchLagai)] p-1 flex justify-center items-center w-full h-full">
-                        {Math.floor(Math.random() * 20)}
-                      </div>
-
-                      <div className="absolute top-0 left-0 bg-black/50 p-1 flex justify-center items-center w-full h-full cursor-not-allowed">
-                        <FaLock size={16} className="text-white" />
-                      </div>
-                    </div>
-                    <div className="bg-[var(--matchKhai)] flex justify-center items-center">
-                      {Math.floor(Math.random() * 120)}
-                    </div>
-                  </div> */}
-                  {/* <div className="lg:w-[40%] w-full grid grid-cols-6 text-sm font-bold text-gray-700">
-                    {Array?.from({ length: 6 }).map((_, i) => {
-                      const isLagai = i % 2 === 0;
-                      const isLocked = (element.sportId === 1 || element.sportId === 2) && lockedIndexes.includes(i);
-                      // const isLocked = lockedIndexes.includes(i);
-                      return (
-                        <div key={i} className="relative w-full h-full">
-                          <div className={`${isLagai ? "bg-[var(--matchLagai)]" : "bg-[var(--matchKhai)]"} p-1 flex justify-center items-center w-full h-full`}>
-                            {Math.floor(Math.random() * 100)}
-                          </div>
-                          {isLocked && <BetLocked />}
-                        </div>
-                      );
-                    })}
-                  </div> */}
 
                   <div className="lg:hidden block ">
                     <p className="w-[100%] grid grid-cols-3 text-center text-sm font-bold">

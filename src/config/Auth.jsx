@@ -16,5 +16,3 @@ function AuthRoute({ element }) {
     return <>{element}</>
   }
 export default AuthRoute;
-
-

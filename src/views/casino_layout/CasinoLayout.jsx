@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CasinoList from "../../component/dashboard/CasinoList";
 import { useNavigate, useParams } from "react-router-dom";
 import { casinoListJson } from "../../config/global";
+import { FaSearchPlus } from "react-icons/fa";
 
 const CasinoLayout = () => {
 
@@ -136,9 +137,24 @@ const CasinoLayout = () => {
 
   return (
     <div className="w-[100%] ">
-      <div className="p-2 bg-[var(--primary)] text-white font-[600] flex justify-start items-center gap-1">
-        <img src='/dashbaord/casino/casino-icon.png' className="w-[20px] h-[20px]"/>
-        <p>CASINO</p>
+      <div className="p-2 bg-[var(--primary)] text-white font-[600] flex justify-between items-center ">
+        <div className="flex justify-start items-center gap-1">
+          <img src='/dashbaord/casino/casino-icon.png' className="w-[20px] h-[20px]" />
+          <p>CASINO</p>
+        </div>
+
+        <div className="text-white flex font-semibold gap-1 items-center text-base cursor-pointer">
+          <input
+            placeholder="Search here"
+            className={`py-1.5 transition-all text-black duration-1000 ease-in-out bg-white `}
+          // ${searchIcon ? "w-[200px] px-[10px]" : "w-0 px-0"}
+          />
+          <FaSearchPlus
+            className="font-bold"
+            size={25}
+          // onClick={handleSearchIcon}
+          />
+        </div>
       </div>
       <div className="flex justify-between items-center overflow-x-auto whitespace-nowrap mt-1 overflow-auto bg-[#cccccc]">
         {casinoNameList?.map((element, index) => {

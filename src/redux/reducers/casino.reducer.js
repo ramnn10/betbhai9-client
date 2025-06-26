@@ -36,7 +36,47 @@ export const intCasinoCateogeoryWiseList = createAsyncThunk(
   }
 );
 
+export const getCasinoListByCateogeory = createAsyncThunk(
+  "website/getCasinoListByCateogeory",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const casinoListByCateogeory = await casinoServices.getCasinoListByCateogeory(payload);
 
+      return casinoListByCateogeory;
+    } catch (error) {
+
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getCasinoListByProviderName = createAsyncThunk(
+  "website/getCasinoListByProviderName",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const cosinoGroupList = await casinoServices.getCasinoListByProviderName(payload);
+
+      return cosinoGroupList;
+    } catch (error) {
+
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getInternationalGroupCasinoList = createAsyncThunk(
+  "website/getInternationalGroupCasinoList",
+  async (payload, { rejectWithValue }) => {
+    try {
+      const cosinoGroupList = await casinoServices.getInternationalGroupCasinoList(payload);
+
+      return cosinoGroupList;
+    } catch (error) {
+
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 
 const casinoSlice = createSlice({
@@ -73,6 +113,46 @@ const casinoSlice = createSlice({
         state.casinoLoading = false;
         state.error = action.payload;
       })
+
+      // casino international List
+      .addCase(getInternationalGroupCasinoList.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getInternationalGroupCasinoList.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getInternationalGroupCasinoListData = action.payload?.data;
+      })
+      .addCase(getInternationalGroupCasinoList.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // getCasinoListByCateogeory
+      .addCase(getCasinoListByCateogeory.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getCasinoListByCateogeory.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getCasinoListByCateogeoryData = action.payload?.data;
+      })
+      .addCase(getCasinoListByCateogeory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // provierd list according to provider
+      .addCase(getCasinoListByProviderName.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getCasinoListByProviderName.fulfilled, (state, action) => {
+        state.loading = false;
+        state.getCasinoListByProviderNameData = action.payload?.data;
+      })
+      .addCase(getCasinoListByProviderName.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
 
   },
 });

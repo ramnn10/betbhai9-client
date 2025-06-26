@@ -9,7 +9,7 @@ const menuItems = [
   { id: 6, label: "Football", url: `in-play/1`, inplay: true },
   { id: 5, label: "Tennis", url: `in-play/2`, inplay: true },
   // { id: 2, label: "Lottery", sportId: 2005, inplay: false },
-  { id: 4, label: "Casino", url: '/casino-layout/our-casino', inplay: false },
+  { id: 4, label: "Casino", url: '/all-games', inplay: false },
   { id: 9, label: "SportsBook", url: '/', inplay: false },
 
   { id: 11, label: "Baccarat", url: "/casino-layout/Baccarat", inplay: false },

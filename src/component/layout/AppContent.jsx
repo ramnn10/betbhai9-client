@@ -19,6 +19,7 @@ import ProfitLossReport from '../../views/profitlossReport/ProfitLossReport'
 import BetHistory from '../../views/bethistory/BetHistory'
 import UnsettledBets from '../../views/unsettledbets/UnsettledBets'
 import RuleModel from '../ruleModal/RuleModal'
+import AllGames from '../../views/casino_layout/AllGames'
 
 
 
@@ -45,6 +46,7 @@ const AppContent = () => {
       <Route path="/security-auth" element={<SecurityAuth />} />
       <Route path="/active-logs" element={<ActiveLog />} />
       <Route path='/aviator-list' element={<AviatorList />} />
+      <Route path="/all-games" element={<AllGames />} />
     </Routes>
 
   )

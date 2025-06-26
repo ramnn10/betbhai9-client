@@ -3,7 +3,8 @@ const GrandExchangeSettings = {
   favicon: "/favicon/fav-icon.png",
   logo: "/logo/betbhailogo.png",
   SOCKET_URL: "https://socket.trovetown.co/",
-  apiurl: "https://api.plx99.com/v1/",
+  // apiurl: "https://api.plx99.com/v1/",
+  apiurl: "https://api.reddyplus100.com/v1/",
   domainName: "BETBHAI9",
   colors: {
     "--primary": "#8a4e00",

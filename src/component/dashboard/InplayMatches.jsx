@@ -15,25 +15,32 @@ function InplayMatches({ activeTab, matchlistItems }) {
     return currentMoment.isSameOrAfter(inputMoment);
   };
 
+  const currentMoment = moment();
+
+  const filteredMatches = matchlistItems
+    ?.filter((element) => {
+      if (activeTab === 0) {
+        return (
+          element.status === "INPLAY" &&
+          currentMoment.isSameOrAfter(moment(element.matchDate, "DD-MM-YYYY HH:mm:ss"))
+        );
+      } else {
+        return element.sportId == activeTab;
+      }
+    })
+    .sort((a, b) =>
+      moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(
+        moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")
+      )
+        ? -1
+        : 1
+    );
+
+
 
   // const filteredMatches = matchlistItems?.filter(
   //   (element) => element.sportId == activeTab
   // ).sort((a, b) => moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")) ? -1 : 1);
-
-  const filteredMatches = useMemo(() => {
-    if (activeTab === 0) {
-      const today = moment().format("DD-MM-YYYY");
-      return matchlistItems?.filter((match) => {
-        const matchDay = moment(match.matchDate, "DD-MM-YYYY HH:mm:ss").format("DD-MM-YYYY");
-        return matchDay === today;
-      }) || [];
-    } else {
-      return matchlistItems?.filter((element) => element.sportId == activeTab)
-        ?.sort((a, b) =>
-          moment(a.matchDate, "DD-MM-YYYY HH:mm:ss").isBefore(moment(b.matchDate, "DD-MM-YYYY HH:mm:ss")) ? -1 : 1
-        ) || [];
-    }
-  }, [matchlistItems, activeTab]);
 
 
   const groupedBySeries = {};

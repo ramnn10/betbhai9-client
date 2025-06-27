@@ -20,6 +20,7 @@ import UnsettledBets from '../../views/unsettledbets/UnsettledBets'
 import RuleModel from '../ruleModal/RuleModal'
 import AllGames from '../../views/casino_layout/AllGames'
 import InPlayMatch from '../../views/in_play/InPlayMatch'
+import ButtonValuesModal from '../../views/buttonvalues/ButtonValuesModal'
 
 
 
@@ -42,7 +43,10 @@ const AppContent = () => {
       <Route path='/casino-results' element={<CasinoResult />} />
       <Route path='/live-casino/:pageId?/:gameId?' element={<LiveCasino />} />
       <Route path='/change-password' element={<ChangePassword />} />
+
       <Route path='/button-values' element={<ButtonValues />} />
+      <Route path='/button-valuesModal' element={<ButtonValuesModal />} />
+
       <Route path="/security-auth" element={<SecurityAuth />} />
       <Route path="/active-logs" element={<ActiveLog />} />
       <Route path='/aviator-list' element={<AviatorList />} />

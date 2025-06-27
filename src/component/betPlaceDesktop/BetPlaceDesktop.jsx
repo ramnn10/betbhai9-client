@@ -18,14 +18,19 @@ export const betChipsData = {
 
 
 export function BetPlaceDesktop(props) {
-  let { openBets, matchName, betSlipData, placeBet, count, betLoading, increaseCount, decreaseCount, errorMessage, successMessage, handleButtonValues } = props;
+  let { openBets, matchName, betSlipData, placeBet, count, betLoading, increaseCount, decreaseCount, errorMessage, successMessage, handleButtonValues,
+    minMaxCoins,
+    sessionCoin,
+  } = props;
 
 
 
 
   const betchipdata = localStorage.getItem("clientbetChipsData") ? Object.values(JSON.parse(localStorage.getItem("clientbetChipsData"))) : "";
 
-
+  // const handleToggle = () => {
+  //   document.body.classList.toggle("StakeModalOpen");
+  // };
 
   const myArray = Object.values(betChipsData);
   const modalRef = useRef();
@@ -200,6 +205,13 @@ export function BetPlaceDesktop(props) {
   return (
     <div ref={modalRef} className={`md:block hidden relative w-100 overflow-x-auto overflow-y-auto  `}>
       {/* <strong className="flex justify-between  px-1 text-white py-1"> <span>Bet Slip</span> <a target="_blank" href="/admin/profile" class="button hover:text-white hover:underline" >Edit Bet Sizes</a></strong> */}
+      {/* <p>Minimum Bet: {minMaxCoins?.min}</p>
+      <p>Maximum Bet: {minMaxCoins?.max}</p>
+
+      <p>Session Min: {sessionCoin?.min}</p>
+      <p>Session Max: {sessionCoin?.max}</p> */}
+
+
       <table className="table-auto bg-gray-300  text-sm w-full table">
         <thead>
           <tr className='text-sm font-[800] py-1'>
@@ -317,13 +329,16 @@ export function BetPlaceDesktop(props) {
                       // onClick={handleClear}
                       >MAX STAKE</button>
                     </div>
-                    <div className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#008000]'>
+                    <div
+                      onClick={() => {
+                        handleButtonValues();
+                      }}
+                      className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#008000]'>
                       <button type="reset" className="align-center"
-                      // onClick={handleClear}
                       >EDIT STAKE</button>
                     </div>
-                    <div className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#ff0000]'>
-                      <button type="reset" className="align-center" onClick={handleClear}><b>CLEAR</b></button>
+                    <div onClick={handleClear} className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#ff0000]'>
+                      <button type="reset" className="align-center" ><b>CLEAR</b></button>
                     </div>
                   </tr>
                   <tr>

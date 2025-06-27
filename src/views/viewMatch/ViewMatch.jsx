@@ -29,6 +29,7 @@ import OtherMarketsComponent from "./marketMatch/OtherLineMarket";
 import TiedOddsComponent from "./marketMatch/TiedOdssMarket ";
 import CashOutSystemTesting from "./CashoutTesting copy";
 import MatchRulesModal from "../../component/matchRulesModal/MatchRulesModal";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 
 
@@ -755,11 +756,10 @@ const ViewMatches = () => {
         }
     }
 
-
-
     const handleButtonValues = (e) => {
-        setbuttonValue((prev) => !prev);
+        alert("2222")
         document.body.classList.toggle("StakeModalOpen");
+        setbuttonValue((prev) => !prev);
         e.stopPropagation();
     };
 
@@ -805,6 +805,7 @@ const ViewMatches = () => {
     }, {});
 
     const [rulesModalOpen, setRulesModalOpen] = useState(false);
+
     const setModalTrue = () => {
         setRulesModalOpen(true);
     };
@@ -817,7 +818,7 @@ const ViewMatches = () => {
     return (isLoading ? <span className="animate-spin h-5 w-5"></span> :
         <div>
 
-            {rulesModalOpen ? <MatchRulesModal setModalFalse={setModalFalse} /> : null}
+            {rulesModalOpen ? <MatchRulesModal setModalFalse={setModalFalse} betSlipData={betSlipData} /> : null}
 
             {isRulesOpen && <div>Rule</div>}
 
@@ -843,7 +844,7 @@ const ViewMatches = () => {
                 handleButtonValues={handleButtonValues}
             />} */}
 
-            {/* {buttonValue && (
+            {buttonValue && (
                 <div
                     onClick={(e) => {
                         handleButtonValues();
@@ -855,10 +856,10 @@ const ViewMatches = () => {
                         onClick={(e) => e.stopPropagation()}
                         className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
                     >
-                        <ButtonValues />
+                        <ButtonValuesModal />
                     </div>
                 </div>
-            )} */}
+            )}
 
 
 
@@ -994,22 +995,22 @@ const ViewMatches = () => {
                                 formatNumber={formatNumber}
                                 setModalTrue={setModalTrue}
 
-                                // hiddenRows={hiddenRows}
-                                // toggleRowVisibility={toggleRowVisibility}
-                                // openBets={openBets}
-                                // closeRow={closeRow}
-                                // matchName={inplayMatch?.matchName}
-                                // betSlipData={betSlipData}
-                                // placeBet={placeBet}
-                                // errorMessage={errorMessage}
-                                // successMessage={successMessage}
-                                // count={betSlipData.count}
-                                // betLoading={betLoading}
-                                // increaseCount={increaseCount}
-                                // decreaseCount={decreaseCount}
-                                // handleClose={handleBackclose}
-                                // setBetSlipData={setBetSlipData}
-                                // handleButtonValues={handleButtonValues}
+                            // hiddenRows={hiddenRows}
+                            // toggleRowVisibility={toggleRowVisibility}
+                            // openBets={openBets}
+                            // closeRow={closeRow}
+                            // matchName={inplayMatch?.matchName}
+                            // betSlipData={betSlipData}
+                            // placeBet={placeBet}
+                            // errorMessage={errorMessage}
+                            // successMessage={successMessage}
+                            // count={betSlipData.count}
+                            // betLoading={betLoading}
+                            // increaseCount={increaseCount}
+                            // decreaseCount={decreaseCount}
+                            // handleClose={handleBackclose}
+                            // setBetSlipData={setBetSlipData}
+                            // handleButtonValues={handleButtonValues}
                             />
                             <OtherMarketsComponent
                                 activeTab={activeTab}
@@ -1357,6 +1358,8 @@ const ViewMatches = () => {
                                     increaseCount={increaseCount}
                                     decreaseCount={decreaseCount}
                                     handleButtonValues={handleButtonValues}
+                                    minMaxCoins={minMaxCoins}
+                                    sessionCoin={sessionCoin}
                                 />
                             </>
                         )}

@@ -25,14 +25,16 @@ const BookmakerComponent = ({
     return null;
   }
 
+
+  console.log(betSlipData, "hhhhh");
+
+
   // const [betSlipData, setBetSlipData] = useState({
   //     stake: '0',
   //     count: 0,
   //     teamname: '',
   //     teamData: null
   // });
-
-
 
   return (
     <div className="w-full flex justify-start gap-2 items-center">
@@ -321,6 +323,9 @@ const BookmakerComponent = ({
                     errorMessage={errorMessage}
                     successMessage={successMessage}
                     handleButtonValues={handleButtonValues}
+
+                    // minMaxCoins={minMaxCoins}
+                    // sessionCoin={sessionCoin}
                   />
                 )}
               </div>

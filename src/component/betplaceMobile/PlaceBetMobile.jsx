@@ -15,7 +15,8 @@ export const betChipsData = {
 };
 
 export default function PlaceBetMobile(props) {
-    const { decreaseCount, count, setBetSlipData, handleButtonValues, increaseCount, placeBet, handleClose, betSlipData, betLoading, inputChange, isFetch } = props;
+    const { decreaseCount, count, setBetSlipData, handleButtonValues, increaseCount, placeBet, handleClose, betSlipData, betLoading, inputChange, isFetch, minMaxCoins, sessionCoin, } = props;
+
     const updateStackOnclic = (input) => {
         const numericInput = parseFloat(input);
         if (!isNaN(numericInput)) {
@@ -218,6 +219,13 @@ export default function PlaceBetMobile(props) {
                         </div>
                     </div> */}
                     <div className="flex  justify-between items-center space-x-1 text-black px-2 pt-2.5">
+                        <p>Minimum Bet: {minMaxCoins?.min}</p>
+                        <p>Maximum Bet: {minMaxCoins?.max}</p>
+
+                        <p>Session Min: {sessionCoin?.min}</p>
+                        <p>Session Max: {sessionCoin?.max}</p>
+
+
                         <div className='p-1 font-medium text-[12px] capitalize'>
                             {betSlipData?.name}
                         </div>

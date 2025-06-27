@@ -31,11 +31,7 @@ const ChangePassword = () => {
                     setTimeout(() => {
                         window.location.href = "/login";
                     }, 1000);
-
-
                 } else {
-                    console.log(req?.payload, "Password update failed.");
-
                     // message.error(req?.payload || "Password update failed.");
                 }
             }));

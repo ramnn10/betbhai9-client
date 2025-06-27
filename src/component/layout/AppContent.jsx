@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Dashboard from '../../views/dashboard/Dashboard'
 import AccountSatement from '../../views/accountstatement/AccountStatement'
-import ViewMatches from '../../views/viewMatch/ViewMatch'
+import ViewMatch from '../../views/viewMatch/ViewMatch'
 import CasinoLayout from '../../views/casino_layout/CasinoLayout'
 import CasinoScreen from '../../views/casino/CasinoScreen'
 import CurrentBet from '../../views/current_bet/CurrentBet'
@@ -34,7 +34,7 @@ const AppContent = () => {
       <Route path='/rules-page' element={<RuleModel />} />
       <Route path='/unsettled-bets' element={<UnsettledBets />} />
       <Route path='/profitloss-report' element={<ProfitLossReport />} />
-      <Route path='/sport-view/:marketId?/:eventId?/:sportId?' element={<ViewMatches />} />
+      <Route path='/sport-view/:marketId?/:eventId?/:sportId?' element={<ViewMatch />} />
       <Route path='/sport-view-racing/:marketId?/:eventId?/:sportId?' element={<ViewMatchRacing />} />
       <Route path='/casino/:shortName/:eventId' element={<CasinoScreen />} />
       <Route path='/in-play/:gameId?' element={<InPlayMatch />} />

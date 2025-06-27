@@ -48,11 +48,9 @@ const ResultModelBmx = (props) => {
             headers: { 'Content-Type': 'application/json' },
         };
         axios.request(config).then((response) => {
-            // console.log("response.data=============>", response.data.data);
             setResultDetails(response.data.data.data[0])
             handleResponseCasino(response.data.data.data)
         }).catch((error) => {
-            console.log('ERRORRRRRRRRRRRRRRESULTMODALBMX', error);
         });
     };
     useEffect(() => {
@@ -63,7 +61,6 @@ const ResultModelBmx = (props) => {
 
 
     const handleResponseCasino = (data) => {
-        // console.log('data::::::::::::::::::::::::::', data);
         if (data && data[0] && data[0].gtype === "teen20") {
             let resultCard = data && data[0] && data[0].cards !== "" ? data[0].cards.split(',') : []
             setResultCard(resultCard);

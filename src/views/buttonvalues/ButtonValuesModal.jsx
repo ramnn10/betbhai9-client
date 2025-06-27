@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { userUpdate } from '../../redux/reducers/user_reducer';
 import { RxCross1 } from "react-icons/rx";
 import { domainName } from '../../config/Auth';
+import { FaTimes } from 'react-icons/fa';
 
-const ButtonValuesModal = (  ) => {
+const ButtonValuesModal = ({ handleClose }) => {
   const [formattedButtonValues, setFormattedButtonValues] = useState([]);
   const [formattedCasinoValue, setFormattedCasinoValue] = useState([])
   const dispatch = useDispatch();
@@ -58,8 +59,6 @@ const ButtonValuesModal = (  ) => {
     };
 
     dispatch(userUpdate(reqData)).then((response) => {
-      console.log(response, "responseresponseresponse");
-
     });
     localStorage.setItem('clientbetChipsData', JSON.stringify(data));
   };
@@ -88,7 +87,6 @@ const ButtonValuesModal = (  ) => {
       updatedValues[index].value = newValue;
       setFormattedCasinoValue(updatedValues);
     } else {
-      console.log('Please enter a valid integer value with up to 10 digits.');
     }
   };
   useEffect(() => {
@@ -147,12 +145,12 @@ const ButtonValuesModal = (  ) => {
     <div className='w-full bg-white'>
 
       <div className="">
-        <div className={`w-full text-[18px] items-center flex justify-between text-white bg-[var(--primary)] p-3 font-bold `}>
-          <span>Set Button Value</span>
-          <RxCross1 onClick={(e) => {
-            handleToggle()
+        <div className={`w-full text-[20px] items-center flex justify-between text-white bg-[var(--secondary)] px-3 py-2 font-[400] `}>
+          <span>Change Button Values</span>
+          <FaTimes onClick={(e) => {
+            handleClose()
             e.preventDefault()
-          }} className='' />
+          }} className='cursor-pointer' />
         </div>
         <div className='flex pt-2 pb-1 px-2'>
           <button onClick={() => { handleGames('games') }} className={`px-2 py-1 border ${gamesButton ? 'bg-[var(--secondary)] text-white' : 'bg-[#CCCCCC]'}`}>
@@ -208,12 +206,10 @@ const ButtonValuesModal = (  ) => {
                 <td colSpan={2}>
                   <button
                     type='button'
-                    className="bg-[var(--primary)] md:w-[50%] w-full my-4 min-h-[40px]"
+                    className="py-1.5 px-4 my-2 hover:opacity-85 md:bg-[var(--bluebtn)] md:border-[var(--bluebtn)] border md:rounded-[0.25rem] bg-[var(--primary)] text-white text-md md:w-1/5 w-full mt-1 flex items-center justify-center gap-2"
                     onClick={handleSubmit}
                   >
-                    <span className="text-white w-full text-[17px] px-[19px] py-[20px]">
-                      Update
-                    </span>
+                    Update
                   </button>
                 </td>
 
@@ -271,15 +267,12 @@ const ButtonValuesModal = (  ) => {
                 <td colSpan={2}>
                   <button
                     type='button'
-                    className="bg-[var(--primary)] md:w-[50%] w-full my-4 min-h-[40px]"
+                    className="py-1.5 px-4 my-2 hover:opacity-85 md:bg-[var(--bluebtn)] md:border-[var(--bluebtn)] border md:rounded-[0.25rem] bg-[var(--primary)] text-white text-md md:w-1/5 w-full mt-1 flex items-center justify-center gap-2"
                     onClick={() => handleCasinoSubmit()}
                   >
-                    <span className="text-white w-full text-[17px] px-[19px] py-[20px]">
-                      Update
-                    </span>
+                    Update
                   </button>
                 </td>
-
               </tr>
             </tbody>
 

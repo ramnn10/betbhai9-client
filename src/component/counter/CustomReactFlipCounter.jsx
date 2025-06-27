@@ -2,7 +2,6 @@
 // import './counter.css'
 
 // function CustomReactFlipCounter({ count }) {
-//   console.log(count, "count");
 
 //   const minutes = Math.floor(count / 10);
 //   const seconds = count % 10;
@@ -73,7 +72,6 @@
 // import FlipDigit from "./FlipDigit";
 
 // const CustomReactFlipCounter = ({count}) => {
-//   console.log(count, "count");
   
 //   const [counter, setCounter] = useState(count);
 //   const [prevCount, setPrevCount] = useState(30);

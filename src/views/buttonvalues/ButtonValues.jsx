@@ -58,8 +58,6 @@ const ButtonValues = () => {
     };
 
     dispatch(userUpdate(reqData)).then((response) => {
-      console.log(response, "responseresponseresponse");
-
     });
     localStorage.setItem('clientbetChipsData', JSON.stringify(data));
   };
@@ -88,7 +86,6 @@ const ButtonValues = () => {
       updatedValues[index].value = newValue;
       setFormattedCasinoValue(updatedValues);
     } else {
-      console.log('Please enter a valid integer value with up to 10 digits.');
     }
   };
   useEffect(() => {

@@ -29,7 +29,6 @@ export const useGroupCasinoList = () => {
         }
     }, [getInternationalGroupCasinoListData]);
 
-    console.log("groupCasinoList", groupCasinoList);
     return groupCasinoList;
 
 };

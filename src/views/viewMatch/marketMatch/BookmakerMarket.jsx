@@ -25,10 +25,6 @@ const BookmakerComponent = ({
     return null;
   }
 
-
-  console.log(betSlipData, "hhhhh");
-
-
   // const [betSlipData, setBetSlipData] = useState({
   //     stake: '0',
   //     count: 0,
@@ -60,7 +56,7 @@ const BookmakerComponent = ({
                     />
                   </div>
                 </div>
-                <div onClick={() => setModalTrue()}>
+                <div onClick={() => setModalTrue("bookmaker")}>
                   <FaInfoCircle className='text-white cursor-pointer' />
                 </div>
               </div>

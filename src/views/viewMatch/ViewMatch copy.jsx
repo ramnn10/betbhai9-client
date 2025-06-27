@@ -644,15 +644,12 @@ const ViewMatches = () => {
                     ? betSlipData.fancyType + ""
                     : "Normal";
             } else if (betSlipData.oddsType === "bookmaker") {
-                console.log("::--");
-
             } else {
                 betObject["betfairMarketId"] = betSlipData.betfairMarketId + "";
             }
 
             // if (betSlipData.oddsType === "bookmaker" || betSlipData.oddsType === "fancy") {
             //     // Do something if needed
-            //     console.log(betSlipData?.data?.fancyType, "betSlipData");
             // } else {
             //     betObject["betfairMarketId"] = betSlipData.betfairMarketId + "";
             // }
@@ -879,14 +876,6 @@ const ViewMatches = () => {
         acc[key].push(item);
         return acc;
     }, {});
-
-
-    // console.log(groupedData, "hhhhhhhhhhhhhhh");
-    // console.log(bookmaker2Fancy, "Fancy1FancyFancy1FancyFancy1Fancy");
-
-
-
-
 
     return (isLoading ? <span className="animate-spin h-5 w-5"></span> :
         <div>

@@ -14,7 +14,7 @@ function AllGames() {
     const [isCasinoModal, setIsCasinoModal] = useState(false)
     const [categories, setCategories] = useState([]);
     const [categoryWiseCasinoList, setCategoryWiseCasinoList] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("Slot games");
+    const [selectedCategory, setSelectedCategory] = useState(null);
     const groupCasinoList = useGroupCasinoList();
     const [selectedProvider, setSelectedProvider] = useState(null);
     const { getCasinoListByProviderNameData, loading, getCasinoListByCateogeoryData } = useSelector((state) => state.casino);
@@ -22,16 +22,20 @@ function AllGames() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     dispatch(getCasinoListByCateogeory());
-    // }, [dispatch]);
 
     const handlProviderCasinoList = (value) => {
-        const reqData = { provider: value };
-        dispatch(getCasinoListByProviderName(reqData));
-        setIsCasinoModal(true)
         setSelectedProvider(value);
-    }
+        setIsCasinoModal(true);
+        if (value === "All") {
+            const firstProvider = groupCasinoList?.providerList?.[0];
+            if (firstProvider) {
+                dispatch(getCasinoListByProviderName({ provider: firstProvider }));
+            }
+        } else {
+            dispatch(getCasinoListByProviderName({ provider: value }));
+        }
+    };
+
 
     useEffect(() => {
         // Check if the data has actually changed before setting state
@@ -64,6 +68,39 @@ function AllGames() {
         }
     }, [getCasinoListByCateogeoryData]);
 
+
+    // Select default provider on mount
+    useEffect(() => {
+        if (groupCasinoList?.providerList?.length && !selectedProvider) {
+            setSelectedProvider("All");
+            const firstProvider = groupCasinoList.providerList[0];
+            if (firstProvider) {
+                dispatch(getCasinoListByProviderName({ provider: firstProvider }));
+            }
+            setIsCasinoModal(true);
+        }
+    }, [groupCasinoList, selectedProvider, dispatch]);
+
+    // Set default category when provider data comes
+    useEffect(() => {
+        if (getCasinoListByProviderNameData?.length) {
+            const uniqueCategories = [...new Set(getCasinoListByProviderNameData.map(item => item.category))];
+            setCategories(uniqueCategories);
+            // Set first category as default if not set
+            if (!selectedCategory && uniqueCategories.length) {
+                setSelectedCategory(uniqueCategories[0]);
+            }
+        }
+    }, [getCasinoListByProviderNameData]);
+
+    // When default category is selected, fetch its games
+    useEffect(() => {
+        if (selectedCategory && selectedCategory !== "All") {
+            dispatch(getCasinoListByCateogeory({ category: selectedCategory }));
+        }
+    }, [selectedCategory, dispatch]);
+
+
     const handleResponseCasino = (product) => {
         if (product?.gameId) {
             localStorage.getItem("token")
@@ -76,8 +113,6 @@ function AllGames() {
                 : localStorage.setItem("unauthorized", true);
         }
     };
-
-
 
 
     const sortedList = categoryWiseCasinoList?.filter(item => item.priority !== 0)
@@ -107,11 +142,8 @@ function AllGames() {
                 </div>
             </div>
             <div className="my-1 border border-secondary bg-[#cccccc] ">
-                {/* <div className="flex bg-secondary justify-between items-center m-2 px-3 py-1">
-                    <h2 className="text-black md:text-[16px] text-[12px] font-bold uppercase">Provider</h2>
-                </div> */}
                 <div className="flex justify-start items-center overflow-x-auto ">
-                    {groupCasinoList?.providerList?.map((item, idx) => {
+                    {["All", ...(groupCasinoList?.providerList || [])]?.map((item, idx) => {
                         const isSelected = selectedProvider === item;
                         return (
                             <div key={idx} className="!w-auto flex-shrink-0 cursor-pointer" onClick={() => handlProviderCasinoList(item)}>
@@ -147,24 +179,30 @@ function AllGames() {
 
                         {isCasinoModal && (
                             <>
-                                <div className="grid grid-cols-3 bg-white sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-10 xl:gap-6 lg:gap-5 md:gap-4 sm:gap-3 gap-2 px-3  mb-20 py-3">
+                                <div className="grid grid-cols-3 bg-white sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-7 gap-1 md:px-0 px-1 pt-1 pb-4">
                                     {finalList?.map((item, idx) => {
                                         return (
-                                            <div key={idx} className="flex flex-col items-center md:gap-2">
-                                                <img
+                                            <div key={idx} className="flex flex-col items-center md:gap-2 relative w-full">
+                                                <div
                                                     onClick={() => handleResponseCasino(item)}
-                                                    src={item?.urlThumb}
-                                                    alt={item?.gameName}
-                                                    className=" object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
-                                                />
-                                                {/* <div className="bg-red-500 p-1">{item?.gameName}</div> */}
+                                                    className="relative w-full cursor-pointer hover:scale-105 transition-transform duration-300"
+                                                >
+                                                    <img
+                                                        src={item?.urlThumb}
+                                                        alt={item?.gameName}
+                                                        className="w-full object-cover h-[160px] sm:h-[170px] lg:h-[170px] "
+                                                    />
+                                                    <div className="absolute bottom-0 w-full shadow-lg bg-gradient-to-b from-[var(--primary)] to-[var(--secondary)] px-2 py-2">
+                                                        <p className="text-white text-[8px] md:text-xs font-semibold truncate text-center uppercase">
+                                                            {item?.gameName}
+                                                        </p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         );
                                     })}
                                 </div>
-
                             </>
-
                         )
                         }
                     </>

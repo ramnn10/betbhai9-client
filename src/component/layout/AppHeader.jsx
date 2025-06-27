@@ -450,7 +450,7 @@ const AppHeader = () => {
             </style>
           </div>
         </div>
-        {isStakeModalOpen && (
+        {/* {isStakeModalOpen && (
           <div
             onClick={(e) => {
               handleToggle();
@@ -467,7 +467,7 @@ const AppHeader = () => {
               />
             </div>
           </div>
-        )}
+        )} */}
         {
           exposureModal && (
             <div className="fixed inset-0 top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 max-h-full overflow-auto flex justify-center items-start">

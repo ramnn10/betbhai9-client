@@ -27,7 +27,7 @@ const OverByOverFancyComponent = ({
                 <div className="flex text-white align-items-center h-100 uppercase text-[14px] font-semibold">
                   Over By Over
                 </div>
-                <div onClick={() => setModalTrue()}>
+                <div onClick={() => setModalTrue("fancy")}>
                   <FaInfoCircle className='text-white cursor-pointer' />
                 </div>
               </div>

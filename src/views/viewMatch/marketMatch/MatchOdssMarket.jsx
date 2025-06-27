@@ -2,6 +2,7 @@ import React from 'react';
 import BlinkingComponent from '../BlinkingComponent';
 import CashOutSystem from '../CashoutTesting';
 import { FaInfoCircle } from 'react-icons/fa';
+import PlaceBetMobile from '../../../component/betplaceMobile/PlaceBetMobile';
 
 const MatchOddsComponent = ({
   inplayMatch,
@@ -10,12 +11,11 @@ const MatchOddsComponent = ({
   isMatchCoin,
   positionObj,
   returnDataObject,
-  toggleRowVisibility,
   handleBackOpen,
   formatNumber,
   setModalTrue,
-  // hiddenRows, toggleRowVisibility,
-  // openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount, handleBackclose, setBetSlipData, handleButtonValues
+  hiddenRows, toggleRowVisibility,
+  openBets, closeRow, betSlipData, placeBet, errorMessage, successMessage, betLoading, decreaseCount, increaseCount, handleBackclose, setBetSlipData, handleButtonValues
 }) => {
   if (!inplayMatch?.isMatchOdds || activeTab !== "all") {
     return null;
@@ -56,7 +56,7 @@ const MatchOddsComponent = ({
                     )}
                   </div>
                 </div>
-                <div onClick={() => setModalTrue()}>
+                <div onClick={() => setModalTrue("matchOdds")}>
                   <FaInfoCircle className='text-white cursor-pointer' />
                 </div>
               </div>
@@ -92,8 +92,6 @@ const MatchOddsComponent = ({
                 <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
               </div>
             </div>
-            {console.log(element?.runners, "element?.runnerselement?.runners")
-            }
             {element?.runners?.length > 0 && element.runners.map((elementtemp, index) => (
               <div key={index}>
                 <div className="flex whitespace-normal max-w-full border-b border-gray-300">
@@ -166,7 +164,7 @@ const MatchOddsComponent = ({
                             <BlinkingComponent
                               price={tempData.price}
                               size={tempData.size}
-                              color={"bg-[#92c9f0]"}
+                              color={"bg-[#a7d8fd]"}
                               blinkColor={"bg-[#00B2FF]"}
                             />
                           </span>
@@ -286,11 +284,11 @@ const MatchOddsComponent = ({
                     }
                   </div>
                 </div>
-                {/* {hiddenRows?.includes(commList.selectionid) && (
+                {hiddenRows?.includes(elementtemp?.selectionId) && (
                   <PlaceBetMobile
                     openBets={openBets}
                     closeRow={closeRow}
-                    closeSec={commList.selectionid}
+                    closeSec={elementtemp?.selectionId}
                     matchName={inplayMatch?.matchName}
                     betSlipData={betSlipData}
                     placeBet={placeBet}
@@ -304,7 +302,7 @@ const MatchOddsComponent = ({
                     successMessage={successMessage}
                     handleButtonValues={handleButtonValues}
                   />
-                )} */}
+                )}
               </div>
             ))}
           </div>

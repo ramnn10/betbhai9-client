@@ -58,7 +58,6 @@ const AppSidebar = () => {
   const matchlistLocal = localStorage.getItem("matchList") ? JSON.parse(localStorage.getItem("matchList")) : null;
   const [raceId, setRaceId] = useState(null);
   useEffect(() => {
-    // console.log(sportMatchList, matchlistLocal, "data?.forEach")
     let matchListData = matchlistLocal ? matchlistLocal : sportMatchList;
     setMatchData(matchListData);
   }, [sportMatchList]);

@@ -23,7 +23,7 @@ const GroupedFancyComponent = ({
               {/* Header */}
               <div className="bg-[var(--secondary)] text-white p-2 text-sm font-bold uppercase flex justify-between items-center">
                 <span>{sessionName}</span>
-                <div onClick={() => setModalTrue()}>
+                <div onClick={() => setModalTrue("fancy")}>
                   <FaInfoCircle className='text-white cursor-pointer' />
                 </div>
               </div>

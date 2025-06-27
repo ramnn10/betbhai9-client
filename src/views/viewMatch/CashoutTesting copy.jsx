@@ -170,7 +170,6 @@ const CashOutSystemTesting = () => {
   const executeCashOut = () => {
     const { hedgeTeam, hedgeType, hedgeAmount, hedgeOdds } = calculateCashOut();
     if (!hedgeTeam) {
-      console.log(' No valid hedge found।');
       return;
     }
 
@@ -184,13 +183,6 @@ const CashOutSystemTesting = () => {
       odds: hedgeOdds,
     });
     setBets(newBets);
-    console.log(' Cashout hedge bet added:', {
-      id: newId,
-      team: hedgeTeam,
-      type: hedgeType,
-      amount: parseFloat(hedgeAmount.toFixed(2)),
-      odds: hedgeOdds,
-    });
   };
 
   return (

@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const InPlayMatch = () => {
     const {gameId} = useParams();
-    console.log(gameId,'fdfdfd')
       const { sportMatchList } = useSelector((state) => state.sport);
   const [matchData, setMatchData] = useState([]);
 

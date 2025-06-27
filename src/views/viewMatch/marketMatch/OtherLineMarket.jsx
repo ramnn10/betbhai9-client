@@ -34,7 +34,7 @@ const OtherMarketsComponent = ({
             </header>
             
             <div className="flex whitespace-normal max-w-full border-b border-gray-300">
-              <div className="lg:w-1/2 xl:w-[58%] w-[65%] flex px-2">
+              <div className="lg:w-1/2 xl:w-[40%] w-[65%] flex px-2">
                 <div className="w-full py-1 leading-3 flex items-center text-xs text-[#097c93]">
                   <span className="text-[12px] font-bold">
                     Max: {formatNumber(isTieCoin?.max)}
@@ -42,7 +42,7 @@ const OtherMarketsComponent = ({
                 </div>
               </div>
               
-              <div className="lg:w-1/2 xl:w-[42%] w-[35%] grid grid-cols-6">
+              <div className="lg:w-1/2 xl:w-[60%] w-[35%] grid grid-cols-6">
                 <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                 <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden"></span>
                 <span className="lg:col-span-1 col-span-2 rounded-md lg:block hidden">
@@ -66,7 +66,7 @@ const OtherMarketsComponent = ({
 
             {element?.runners?.length > 0 && element.runners.map((elementtemp, index) => (
               <div className="flex whitespace-normal max-w-full" key={index}>
-                <div className="lg:w-1/2 xl:w-[65%] w-[65%] flex px-2">
+                <div className="lg:w-1/2 xl:w-[40%] w-[65%] flex px-2">
                   <div className="w-full py-1 leading-3 flex items-center text-[#2B2f35]">
                     <span className="text-[14px] font-bold">
                       <span className="">
@@ -90,7 +90,7 @@ const OtherMarketsComponent = ({
                   </div>
                 </div>
 
-                <div className="lg:w-1/2 xl:w-[35%] w-[35%] grid grid-cols-6 gap-x-1">
+                <div className="lg:w-1/2 xl:w-[60%] w-[35%] grid grid-cols-6 gap-x-1">
                   {/* Available to Back (non-clickable) */}
                   {elementtemp?.ex?.availableToBack?.length > 0 && 
                     elementtemp.ex.availableToBack.slice(1).map((tempData, index) => (

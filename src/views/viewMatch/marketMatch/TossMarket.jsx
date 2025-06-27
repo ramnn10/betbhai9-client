@@ -49,7 +49,7 @@ const TossDataComponent = ({
                         />
                       </div>
                     </div>
-                    <div onClick={() => setModalTrue()}>
+                    <div onClick={() => setModalTrue("toss")}>
                       <FaInfoCircle className='text-white cursor-pointer' />
                     </div>
                   </div>

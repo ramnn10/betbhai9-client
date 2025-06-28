@@ -41,7 +41,7 @@ const CasinoList = () => {
     const navigate = useNavigate();
 
     const handleResponseCasino = (product) => {
-        navigate(`/casino/${product.shortName}/${product.eventId}`);
+        navigate(`/iframe-casino-new/${product.shortName}/${product.eventId}`);
     };
 
     useEffect(() => {
@@ -54,14 +54,14 @@ const CasinoList = () => {
     return (
         <section className=''>
 
-            {diamondCasinos.length > 0 && (
+            {diamondCasinos?.length > 0 && (
                 <>
                     <div className=''>
                         <div className='text-white text-[14px] font-bold p-2 uppercase bg-[var(--secondary)]'>
                             <h2 className="animate-pulse tracking-wide ">Diamond Casino</h2>
                         </div>
                         <div className="w-[100%] grid grid-cols-3 2xl:grid-cols-10 lg:grid-cols-6 md:grid-cols-4 2xl:gap-y-1.5 2xl:gap-x-[2px] lg:gap-y-2 lg:gap-x-1 gap-y-2 gap-x-1 p-1">
-                            {diamondCasinos.map((product, index) => (
+                            {diamondCasinos?.map((product, index) => (
                                 <div
                                     key={`diamond-${index}`}
                                     onClick={() => handleResponseCasino(product)}
@@ -86,14 +86,14 @@ const CasinoList = () => {
                 </>
             )}
 
-            {intCasinos.length > 0 && (
+            {intCasinos?.length > 0 && (
                 <>
                     <div className='mt-2'>
                         <div className='text-white text-[14px] font-bold p-2 uppercase bg-[var(--secondary)]'>
                             <h2 className="animate-pulse tracking-wide ">International Casino</h2>
                         </div>
                         <div className="w-[100%] grid grid-cols-3 2xl:grid-cols-10 lg:grid-cols-6 md:grid-cols-4 2xl:gap-y-1.5 2xl:gap-x-[2px] lg:gap-y-2 lg:gap-x-1 gap-y-2 gap-x-1 p-1">
-                            {intCasinos.map((product, index) => (
+                            {intCasinos?.map((product, index) => (
                                 <div
                                     key={`intl-${index}`}
                                     onClick={() => handleResponseCasino(product)}

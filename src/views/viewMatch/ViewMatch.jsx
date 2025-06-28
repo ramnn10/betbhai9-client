@@ -758,6 +758,10 @@ const ViewMatch = () => {
         setbuttonValue((prev) => !prev);
         document.body.classList.toggle("StakeModalOpen");
         e.stopPropagation();
+        setBetSlipData(prev => ({
+            ...prev,
+            count: value
+        }));
     };
 
     const [matchTab, setMatchTab] = useState(1);
@@ -848,7 +852,7 @@ const ViewMatch = () => {
                         handleButtonValues();
                         e.stopPropagation();
                     }}
-                    className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-50"
+                    className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
                 >
                     <div
                         onClick={(e) => e.stopPropagation()}

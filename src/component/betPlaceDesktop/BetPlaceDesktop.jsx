@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useRef, useState, useEffect } from 'react'
-import { FaAngleDown, FaAngleUp, FaCircle } from 'react-icons/fa';
+import { FaAngleDown, FaAngleUp, FaCircle, FaTimes } from 'react-icons/fa';
 
 
 
@@ -202,29 +202,51 @@ export function BetPlaceDesktop(props) {
     return num; // Return the number as is if it's less than 1000
   };
 
+  const handleMinStake = () => {
+    if (minMaxCoins?.min !== null) {
+      const minValue = parseFloat(minMaxCoins.min);
+      setStack(minValue);
+      betSlipData.stake = minValue;
+      setPlaceButton(minValue > 0);
+      updateOddsPostModal();
+    }
+  };
+
+  const handleMaxStake = () => {
+    if (minMaxCoins?.max !== null) {
+      const maxValue = parseFloat(minMaxCoins.max);
+      setStack(maxValue);
+      betSlipData.stake = maxValue;
+      setPlaceButton(maxValue > 0);
+      updateOddsPostModal();
+    }
+  };
+
+
   return (
     <div ref={modalRef} className={`md:block hidden relative w-100 overflow-x-auto overflow-y-auto  `}>
       {/* <strong className="flex justify-between  px-1 text-white py-1"> <span>Bet Slip</span> <a target="_blank" href="/admin/profile" class="button hover:text-white hover:underline" >Edit Bet Sizes</a></strong> */}
-      {/* <p>Minimum Bet: {minMaxCoins?.min}</p>
-      <p>Maximum Bet: {minMaxCoins?.max}</p>
-
-      <p>Session Min: {sessionCoin?.min}</p>
-      <p>Session Max: {sessionCoin?.max}</p> */}
-
-
       <table className="table-auto bg-gray-300  text-sm w-full table">
         <thead>
           <tr className='text-sm font-[800] py-1'>
-            <th className='text-left px-1 py-1'>(Bet for)</th>
-            <th width='10%'>Odds</th>
-            <th>Stake</th>
+            <th></th>
+            <th width='30%' className='text-left px-1 py-1'>(Bet for)</th>
+            <th width='20%' className='text-left'>Odds</th>
+            <th width='20%' className='text-left'>Stake</th>
             <th>Profit</th>
           </tr>
         </thead>
         <tbody className={`${betSlipData.betType === "Y" || betSlipData.betType === "L" ? "!bg-[var(--matchLagai)]" : "bg-[var(--matchKhai)]"} my-2`}>
           <tr className={`border-b border-[#c7c8ca]`}>
-            <td className='text-left px-1 py-2 font-[700]'>{betSlipData.name}</td>
-            <td width="10%" >
+            <td>
+              <span className='cursor-pointer ' onClick={() => openBets()}>
+                <FaTimes className='text-red-600' />
+              </span>
+            </td>
+            <td width="30%" className='text-left px-1 py-2 font-[700]'>
+              <p>{betSlipData.name}</p>
+            </td>
+            <td width="20%" >
               <div className="relative flex items-center">
                 <input
                   type="text"
@@ -240,7 +262,7 @@ export function BetPlaceDesktop(props) {
                   }
                 />
 
-                <div className="absolute px-[3px] right-0 top-1/2 -translate-y-1/2 flex flex-col justify-center items-center -space-y-[3px] h-[25px] bg-[#CCCCCC]">
+                <div className="absolute px-[3px] right-1 top-1/2 -translate-y-1/2 flex flex-col justify-center items-center -space-y-[4px] h-[23px] bg-[#fff]">
                   <div onClick={increaseCount} className="cursor-pointer leading-none">
                     <FaAngleUp size={14} />
                   </div>
@@ -250,13 +272,14 @@ export function BetPlaceDesktop(props) {
                 </div>
               </div>
             </td>
-            <td width="10%">
+            <td width="20%">
               <div className="stake">
                 <input type="text" className='w-16 py-[2px] text-center bg-white text-black'
                   id="exampleFormControlInput1"
                   value={betSlipData.stake ? betSlipData.stake : ""}
                   onChange={updateInputValue} />
-              </div></td>
+              </div>
+            </td>
             <td className='text-right '>
               {Array.isArray(betSlipData?.nameOther) && betSlipData.nameOther.length <= 3 ? betSlipData.nameOther.map((other, index) => (
                 <React.Fragment key={index}>
@@ -279,7 +302,7 @@ export function BetPlaceDesktop(props) {
               }</td>
           </tr>
           <tr className="">
-            <td colSpan={4}>
+            <td colSpan={5}>
               <table className="table-auto text-sm w-full !border-0">
                 <tbody>
                   {/* <tr className='grid grid-cols-4 gap-1 py-1 items-center !border-0'>
@@ -299,11 +322,11 @@ export function BetPlaceDesktop(props) {
                     ))}
                   </tr> */}
 
-                  <tr className='grid grid-cols-4 gap-[3px] py-1 items-center !border-0 px-1'>
+                  <tr className='grid grid-cols-4 gap-[2px] py-1 items-center !border-0 px-1'>
                     {betchipdata?.map((item, index) => {
                       return (
                         <td key={index} className="flex py-1 justify-center items-center bg-[#CCC] rounded-[0.25rem] !border-0 " onClick={() => arrayData(item, true)}>
-                          <span className='text-[#273a47] text-md font-[500]'>{formatNumber(item)}</span>
+                          <span className='text-[#273a47] text-md font-[400]'>{formatNumber(item)}</span>
                         </td>
                       )
                     })}
@@ -318,29 +341,31 @@ export function BetPlaceDesktop(props) {
                       </div>
                     </td>
                   </tr> */}
-                  <tr className='grid grid-cols-4 gap-[3px] items-center !border-0 px-1 text-white text-[12px] font-[500]'>
-                    <div className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem] text-[#273a47] bg-[#ffbc00]'>
+                  <tr className='grid grid-cols-4 gap-[2px] items-center !border-0 px-1 text-white text-[11px] font-[500]'>
+                    <div onClick={handleMinStake} className='flex justify-center items-center px-2  py-[3px] rounded-[0.25rem] text-[#273a47] hover:text-white bg-[#ffbc00]'>
                       <button type="button" className="align-center"
-                      // onClick={handleClear}
                       >MIN STAKE</button>
                     </div>
-                    <div className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#334579]'>
+                    <div onClick={handleMaxStake} className='flex justify-center items-center px-2  py-[3px] rounded-[0.25rem]  bg-[#334579]'>
                       <button type="button" className="align-center"
-                      // onClick={handleClear}
                       >MAX STAKE</button>
                     </div>
                     <div
                       onClick={() => {
                         handleButtonValues();
                       }}
-                      className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#008000]'>
+                      className='flex justify-center items-center px-2  py-[3px] rounded-[0.25rem] bg-[#008000]'>
                       <button type="reset" className="align-center"
                       >EDIT STAKE</button>
                     </div>
-                    <div onClick={handleClear} className='flex justify-center items-center pb-1 px-2  py-1 rounded-[0.25rem]  bg-[#ff0000]'>
+                    <div onClick={handleClear} className='flex justify-center items-center px-2  py-[3px] rounded-[0.25rem] bg-[#ff0000]'>
                       <button type="reset" className="align-center" ><b>CLEAR</b></button>
                     </div>
                   </tr>
+                  {/* <div className='flex justify-center items-center gap-1 px-2'>
+                    <p>Minimum: {minMaxCoins?.min}</p>
+                    <p>Maximum: {minMaxCoins?.max}</p>
+                  </div> */}
                   <tr>
                     <div className='flex items-center justify-between p-1'>
                       <div className={` px-4 py-1.5 rounded-[0.25rem] font-[500] btn bg-[#bd1828] hover:opacity-90 border-[1px] border-[#bd1828] hover:border-[#FC4242]/90 text-white ld-over cursor-pointer `}
@@ -367,7 +392,6 @@ export function BetPlaceDesktop(props) {
                           onClick={() => { placeBet() }}>
                           <b className='flex justify-center items-center'>
                             Submit
-
                           </b>
                           <div className="ld ld-ball ld-flip">
                           </div>

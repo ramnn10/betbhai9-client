@@ -147,7 +147,7 @@ export const slotsArray = [
 export const casinoListJson = [
   {
     title: 'teenpatti poison 20-20',
-    eventId: '',
+    eventId: '200177',
     shortName: 'poison20',
     img: "/dashbaord/casino/poison20.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -158,7 +158,7 @@ export const casinoListJson = [
 
   {
     title: 'unlimited joker 20-20',
-    eventId: '',
+    eventId: '200177',
     shortName: 'joker120',
     img: "/dashbaord/casino/joker120.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -169,7 +169,7 @@ export const casinoListJson = [
 
   {
     title: 'teenpatti joker 20-20',
-    eventId: '',
+    eventId: '200177',
     shortName: 'joker20',
     img: "/dashbaord/casino/joker20.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -180,7 +180,7 @@ export const casinoListJson = [
 
   {
     title: 'unlimited joker oneday',
-    eventId: '',
+    eventId: '200177',
     shortName: 'joker1',
     img: "/dashbaord/casino/joker1.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -191,7 +191,7 @@ export const casinoListJson = [
 
   {
     title: 'teenpatti joker',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teenjoker',
     img: "/dashbaord/casino/teenjoker.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -202,7 +202,7 @@ export const casinoListJson = [
 
   {
     title: '20-20 teenpatti c',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen20c',
     img: "/dashbaord/casino/teen20c.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -213,7 +213,7 @@ export const casinoListJson = [
 
   {
     title: 'bollywood casino 2',
-    eventId: '',
+    eventId: '200177',
     shortName: 'btable2',
     img: "/dashbaord/casino/btable2.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -224,7 +224,7 @@ export const casinoListJson = [
 
   {
     title: 'unique roullete',
-    eventId: '',
+    eventId: '200177',
     shortName: 'ourroullete',
     img: "/dashbaord/casino/ourroullete.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -235,7 +235,7 @@ export const casinoListJson = [
 
   {
     title: 'mini superover',
-    eventId: '',
+    eventId: '200177',
     shortName: 'superover3',
     img: "/dashbaord/casino/superover3.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -246,7 +246,7 @@ export const casinoListJson = [
 
   {
     title: 'goal',
-    eventId: '',
+    eventId: '200177',
     shortName: 'goal',
     img: "/dashbaord/casino/goal.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -257,7 +257,7 @@ export const casinoListJson = [
 
   {
     title: 'andar bahar 150 cards',
-    eventId: '',
+    eventId: '200177',
     shortName: 'ab4',
     img: "/dashbaord/casino/ab4.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -268,7 +268,7 @@ export const casinoListJson = [
 
   {
     title: 'lucky 15',
-    eventId: '',
+    eventId: '200177',
     shortName: 'lucky15',
     img: "/dashbaord/casino/lucky15.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -279,7 +279,7 @@ export const casinoListJson = [
 
   {
     title: 'super over2',
-    eventId: '',
+    eventId: '200177',
     shortName: 'superover2',
     img: "/dashbaord/casino/superover2.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -290,7 +290,7 @@ export const casinoListJson = [
 
   {
     title: 'queen top open teenpatti',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen41',
     img: "/dashbaord/casino/teen41.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -302,7 +302,7 @@ export const casinoListJson = [
 
   {
     title: 'jack top open teenpatti',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen42',
     img: "/dashbaord/casino/teen42.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -313,7 +313,7 @@ export const casinoListJson = [
 
   {
     title: 'beach roulette',
-    eventId: '',
+    eventId: '200177',
     shortName: 'roulette3',
     img: "/dashbaord/casino/roulette3.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -324,7 +324,7 @@ export const casinoListJson = [
 
   {
     title: 'sic bo2',
-    eventId: '',
+    eventId: '200177',
     shortName: 'sicbo2',
     img: "/dashbaord/casino/sicbo2.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -335,7 +335,7 @@ export const casinoListJson = [
 
   {
     title: 'golden roulette',
-    eventId: '',
+    eventId: '200177',
     shortName: 'roulette2',
     img: "/dashbaord/casino/roulette2.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -346,7 +346,7 @@ export const casinoListJson = [
 
   {
     title: 'instant teenpatti 3.0',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen33',
     img: "/dashbaord/casino/teen33.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -357,7 +357,7 @@ export const casinoListJson = [
 
   {
     title: 'sicbo',
-    eventId: '',
+    eventId: '200177',
     shortName: 'sicbo',
     img: "/dashbaord/casino/sicbo.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -368,7 +368,7 @@ export const casinoListJson = [
 
   {
     title: 'ball by ball',
-    eventId: '',
+    eventId: '200177',
     shortName: 'sicbo',
     img: "/dashbaord/casino/ballbyballint.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -379,7 +379,7 @@ export const casinoListJson = [
 
   {
     title: 'instant teenpatti 2.0',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen32',
     img: "/dashbaord/casino/teen32.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -390,7 +390,7 @@ export const casinoListJson = [
 
   {
     title: 'roulette bl',
-    eventId: '',
+    eventId: '200177',
     shortName: 'roulette1',
     img: "/dashbaord/casino/roulette1.jpg",
     // filterKeys: ["All_Casino", "our-casino"],
@@ -676,7 +676,7 @@ export const casinoListJson = [
 
   {
     title: 'lottery',
-    eventId: '',
+    eventId: '200177',
     shortName: 'lottcard',
     img: "/dashbaord/casino/lottery.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'Bollywood'],
@@ -688,7 +688,7 @@ export const casinoListJson = [
 
   {
     title: '5five cricket',
-    eventId: '',
+    eventId: '200177',
     shortName: 'cricketv3',
     img: "/dashbaord/casino/cricketv3.jpg",
     filterKeys: ["All_Casino", "our-casino", 'Bollywood'],
@@ -721,7 +721,7 @@ export const casinoListJson = [
 
   {
     title: 'teenpatti 2.0',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen6',
     img: "/dashbaord/casino/teen6.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -755,7 +755,7 @@ export const casinoListJson = [
 
   {
     title: 'lucky 7 - c',
-    eventId: '',
+    eventId: '200177',
     shortName: 'lucky7eu2',
     img: "/dashbaord/casino/lucky7eu2.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -777,7 +777,7 @@ export const casinoListJson = [
 
   {
     title: 'the trap',
-    eventId: '',
+    eventId: '200177',
     shortName: 'trap',
     img: "/dashbaord/casino/trap.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -788,7 +788,7 @@ export const casinoListJson = [
 
   {
     title: '2 cards teenpatti',
-    eventId: '',
+    eventId: '200177',
     shortName: 'patti2',
     img: "/dashbaord/casino/patti2.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -799,7 +799,7 @@ export const casinoListJson = [
 
   {
     title: '29cards baccarat',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teensin',
     img: "/dashbaord/casino/teensin.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -810,7 +810,7 @@ export const casinoListJson = [
 
   {
     title: 'muflis teenpatti',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teenmuf',
     img: "/dashbaord/casino/teenmuf.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -821,7 +821,7 @@ export const casinoListJson = [
 
   {
     title: 'race to 17',
-    eventId: '',
+    eventId: '200177',
     shortName: 'race17',
     img: "/dashbaord/casino/race17.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -832,7 +832,7 @@ export const casinoListJson = [
 
   {
     title: '20-20 teenpatti b',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen20b',
     img: "/dashbaord/casino/teen20b.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -843,7 +843,7 @@ export const casinoListJson = [
 
   {
     title: 'trio',
-    eventId: '',
+    eventId: '200177',
     shortName: 'trio',
     img: "/dashbaord/casino/trio.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -854,7 +854,7 @@ export const casinoListJson = [
 
   {
     title: 'note number',
-    eventId: '',
+    eventId: '200177',
     shortName: 'notenum',
     img: "/dashbaord/casino/notenum.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -865,7 +865,7 @@ export const casinoListJson = [
 
   {
     title: 'k.b.c',
-    eventId: '',
+    eventId: '200177',
     shortName: 'kbc',
     img: "/dashbaord/casino/kbc.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -876,7 +876,7 @@ export const casinoListJson = [
 
   {
     title: '1 card 20-20',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen120',
     img: "/dashbaord/casino/teen120.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -887,7 +887,7 @@ export const casinoListJson = [
 
   {
     title: '1 card one-day',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen1',
     img: "/dashbaord/casino/teen1.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -898,7 +898,7 @@ export const casinoListJson = [
 
   {
     title: 'roulette',
-    eventId: '',
+    eventId: '200177',
     shortName: 'roulette',
     img: "/dashbaord/casino/roulette.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -909,7 +909,7 @@ export const casinoListJson = [
 
   {
     title: 'andar bahar 50 cards',
-    eventId: '',
+    eventId: '200177',
     shortName: 'ab3',
     img: "/dashbaord/casino/ab3.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -920,7 +920,7 @@ export const casinoListJson = [
 
   {
     title: 'AMAR AKBAR ANTHONY 2',
-    eventId: '',
+    eventId: '200177',
     shortName: 'aaa',
     img: "/dashbaord/casino/aaa2.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -931,7 +931,7 @@ export const casinoListJson = [
 
   {
     title: 'race to 2nd',
-    eventId: '',
+    eventId: '200177',
     shortName: 'race2',
     img: "/dashbaord/casino/race2.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -942,7 +942,7 @@ export const casinoListJson = [
 
   {
     title: 'instant teenpatti',
-    eventId: '',
+    eventId: '200177',
     shortName: 'teen3',
     img: "/dashbaord/casino/teen3.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -953,7 +953,7 @@ export const casinoListJson = [
 
   {
     title: 'dus ka dum',
-    eventId: '',
+    eventId: '200177',
     shortName: 'dum10',
     img: "/dashbaord/casino/dum10.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],
@@ -964,7 +964,7 @@ export const casinoListJson = [
 
   {
     title: '1 card meter',
-    eventId: '',
+    eventId: '200177',
     shortName: 'cmeter1',
     img: "/dashbaord/casino/cmeter1.jpg",
     // filterKeys: ["All_Casino", "our-casino", 'TeenPatti'],

@@ -217,11 +217,11 @@ const AppSidebar = () => {
                           </div>
                           <div
                             onClick={() =>
-                              navigate("/casino-layout/our-casino")
+                              navigate("/all-games")
                             }
                             className=" blinking-text text-sm px-3 py-1 w-full flex  font-normal blink-soft"
                           >
-                            Our Virtual
+                            Virtual Casino
                           </div>
 
                           <div
@@ -242,7 +242,7 @@ const AppSidebar = () => {
                           </div>
                           <div
                             onClick={() =>
-                              navigate("/casino-layout/our-casino")
+                              navigate("/live-casino/slot-game/jili")
                             }
                             className="text-sm px-3 py-1 w-full flex  font-normal"
                           >

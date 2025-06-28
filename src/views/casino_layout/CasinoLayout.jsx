@@ -136,24 +136,11 @@ const CasinoLayout = () => {
 
 
   return (
-    <div className="w-[100%] ">
+    <div className="w-[100%] m-1">
       <div className="p-2 bg-[var(--primary)] text-white font-[600] flex justify-between items-center ">
         <div className="flex justify-start items-center gap-1">
           <img src='/dashbaord/casino/casino-icon.png' className="w-[20px] h-[20px]" />
           <p>CASINO</p>
-        </div>
-
-        <div className="text-white flex font-semibold gap-1 items-center text-base cursor-pointer">
-          <input
-            placeholder="Search here"
-            className={`py-1.5 transition-all text-black duration-1000 ease-in-out bg-white `}
-          // ${searchIcon ? "w-[200px] px-[10px]" : "w-0 px-0"}
-          />
-          <FaSearchPlus
-            className="font-bold"
-            size={25}
-          // onClick={handleSearchIcon}
-          />
         </div>
       </div>
       <div className="flex justify-between items-center overflow-x-auto whitespace-nowrap mt-1 overflow-auto bg-[#cccccc]">
@@ -172,14 +159,14 @@ const CasinoLayout = () => {
         })}
       </div>
       <div>
-        <div className="w-[100%]  grid grid-cols-3 2xl:grid-cols-7 lg:grid-cols-6 p-1 md:grid-cols-4 2xl:gap-y-2 lg:gap-y-2 gap-y-2 2xl:gap-x- lg:gap-x-1 gap-x-1 py-1">
+        <div className="w-[100%]  grid grid-cols-3 2xl:grid-cols-7 lg:grid-cols-6 p-1 md:grid-cols-5 2xl:gap-y-2 lg:gap-y-2 gap-y-2 2xl:gap-x- lg:gap-x-1 gap-x-1 py-1">
           {casinoList
             ?.filter((product) => product.filterKeys?.includes(casino_id))
             ?.map((product, index) => (
               <div
                 key={index}
                 onClick={() => handleResponseCasino(product)}
-                className="shadow-lg relative  shadow-white duration-500  sm:h-[150px] md:h-[170px] lg:h-[170px]  h-[100px]"
+                className="shadow-lg relative  shadow-white duration-500  sm:h-[150px] md:h-[180px] lg:h-[200px]  h-[140px]"
                 style={{
                   backgroundImage: `url(${product.img})`,
                   backgroundSize: "cover",

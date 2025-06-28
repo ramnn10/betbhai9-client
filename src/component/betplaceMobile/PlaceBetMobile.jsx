@@ -16,7 +16,7 @@ export const betChipsData = {
 
 export default function PlaceBetMobile(props) {
     const { decreaseCount, count, setBetSlipData, handleButtonValues, increaseCount, placeBet, handleClose, betSlipData, betLoading, inputChange, isFetch, minMaxCoins, sessionCoin, } = props;
-    
+
     const updateStackOnclic = (input) => {
         const numericInput = parseFloat(input);
         if (!isNaN(numericInput)) {
@@ -307,7 +307,11 @@ export default function PlaceBetMobile(props) {
                             // onClick={handleClear}
                             >MAX STAKE</button>
                         </div>
-                        <div className='flex justify-center items-center pb-1 px-2  py-1  bg-[#008000]'>
+                        <div
+                            onClick={() => {
+                                handleButtonValues();
+                            }}
+                            className='flex justify-center items-center pb-1 px-2  py-1  bg-[#008000]'>
                             <button type="reset" className="align-center"
                             // onClick={handleClear}
                             >EDIT STAKE</button>

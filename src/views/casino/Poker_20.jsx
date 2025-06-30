@@ -20,6 +20,7 @@ import BetButtonCards from "../../component/casinoComponent/BetButtonCards";
 import BetButton from "../../component/casinoComponent/BetButton";
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
+import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
 
 function Poker_20({ eventId }) {
   const {
@@ -222,7 +223,7 @@ function Poker_20({ eventId }) {
           ) : null}
           {backBetModal && (
             <div
-              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-5 z-50"
+              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
               onClick={handleClose}
             >
 
@@ -496,11 +497,7 @@ function Poker_20({ eventId }) {
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }
-                    <div className="bg-[var(--secondary)] text-white text-[14px] px-2 py-[6px] rounded-t-[4px] ">
-                      <span className="font-medium tracking-wide">
-                        My Bet
-                      </span>
-                    </div>
+                    <MyBetHeader />
                     <div className="pb-20">
                       <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                         <BetListTableDesktop betList={betList} />

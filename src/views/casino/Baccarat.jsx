@@ -23,6 +23,7 @@ import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
 import BaccaratButton from "../../component/casinoComponent/BaccaratButton";
 import BaccaratChart from "../../component/casinoComponent/images/baccaratchart.png";
 import { FaLock } from "react-icons/fa";
+import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
 
 function Baccarat({ eventId }) {
   const {
@@ -61,8 +62,11 @@ function Baccarat({ eventId }) {
     activeTab: 1,
   });
 
+  const [isOpen, setIsOpen] = useState(false);
 
-
+  const toggleCollapse = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleBackOpen = (data) => {
     if (scrollTimeout.current) {
@@ -166,9 +170,6 @@ function Baccarat({ eventId }) {
   };
   const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
-
   const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
   const { data, result } = casinoData ? casinoData : {};
   let t1 = data && data.t1 && data.t1[0] ? data.t1[0] : {};
@@ -201,7 +202,7 @@ function Baccarat({ eventId }) {
           ) : null}
           {backBetModal && (
             <div
-              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-5 z-50"
+              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
               onClick={handleClose}
             >
 
@@ -256,16 +257,34 @@ function Baccarat({ eventId }) {
 
                       <div className="grid lg:grid-cols-5 grid-cols-2 grey-color py-2.5">
 
-                        <div className="pt-2 lg:col-span-1 col-span-2">
+                        <div className="pt-2 lg:block hidden">
                           <p className="text-[14px] font-[600] black-text text-center px-2">STATISTICS</p>
                           <div className="flex justify-center items-center">
                             <img src={BaccaratChart} className="" />
                           </div>
                         </div>
 
+                        <div className="p-1 lg:hidden col-span-2">
+                          <p
+                            onClick={toggleCollapse}
+                            className="text-[13px] rounded-sm font-[600] black-text text-center px-2 bg-[#08C] py-1.5 cursor-pointer select-none flex justify-between items-center"
+                          >
+                            <p>
+                              STATISTICS
+                            </p>
+                            <p>{isOpen ? '▲' : '▼'}</p>
+                          </p>
+
+                          {isOpen && (
+                            <div className="flex justify-center items-center transition-all duration-300 mt-1">
+                              <img src={BaccaratChart} alt="Statistics Chart" className="max-w-full h-auto" />
+                            </div>
+                          )}
+                        </div>
+
                         <div className="lg:col-span-4 col-span-2">
 
-                          <div className="grid grid-cols-4 lg:space-x-2.5 space-x-1.5 lg:px-2 px-[2px] py-2.5 ">
+                          <div className="grid grid-cols-4 lg:space-x-2.5 space-x-1.5 lg:px-2 px-[2px] py-2">
 
                             <BaccaratButton
                               data={PerfectPair}
@@ -466,11 +485,7 @@ function Baccarat({ eventId }) {
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }
-                    <div className="bg-[var(--secondary)] text-white text-[14px] px-2 py-[6px] rounded-t-[4px] ">
-                      <span className="font-medium tracking-wide">
-                        My Bet
-                      </span>
-                    </div>
+                    <MyBetHeader />
                     <div className="pb-20">
                       <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                         <BetListTableDesktop betList={betList} />

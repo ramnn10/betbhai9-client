@@ -38,7 +38,7 @@ export default function CasinoPageheader(props) {
                  </div>
              </div>
                 : null}
-            <div className="bg-[var(--secondary)] lg:flex justify-between items-center p-[6px] hidden">
+            <div className="bg-[var(--casinoHeader)] lg:flex justify-between items-center p-[6px] hidden">
                 <span className="flex space-x-2 text-white w-full whitespace-nowrap">
                     <span className="uppercase font-bold text-center text-xs lg:text-base">
                         {PageTitle}
@@ -57,7 +57,7 @@ export default function CasinoPageheader(props) {
                 </span>
             </div>
 
-            <div className="red-header lg:hidden flex justify-between items-center py-2 px-1.5">
+            <div className="bg-[var(--casinoHeader)] lg:hidden flex justify-between items-center py-2 px-1.5">
                 <span className="space-x-2 text-white w-full whitespace-nowrap">
                     <span className="uppercase font-bold text-center text-[14px]">
                         {PageTitle}

@@ -12,6 +12,11 @@ const GrandExchangeSettings = {
     "--secondary": "#116257",
     "--matchLagai": "#72bbef",
     "--matchKhai": "#faa9ba",
+    "--casinoHeader": "#2c3e50",
+    "--casinoResult": "#2c3e50d9",
+    "--casinoBlue": "#08C",
+
+    
 
     "--matchLagai50": "#a7d8fd",
     "--matchKhai50": "#f9c9d4",

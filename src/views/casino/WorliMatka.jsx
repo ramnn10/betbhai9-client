@@ -20,6 +20,7 @@ import { ImDiamonds } from "react-icons/im";
 import { BsSuitClubFill, BsSuitSpadeFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
+import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
 
 function WorliMatka({ eventId }) {
     const {
@@ -97,7 +98,7 @@ function WorliMatka({ eventId }) {
     };
 
     const placeBet = async () => {
-     
+
         setState(prevState => ({ ...prevState, LoadingBet: true }));
         let { data } = casinoData ? casinoData : {};
         let t1 = data && data.t1 && data.t1[0] ? data.t1[0] : {};
@@ -191,7 +192,7 @@ function WorliMatka({ eventId }) {
                     ) : null}
                     {backBetModal && (
                         <div
-                            className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-5 z-50"
+                            className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
                             onClick={handleClose}
                         >
 
@@ -342,7 +343,7 @@ function WorliMatka({ eventId }) {
                                             <div className="flex space-x-2 justify-end items-center py-1.5 px-2">
                                                 {result && result.length > 0 ? result.map((element, index) => (
                                                     <div key={index} onClick={() => handleResultModel(element)} className="bg-[var(--result-color)] w-7 h-7 cursor-pointer flex justify-center items-center rounded-full shadow-md border border-gray-700" >
-                                                       <p className={`font-[600] text-[13px] text-[#FFF523]`}>{element && element.result && element.result === "1" ? "R" : element && element.result && element.result === "0" ? "R" : element && element.result && element.result === "2" ? "R" : "R"}</p>
+                                                        <p className={`font-[600] text-[13px] text-[#FFF523]`}>{element && element.result && element.result === "1" ? "R" : element && element.result && element.result === "0" ? "R" : element && element.result && element.result === "2" ? "R" : "R"}</p>
                                                     </div>
                                                 )) : null}
                                             </div>
@@ -360,11 +361,7 @@ function WorliMatka({ eventId }) {
                                             clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                         />
                                         }
-                                        <div className="bg-[var(--secondary)] text-white text-[14px] px-2 py-[6px] rounded-[4px] ">
-                                            <span className="font-medium tracking-wide">
-                                                My Bet
-                                            </span>
-                                        </div>
+                                        <MyBetHeader />
                                         <div className="pb-20">
                                             <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                                                 <BetListTableDesktop betList={betList} />

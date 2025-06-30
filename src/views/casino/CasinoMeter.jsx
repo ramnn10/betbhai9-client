@@ -35,6 +35,7 @@ import image10 from "../../component/casinoComponent/images/10.jpg";
 import image11 from "../../component/casinoComponent/images/11.jpg";
 import image12 from "../../component/casinoComponent/images/12.jpg";
 import image13 from "../../component/casinoComponent/images/13.jpg";
+import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
 
 
 function CasinoMeter({ eventId }) {
@@ -245,7 +246,7 @@ function CasinoMeter({ eventId }) {
           ) : null}
           {backBetModal && (
             <div
-              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-5 z-50"
+              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
               onClick={handleClose}
             >
 
@@ -521,11 +522,7 @@ function CasinoMeter({ eventId }) {
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }
-                    <div className="bg-[var(--secondary)] text-white text-[14px] px-2 py-[6px] rounded-t-[4px]">
-                      <span className="font-medium tracking-wide">
-                        My Bet
-                      </span>
-                    </div>
+                  <MyBetHeader />
                     <div className="pb-20">
                       <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                         <BetListTableDesktop betList={betList} />

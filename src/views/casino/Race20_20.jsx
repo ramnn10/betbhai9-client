@@ -27,6 +27,7 @@ import heart from "../../component/casinoComponent/images/heart.png";
 import club from "../../component/casinoComponent/images/club.png";
 import diamond from "../../component/casinoComponent/images/diamond.png";
 import spade from "../../component/casinoComponent/images/spade.png"
+import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
 
 function Race20_20({ eventId }) {
   const {
@@ -227,7 +228,7 @@ function Race20_20({ eventId }) {
           ) : null}
           {backBetModal && (
             <div
-              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-5 z-50"
+              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
               onClick={handleClose}
             >
 
@@ -272,63 +273,63 @@ function Race20_20({ eventId }) {
                     <div className="bg-black flex justify-between w-full relative md:text-sm text-[10px] xl:h-[460px] md:h-[300px] h-[200px]">
                       <iframe src={tvUrl ? tvUrl : null} title=" " className='relative w-full  ' />
                       <div className=" flex justify-between">
-                      <div className="absolute top-2 left-0 bg-gray-700 py-1 ">
-                            <div className="w-full px-1.5 lg:space-y-1.5 space-y-0">
+                        <div className="absolute top-2 left-0 bg-gray-700 py-1 ">
+                          <div className="w-full px-1.5 lg:space-y-1.5 space-y-0">
 
-                              <div className="flex justify-start items-center space-x-1">
-                                <div className={`font-semibold p-[1px] tracking-tight text-[12px] ${t1.C1 > t1.C2 && t1.C1 > t1.C3 && t1.C1 > t1.C4 ? 'text-green-500' : 'text-white'}`}>
-                                  <BsSuitSpadeFill className='text-black' size={18} />
-                                  <span className="text-[#ffc107]">{t1 && t1.C1 ? t1.C1 : null}</span>
-                                </div>
-                                <div className="flex space-x-2 justify-start">
-                                  {resultCard && resultCard[0] && resultCard[0] !== '1' ? (<img src={`/cards/${resultCard[0]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[4] && resultCard[4] !== '1' ? (<img src={`/cards/${resultCard[4]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[8] && resultCard[8] !== '1' ? (<img src={`/cards/${resultCard[8]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[12] && resultCard[12] !== '1' ? (<img src={`/cards/${resultCard[12]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[16] && resultCard[16] !== '1' ? (<img src={`/cards/${resultCard[16]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                </div>
+                            <div className="flex justify-start items-center space-x-1">
+                              <div className={`font-semibold p-[1px] tracking-tight text-[12px] ${t1.C1 > t1.C2 && t1.C1 > t1.C3 && t1.C1 > t1.C4 ? 'text-green-500' : 'text-white'}`}>
+                                <BsSuitSpadeFill className='text-black' size={18} />
+                                <span className="text-[#ffc107]">{t1 && t1.C1 ? t1.C1 : null}</span>
                               </div>
-
-                              <div className="flex justify-start items-center space-x-1">
-                                <div className={` font-semibold p-[1px] tracking-tight text-[12px]`}>
-                                  <BsFillSuitHeartFill className='text-[#FF0000]' size={18} />
-                                  <span className="text-[#ffc107]">{t1 && t1.C2 ? t1.C2 : null}</span>
-                                </div>
-                                <div className="flex space-x-2 justify-start">
-                                  {resultCard && resultCard[1] && resultCard[1] !== '1' ? (<img src={`/cards/${resultCard[1]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[5] && resultCard[5] !== '1' ? (<img src={`/cards/${resultCard[5]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[9] && resultCard[9] !== '1' ? (<img src={`/cards/${resultCard[9]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[13] && resultCard[13] !== '1' ? (<img src={`/cards/${resultCard[13]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                </div>
+                              <div className="flex space-x-2 justify-start">
+                                {resultCard && resultCard[0] && resultCard[0] !== '1' ? (<img src={`/cards/${resultCard[0]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[4] && resultCard[4] !== '1' ? (<img src={`/cards/${resultCard[4]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[8] && resultCard[8] !== '1' ? (<img src={`/cards/${resultCard[8]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[12] && resultCard[12] !== '1' ? (<img src={`/cards/${resultCard[12]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[16] && resultCard[16] !== '1' ? (<img src={`/cards/${resultCard[16]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
                               </div>
+                            </div>
 
-                              <div className="flex justify-start items-center space-x-1">
-                                <div className={` font-semibold p-[1px] tracking-tight text-[12px]`}>
-                                  <BsSuitClubFill className='text-black' size={18} />
-                                  <span className="text-[#ffc107]">{t1 && t1.C3 ? t1.C3 : null}</span>
-                                </div>
-                                <div className="flex space-x-2 justify-start">
-                                  {resultCard && resultCard[2] && resultCard[2] !== '1' ? (<img src={`/cards/${resultCard[2]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[6] && resultCard[6] !== '1' ? (<img src={`/cards/${resultCard[6]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[10] && resultCard[10] !== '1' ? (<img src={`/cards/${resultCard[10]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[14] && resultCard[14] !== '1' ? (<img src={`/cards/${resultCard[14]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                </div>
+                            <div className="flex justify-start items-center space-x-1">
+                              <div className={` font-semibold p-[1px] tracking-tight text-[12px]`}>
+                                <BsFillSuitHeartFill className='text-[#FF0000]' size={18} />
+                                <span className="text-[#ffc107]">{t1 && t1.C2 ? t1.C2 : null}</span>
                               </div>
+                              <div className="flex space-x-2 justify-start">
+                                {resultCard && resultCard[1] && resultCard[1] !== '1' ? (<img src={`/cards/${resultCard[1]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[5] && resultCard[5] !== '1' ? (<img src={`/cards/${resultCard[5]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[9] && resultCard[9] !== '1' ? (<img src={`/cards/${resultCard[9]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[13] && resultCard[13] !== '1' ? (<img src={`/cards/${resultCard[13]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                              </div>
+                            </div>
 
-                              <div className="flex justify-start items-center space-x-1">
-                                <div className={`font-semibold p-[1px] tracking-tight text-[12px]`}>
-                                  <BsSuitDiamondFill className='text-[#FF0000]' size={18} />
-                                  <span className="text-[#ffc107]">{t1.C4}</span>
-                                </div>
-                                <div className="flex space-x-2 justify-start">
-                                  {resultCard && resultCard[3] && resultCard[3] !== '1' ? (<img src={`/cards/${resultCard[3]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[7] && resultCard[7] !== '1' ? (<img src={`/cards/${resultCard[7]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[11] && resultCard[11] !== '1' ? (<img src={`/cards/${resultCard[11]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                  {resultCard && resultCard[15] && resultCard[15] !== '1' ? (<img src={`/cards/${resultCard[15]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
-                                </div>
+                            <div className="flex justify-start items-center space-x-1">
+                              <div className={` font-semibold p-[1px] tracking-tight text-[12px]`}>
+                                <BsSuitClubFill className='text-black' size={18} />
+                                <span className="text-[#ffc107]">{t1 && t1.C3 ? t1.C3 : null}</span>
+                              </div>
+                              <div className="flex space-x-2 justify-start">
+                                {resultCard && resultCard[2] && resultCard[2] !== '1' ? (<img src={`/cards/${resultCard[2]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[6] && resultCard[6] !== '1' ? (<img src={`/cards/${resultCard[6]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[10] && resultCard[10] !== '1' ? (<img src={`/cards/${resultCard[10]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[14] && resultCard[14] !== '1' ? (<img src={`/cards/${resultCard[14]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                              </div>
+                            </div>
+
+                            <div className="flex justify-start items-center space-x-1">
+                              <div className={`font-semibold p-[1px] tracking-tight text-[12px]`}>
+                                <BsSuitDiamondFill className='text-[#FF0000]' size={18} />
+                                <span className="text-[#ffc107]">{t1.C4}</span>
+                              </div>
+                              <div className="flex space-x-2 justify-start">
+                                {resultCard && resultCard[3] && resultCard[3] !== '1' ? (<img src={`/cards/${resultCard[3]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[7] && resultCard[7] !== '1' ? (<img src={`/cards/${resultCard[7]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[11] && resultCard[11] !== '1' ? (<img src={`/cards/${resultCard[11]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
+                                {resultCard && resultCard[15] && resultCard[15] !== '1' ? (<img src={`/cards/${resultCard[15]}.png`} alt="card" className="lg:h-8 h-5 lg:w-7 w-5 border-[1px] border-yellow-300" />) : null}
                               </div>
                             </div>
                           </div>
+                        </div>
                         <div className="flex justify-end items-end absolute bottom-2 right-1">
                           <CustomReactFlipCounter count={+t1?.autotime} />
                         </div>
@@ -338,416 +339,416 @@ function Race20_20({ eventId }) {
 
                     <div className="page_bg pt-1 space-y-4">
 
-                          <div className="grid lg:grid-cols-4 grid-cols-2 gap-2.5 py-1.5 px-2">
+                      <div className="grid lg:grid-cols-4 grid-cols-2 gap-2.5 py-1.5 px-2">
 
-                            <div className="space-y-1">
+                        <div className="space-y-1">
+                          <div className="flex justify-center items-center darktext ">
+                            <p className="text-[14px] font-semibold" >
+                              <img src={spade} alt="card" className="w-8 h-10" />
+                            </p>
+                          </div>
+
+                          <div className="flex justify-center items-center space-x-1">
+                            {KofSpade.gstatus === "ACTIVE" ?
+                              <div className="light-blue w-full text-center py-1.5 relative cursor-pointer" onClick={() => handleBackOpen({ data: KofSpade, type: "Yes", odds: KofSpade.b1, nat: KofSpade.nat ? KofSpade.nat : KofSpade.nation, betFor: KofSpade.nat }, section1Ref)}>
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofSpade && KofSpade.b1 && KofSpade.b1 ? KofSpade.b1 : "0.00"}</div>
+                                <div className="text-[10px] font-[500] darktext leading-4">{KofSpade && KofSpade.bs1 && KofSpade.bs1 ? KofSpade.bs1 : "0.00"}</div>
+                              </div>
+                              :
+                              <div className="light-blue w-full text-center py-1.5 relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofSpade && KofSpade.b1 && KofSpade.b1 ? KofSpade.b1 : "0.00"}</div>
+                                <div className="text-[10px] font-[500] darktext leading-4">{KofSpade && KofSpade.bs1 && KofSpade.bs1 ? KofSpade.bs1 : "0.00"}</div>
+                                <BetLocked />
+                              </div>
+                            }
+
+                            {KofSpade.gstatus === "ACTIVE" ?
+                              <div onClick={() => handleBackOpen({ data: KofSpade, type: "No", odds: KofSpade.l1, nat: KofSpade.nat ? KofSpade.nat : KofSpade.nation, betFor: KofSpade.nat }, section1Ref)} className="odds-khaii w-full text-center py-1.5 cursor-pointer relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofSpade && KofSpade.l1 && KofSpade.l1 ? KofSpade.l1 : "0.00"}</div>
+                                <div className="text-[12px] font-[500] darktext leading-4">{KofSpade && KofSpade.ls1 && KofSpade.ls1 ? KofSpade.ls1 : "0.00"}</div>
+                              </div>
+                              : <div className="odds-khaii w-full text-center py-1.5 relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofSpade && KofSpade.l1 && KofSpade.l1 ? KofSpade.l1 : "0.00"}</div>
+                                <div className="text-[12px] font-[500] darktext leading-4">{KofSpade && KofSpade.ls1 && KofSpade.ls1 ? KofSpade.ls1 : "0.00"}</div>
+                                <BetLocked />
+                              </div>
+                            }
+                          </div>
+                          {/* <div className={`${posArray[KofSpade.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[14px] font-[500] pt-1 `} > {posArray[KofSpade.sid] ?? 0.00}</div> */}
+                        </div>
+
+                        <div className="space-y-1">
+                          <div className="flex justify-center items-center darktext ">
+                            <p className="text-[14px] font-semibold" >
+                              <img src={heart} alt="card" className="w-8 h-10" />
+                            </p>
+                          </div>
+
+                          <div className="flex justify-center items-center space-x-1">
+                            {KofHeart.gstatus === "ACTIVE" ?
+                              <div className="light-blue w-full text-center py-1.5 relative cursor-pointer" onClick={() => handleBackOpen({ data: KofHeart, type: "Yes", odds: KofHeart.b1, nat: KofHeart.nat ? KofHeart.nat : KofHeart.nation, betFor: KofHeart.nat }, section1Ref)}>
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofHeart && KofHeart.b1 && KofHeart.b1 ? KofHeart.b1 : "0.00"}</div>
+                                <div className="text-[10px] font-[500] darktext leading-4">{KofHeart && KofHeart.bs1 && KofHeart.bs1 ? KofHeart.bs1 : "0.00"}</div>
+                              </div>
+                              :
+                              <div className="light-blue w-full text-center py-1.5 relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofHeart && KofHeart.b1 && KofHeart.b1 ? KofHeart.b1 : "0.00"}</div>
+                                <div className="text-[10px] font-[500] darktext leading-4">{KofHeart && KofHeart.bs1 && KofHeart.bs1 ? KofHeart.bs1 : "0.00"}</div>
+                                <BetLocked />
+                              </div>
+                            }
+
+                            {KofHeart.gstatus === "ACTIVE" ?
+                              <div onClick={() => handleBackOpen({ data: KofHeart, type: "No", odds: KofHeart.l1, nat: KofHeart.nat ? KofHeart.nat : KofHeart.nation, betFor: KofHeart.nat }, section1Ref)} className="odds-khaii w-full text-center py-1.5 cursor-pointer relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofHeart && KofHeart.l1 && KofHeart.l1 ? KofHeart.l1 : "0.00"}</div>
+                                <div className="text-[12px] font-[500] darktext leading-4">{KofHeart && KofHeart.ls1 && KofHeart.ls1 ? KofHeart.ls1 : "0.00"}</div>
+                              </div>
+                              : <div className="odds-khaii w-full text-center py-1.5 relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofHeart && KofHeart.l1 && KofHeart.l1 ? KofHeart.l1 : "0.00"}</div>
+                                <div className="text-[12px] font-[500] darktext leading-4">{KofHeart && KofHeart.ls1 && KofHeart.ls1 ? KofHeart.ls1 : "0.00"}</div>
+                                <BetLocked />
+                              </div>
+                            }
+                          </div>
+                          {/* <div className={`${posArray[KofHeart.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[14px] font-[500] pt-1 `} > {posArray[KofHeart.sid] ?? 0.00}</div> */}
+                        </div>
+
+                        <div className="space-y-1 lg:my-0 my-1">
+                          <div className="flex justify-center items-center darktext ">
+                            <p className="text-[14px] font-semibold" >
+                              <img src={club} alt="card" className="w-8 h-10" />
+                            </p>
+                          </div>
+
+                          <div className="flex justify-center items-center space-x-1">
+                            {KofClub.gstatus === "ACTIVE" ?
+                              <div className="light-blue w-full text-center py-1.5 relative cursor-pointer" onClick={() => handleBackOpen({ data: KofClub, type: "Yes", odds: KofClub.b1, nat: KofClub.nat ? KofClub.nat : KofClub.nation, betFor: KofClub.nat }, section1Ref)}>
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofClub && KofClub.b1 && KofClub.b1 ? KofClub.b1 : "0.00"}</div>
+                                <div className="text-[10px] font-[500] darktext leading-4">{KofClub && KofClub.bs1 && KofClub.bs1 ? KofClub.bs1 : "0.00"}</div>
+                              </div>
+                              :
+                              <div className="light-blue w-full text-center py-1.5 relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofClub && KofClub.b1 && KofClub.b1 ? KofClub.b1 : "0.00"}</div>
+                                <div className="text-[10px] font-[500] darktext leading-4">{KofClub && KofClub.bs1 && KofClub.bs1 ? KofClub.bs1 : "0.00"}</div>
+                                <BetLocked />
+                              </div>
+                            }
+
+                            {KofClub.gstatus === "ACTIVE" ?
+                              <div onClick={() => handleBackOpen({ data: KofClub, type: "No", odds: KofClub.l1, nat: KofClub.nat ? KofClub.nat : KofClub.nation, betFor: KofClub.nat }, section1Ref)} className="odds-khaii w-full text-center py-1.5 cursor-pointer relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofClub && KofClub.l1 && KofClub.l1 ? KofClub.l1 : "0.00"}</div>
+                                <div className="text-[12px] font-[500] darktext leading-4">{KofClub && KofClub.ls1 && KofClub.ls1 ? KofClub.ls1 : "0.00"}</div>
+                              </div>
+                              : <div className="odds-khaii w-full text-center py-1.5 relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofClub && KofClub.l1 && KofClub.l1 ? KofClub.l1 : "0.00"}</div>
+                                <div className="text-[12px] font-[500] darktext leading-4">{KofClub && KofClub.ls1 && KofClub.ls1 ? KofClub.ls1 : "0.00"}</div>
+                                <BetLocked />
+                              </div>
+                            }
+                          </div>
+                          {/* <div className={`${posArray[KofClub.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[14px] font-[500] pt-1 `} > {posArray[KofClub.sid] ?? 0.00}</div> */}
+                        </div>
+
+                        <div className="space-y-1 lg:my-0 my-1">
+                          <div className="flex justify-center items-center darktext ">
+                            <p className="text-[14px] font-semibold" >
+                              <img src={diamond} alt="card" className="w-8 h-10" />
+                            </p>
+                          </div>
+
+                          <div className="flex justify-center items-center space-x-1">
+                            {KofDiamond.gstatus === "ACTIVE" ?
+                              <div className="light-blue w-full text-center py-1.5 relative cursor-pointer" onClick={() => handleBackOpen({ data: KofDiamond, type: "Yes", odds: KofDiamond.b1, nat: KofDiamond.nat ? KofDiamond.nat : KofDiamond.nation, betFor: KofDiamond.nat }, section1Ref)}>
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofDiamond && KofDiamond.b1 && KofDiamond.b1 ? KofDiamond.b1 : "0.00"}</div>
+                                <div className="text-[10px] font-[500] darktext leading-4">{KofDiamond && KofDiamond.bs1 && KofDiamond.bs1 ? KofDiamond.bs1 : "0.00"}</div>
+                              </div>
+                              :
+                              <div className="light-blue w-full text-center py-1.5 relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofDiamond && KofDiamond.b1 && KofDiamond.b1 ? KofDiamond.b1 : "0.00"}</div>
+                                <div className="text-[10px] font-[500] darktext leading-4">{KofDiamond && KofDiamond.bs1 && KofDiamond.bs1 ? KofDiamond.bs1 : "0.00"}</div>
+                                <BetLocked />
+                              </div>
+                            }
+
+                            {KofDiamond.gstatus === "ACTIVE" ?
+                              <div onClick={() => handleBackOpen({ data: KofDiamond, type: "No", odds: KofDiamond.l1, nat: KofDiamond.nat ? KofDiamond.nat : KofDiamond.nation, betFor: KofDiamond.nat }, section1Ref)} className="odds-khaii w-full text-center py-1.5 cursor-pointer relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofDiamond && KofDiamond.l1 && KofDiamond.l1 ? KofDiamond.l1 : "0.00"}</div>
+                                <div className="text-[12px] font-[500] darktext leading-4">{KofDiamond && KofDiamond.ls1 && KofDiamond.ls1 ? KofDiamond.ls1 : "0.00"}</div>
+                              </div>
+                              : <div className="odds-khaii w-full text-center py-1.5 relative">
+                                <div className="text-[14px] font-[600] darktext leading-4">{KofDiamond && KofDiamond.l1 && KofDiamond.l1 ? KofDiamond.l1 : "0.00"}</div>
+                                <div className="text-[12px] font-[500] darktext leading-4">{KofDiamond && KofDiamond.ls1 && KofDiamond.ls1 ? KofDiamond.ls1 : "0.00"}</div>
+                                <BetLocked />
+                              </div>
+                            }
+                          </div>
+                          {/* <div className={`${posArray[KofDiamond.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[14px] font-[500] pt-1 `} > {posArray[KofDiamond.sid] ?? 0.00}</div> */}
+                        </div>
+
+                      </div>
+
+                      <div className="grid lg:grid-cols-6 grid-cols-1 gap-4 py-1.5 px-2">
+
+                        <div className="lg:col-span-2 white-bg px-1.5 border border-gray-300 py-4 space-y-4">
+
+                          <div className="grid grid-cols-3">
+
+                            <span className="flex justify-center items-center darktext font-[600] lg:text-[15px] text-[13px] py-4">
+                              Total Points
+                            </span>
+
+                            <div className="">
                               <div className="flex justify-center items-center darktext ">
-                                <p className="text-[14px] font-semibold" >
-                                  <img src={spade} alt="card" className="w-8 h-10" />
-                                </p>
+                                <p className="lg:text-[15px] text-[13px] font-[600]">No</p>
                               </div>
 
-                              <div className="flex justify-center items-center space-x-1">
-                                {KofSpade.gstatus === "ACTIVE" ?
-                                  <div className="light-blue w-full text-center py-1.5 relative cursor-pointer" onClick={() => handleBackOpen({ data: KofSpade, type: "Yes", odds: KofSpade.b1, nat: KofSpade.nat ? KofSpade.nat : KofSpade.nation, betFor: KofSpade.nat }, section1Ref)}>
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofSpade && KofSpade.b1 && KofSpade.b1 ? KofSpade.b1 : "0.00"}</div>
-                                    <div className="text-[10px] font-[500] darktext leading-4">{KofSpade && KofSpade.bs1 && KofSpade.bs1 ? KofSpade.bs1 : "0.00"}</div>
-                                  </div>
-                                  :
-                                  <div className="light-blue w-full text-center py-1.5 relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofSpade && KofSpade.b1 && KofSpade.b1 ? KofSpade.b1 : "0.00"}</div>
-                                    <div className="text-[10px] font-[500] darktext leading-4">{KofSpade && KofSpade.bs1 && KofSpade.bs1 ? KofSpade.bs1 : "0.00"}</div>
-                                    <BetLocked />
-                                  </div>
-                                }
-
-                                {KofSpade.gstatus === "ACTIVE" ?
-                                  <div onClick={() => handleBackOpen({ data: KofSpade, type: "No", odds: KofSpade.l1, nat: KofSpade.nat ? KofSpade.nat : KofSpade.nation, betFor: KofSpade.nat }, section1Ref)} className="odds-khaii w-full text-center py-1.5 cursor-pointer relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofSpade && KofSpade.l1 && KofSpade.l1 ? KofSpade.l1 : "0.00"}</div>
-                                    <div className="text-[12px] font-[500] darktext leading-4">{KofSpade && KofSpade.ls1 && KofSpade.ls1 ? KofSpade.ls1 : "0.00"}</div>
-                                  </div>
-                                  : <div className="odds-khaii w-full text-center py-1.5 relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofSpade && KofSpade.l1 && KofSpade.l1 ? KofSpade.l1 : "0.00"}</div>
-                                    <div className="text-[12px] font-[500] darktext leading-4">{KofSpade && KofSpade.ls1 && KofSpade.ls1 ? KofSpade.ls1 : "0.00"}</div>
+                              <div className="flex justify-center items-center">
+                                {TotalPoint.gstatus === "ACTIVE" ?
+                                  <div onClick={() => handleBackOpen({ data: TotalPoint, type: "No", odds: TotalPoint.l1, nat: TotalPoint.nat ? TotalPoint.nat : TotalPoint.nation, betFor: TotalPoint.nat }, section1Ref)} className="odds-khaii py-1.5 w-full text-center cursor-pointer relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{TotalPoint && TotalPoint.l1 && TotalPoint.l1 ? TotalPoint.l1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{TotalPoint && TotalPoint.ls1 && TotalPoint.ls1 ? TotalPoint.ls1 : "0.00"}</div>
+                                  </div> :
+                                  <div className="odds-khaii py-1.5 w-full text-center cursor-pointer relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{TotalPoint && TotalPoint.l1 && TotalPoint.l1 ? TotalPoint.l1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{TotalPoint && TotalPoint.ls1 && TotalPoint.ls1 ? TotalPoint.ls1 : "0.00"}</div>
                                     <BetLocked />
                                   </div>
                                 }
                               </div>
-                              {/* <div className={`${posArray[KofSpade.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[14px] font-[500] pt-1 `} > {posArray[KofSpade.sid] ?? 0.00}</div> */}
                             </div>
 
-                            <div className="space-y-1">
+                            <div className="">
                               <div className="flex justify-center items-center darktext ">
-                                <p className="text-[14px] font-semibold" >
-                                  <img src={heart} alt="card" className="w-8 h-10" />
+                                <p className="lg:text-[15px] text-[13px] font-[600]" >
+                                  Yes
                                 </p>
                               </div>
 
-                              <div className="flex justify-center items-center space-x-1">
-                                {KofHeart.gstatus === "ACTIVE" ?
-                                  <div className="light-blue w-full text-center py-1.5 relative cursor-pointer" onClick={() => handleBackOpen({ data: KofHeart, type: "Yes", odds: KofHeart.b1, nat: KofHeart.nat ? KofHeart.nat : KofHeart.nation, betFor: KofHeart.nat }, section1Ref)}>
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofHeart && KofHeart.b1 && KofHeart.b1 ? KofHeart.b1 : "0.00"}</div>
-                                    <div className="text-[10px] font-[500] darktext leading-4">{KofHeart && KofHeart.bs1 && KofHeart.bs1 ? KofHeart.bs1 : "0.00"}</div>
-                                  </div>
-                                  :
-                                  <div className="light-blue w-full text-center py-1.5 relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofHeart && KofHeart.b1 && KofHeart.b1 ? KofHeart.b1 : "0.00"}</div>
-                                    <div className="text-[10px] font-[500] darktext leading-4">{KofHeart && KofHeart.bs1 && KofHeart.bs1 ? KofHeart.bs1 : "0.00"}</div>
-                                    <BetLocked />
-                                  </div>
-                                }
-
-                                {KofHeart.gstatus === "ACTIVE" ?
-                                  <div onClick={() => handleBackOpen({ data: KofHeart, type: "No", odds: KofHeart.l1, nat: KofHeart.nat ? KofHeart.nat : KofHeart.nation, betFor: KofHeart.nat }, section1Ref)} className="odds-khaii w-full text-center py-1.5 cursor-pointer relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofHeart && KofHeart.l1 && KofHeart.l1 ? KofHeart.l1 : "0.00"}</div>
-                                    <div className="text-[12px] font-[500] darktext leading-4">{KofHeart && KofHeart.ls1 && KofHeart.ls1 ? KofHeart.ls1 : "0.00"}</div>
-                                  </div>
-                                  : <div className="odds-khaii w-full text-center py-1.5 relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofHeart && KofHeart.l1 && KofHeart.l1 ? KofHeart.l1 : "0.00"}</div>
-                                    <div className="text-[12px] font-[500] darktext leading-4">{KofHeart && KofHeart.ls1 && KofHeart.ls1 ? KofHeart.ls1 : "0.00"}</div>
+                              <div className="flex justify-center items-center">
+                                {TotalPoint.gstatus === "ACTIVE" ?
+                                  <div onClick={() => handleBackOpen({ data: TotalPoint, type: "No", odds: TotalPoint.b1, nat: TotalPoint.nat ? TotalPoint.nat : TotalPoint.nation, betFor: TotalPoint.nat }, section1Ref)} className="light-blue py-1.5 w-full text-center cursor-pointer relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{TotalPoint && TotalPoint.b1 && TotalPoint.b1 ? TotalPoint.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{TotalPoint && TotalPoint.bs1 && TotalPoint.bs1 ? TotalPoint.bs1 : "0.00"}</div>
+                                  </div> :
+                                  <div className="light-blue py-1.5 w-full text-center cursor-pointer relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{TotalPoint && TotalPoint.b1 && TotalPoint.b1 ? TotalPoint.l1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{TotalPoint && TotalPoint.bs1 && TotalPoint.bs1 ? TotalPoint.ls1 : "0.00"}</div>
                                     <BetLocked />
                                   </div>
                                 }
                               </div>
-                              {/* <div className={`${posArray[KofHeart.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[14px] font-[500] pt-1 `} > {posArray[KofHeart.sid] ?? 0.00}</div> */}
-                            </div>
-
-                            <div className="space-y-1 lg:my-0 my-1">
-                              <div className="flex justify-center items-center darktext ">
-                                <p className="text-[14px] font-semibold" >
-                                  <img src={club} alt="card" className="w-8 h-10" />
-                                </p>
-                              </div>
-
-                              <div className="flex justify-center items-center space-x-1">
-                                {KofClub.gstatus === "ACTIVE" ?
-                                  <div className="light-blue w-full text-center py-1.5 relative cursor-pointer" onClick={() => handleBackOpen({ data: KofClub, type: "Yes", odds: KofClub.b1, nat: KofClub.nat ? KofClub.nat : KofClub.nation, betFor: KofClub.nat }, section1Ref)}>
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofClub && KofClub.b1 && KofClub.b1 ? KofClub.b1 : "0.00"}</div>
-                                    <div className="text-[10px] font-[500] darktext leading-4">{KofClub && KofClub.bs1 && KofClub.bs1 ? KofClub.bs1 : "0.00"}</div>
-                                  </div>
-                                  :
-                                  <div className="light-blue w-full text-center py-1.5 relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofClub && KofClub.b1 && KofClub.b1 ? KofClub.b1 : "0.00"}</div>
-                                    <div className="text-[10px] font-[500] darktext leading-4">{KofClub && KofClub.bs1 && KofClub.bs1 ? KofClub.bs1 : "0.00"}</div>
-                                    <BetLocked />
-                                  </div>
-                                }
-
-                                {KofClub.gstatus === "ACTIVE" ?
-                                  <div onClick={() => handleBackOpen({ data: KofClub, type: "No", odds: KofClub.l1, nat: KofClub.nat ? KofClub.nat : KofClub.nation, betFor: KofClub.nat }, section1Ref)} className="odds-khaii w-full text-center py-1.5 cursor-pointer relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofClub && KofClub.l1 && KofClub.l1 ? KofClub.l1 : "0.00"}</div>
-                                    <div className="text-[12px] font-[500] darktext leading-4">{KofClub && KofClub.ls1 && KofClub.ls1 ? KofClub.ls1 : "0.00"}</div>
-                                  </div>
-                                  : <div className="odds-khaii w-full text-center py-1.5 relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofClub && KofClub.l1 && KofClub.l1 ? KofClub.l1 : "0.00"}</div>
-                                    <div className="text-[12px] font-[500] darktext leading-4">{KofClub && KofClub.ls1 && KofClub.ls1 ? KofClub.ls1 : "0.00"}</div>
-                                    <BetLocked />
-                                  </div>
-                                }
-                              </div>
-                              {/* <div className={`${posArray[KofClub.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[14px] font-[500] pt-1 `} > {posArray[KofClub.sid] ?? 0.00}</div> */}
-                            </div>
-
-                            <div className="space-y-1 lg:my-0 my-1">
-                              <div className="flex justify-center items-center darktext ">
-                                <p className="text-[14px] font-semibold" >
-                                  <img src={diamond} alt="card" className="w-8 h-10" />
-                                </p>
-                              </div>
-
-                              <div className="flex justify-center items-center space-x-1">
-                                {KofDiamond.gstatus === "ACTIVE" ?
-                                  <div className="light-blue w-full text-center py-1.5 relative cursor-pointer" onClick={() => handleBackOpen({ data: KofDiamond, type: "Yes", odds: KofDiamond.b1, nat: KofDiamond.nat ? KofDiamond.nat : KofDiamond.nation, betFor: KofDiamond.nat }, section1Ref)}>
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofDiamond && KofDiamond.b1 && KofDiamond.b1 ? KofDiamond.b1 : "0.00"}</div>
-                                    <div className="text-[10px] font-[500] darktext leading-4">{KofDiamond && KofDiamond.bs1 && KofDiamond.bs1 ? KofDiamond.bs1 : "0.00"}</div>
-                                  </div>
-                                  :
-                                  <div className="light-blue w-full text-center py-1.5 relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofDiamond && KofDiamond.b1 && KofDiamond.b1 ? KofDiamond.b1 : "0.00"}</div>
-                                    <div className="text-[10px] font-[500] darktext leading-4">{KofDiamond && KofDiamond.bs1 && KofDiamond.bs1 ? KofDiamond.bs1 : "0.00"}</div>
-                                    <BetLocked />
-                                  </div>
-                                }
-
-                                {KofDiamond.gstatus === "ACTIVE" ?
-                                  <div onClick={() => handleBackOpen({ data: KofDiamond, type: "No", odds: KofDiamond.l1, nat: KofDiamond.nat ? KofDiamond.nat : KofDiamond.nation, betFor: KofDiamond.nat }, section1Ref)} className="odds-khaii w-full text-center py-1.5 cursor-pointer relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofDiamond && KofDiamond.l1 && KofDiamond.l1 ? KofDiamond.l1 : "0.00"}</div>
-                                    <div className="text-[12px] font-[500] darktext leading-4">{KofDiamond && KofDiamond.ls1 && KofDiamond.ls1 ? KofDiamond.ls1 : "0.00"}</div>
-                                  </div>
-                                  : <div className="odds-khaii w-full text-center py-1.5 relative">
-                                    <div className="text-[14px] font-[600] darktext leading-4">{KofDiamond && KofDiamond.l1 && KofDiamond.l1 ? KofDiamond.l1 : "0.00"}</div>
-                                    <div className="text-[12px] font-[500] darktext leading-4">{KofDiamond && KofDiamond.ls1 && KofDiamond.ls1 ? KofDiamond.ls1 : "0.00"}</div>
-                                    <BetLocked />
-                                  </div>
-                                }
-                              </div>
-                              {/* <div className={`${posArray[KofDiamond.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[14px] font-[500] pt-1 `} > {posArray[KofDiamond.sid] ?? 0.00}</div> */}
                             </div>
 
                           </div>
 
-                          <div className="grid lg:grid-cols-6 grid-cols-1 gap-4 py-1.5 px-2">
+                          <div className="grid grid-cols-3">
 
-                            <div className="lg:col-span-2 white-bg px-1.5 border border-gray-300 py-4 space-y-4">
 
-                              <div className="grid grid-cols-3">
+                            <span className="flex justify-center items-center darktext font-[600] lg:text-[15px] text-[13px] py-4">
+                              Total Card
+                            </span>
 
-                                <span className="flex justify-center items-center darktext font-[600] lg:text-[15px] text-[13px] py-4">
-                                  Total Points
-                                </span>
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]">No</p>
-                                  </div>
-
-                                  <div className="flex justify-center items-center">
-                                    {TotalPoint.gstatus === "ACTIVE" ?
-                                      <div onClick={() => handleBackOpen({ data: TotalPoint, type: "No", odds: TotalPoint.l1, nat: TotalPoint.nat ? TotalPoint.nat : TotalPoint.nation, betFor: TotalPoint.nat }, section1Ref)} className="odds-khaii py-1.5 w-full text-center cursor-pointer relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{TotalPoint && TotalPoint.l1 && TotalPoint.l1 ? TotalPoint.l1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{TotalPoint && TotalPoint.ls1 && TotalPoint.ls1 ? TotalPoint.ls1 : "0.00"}</div>
-                                      </div> :
-                                      <div className="odds-khaii py-1.5 w-full text-center cursor-pointer relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{TotalPoint && TotalPoint.l1 && TotalPoint.l1 ? TotalPoint.l1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{TotalPoint && TotalPoint.ls1 && TotalPoint.ls1 ? TotalPoint.ls1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]" >
-                                      Yes
-                                    </p>
-                                  </div>
-
-                                  <div className="flex justify-center items-center">
-                                    {TotalPoint.gstatus === "ACTIVE" ?
-                                      <div onClick={() => handleBackOpen({ data: TotalPoint, type: "No", odds: TotalPoint.b1, nat: TotalPoint.nat ? TotalPoint.nat : TotalPoint.nation, betFor: TotalPoint.nat }, section1Ref)} className="light-blue py-1.5 w-full text-center cursor-pointer relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{TotalPoint && TotalPoint.b1 && TotalPoint.b1 ? TotalPoint.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{TotalPoint && TotalPoint.bs1 && TotalPoint.bs1 ? TotalPoint.bs1 : "0.00"}</div>
-                                      </div> :
-                                      <div className="light-blue py-1.5 w-full text-center cursor-pointer relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{TotalPoint && TotalPoint.b1 && TotalPoint.b1 ? TotalPoint.l1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{TotalPoint && TotalPoint.bs1 && TotalPoint.bs1 ? TotalPoint.ls1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
+                            <div className="">
+                              <div className="flex justify-center items-center darktext ">
+                                <p className="lg:text-[15px] text-[13px] font-[600]">No</p>
                               </div>
 
-                              <div className="grid grid-cols-3">
-
-
-                                <span className="flex justify-center items-center darktext font-[600] lg:text-[15px] text-[13px] py-4">
-                                  Total Card
-                                </span>
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]">No</p>
+                              <div className="flex justify-center items-center">
+                                {TotalCard.gstatus === "ACTIVE" ?
+                                  <div onClick={() => handleBackOpen({ data: TotalCard, type: "No", odds: TotalCard.l1, nat: TotalCard.nat ? TotalCard.nat : TotalCard.nation, betFor: TotalCard.nat }, section1Ref)} className="odds-khaii py-1.5 w-full text-center cursor-pointer relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{TotalCard && TotalCard.l1 && TotalCard.l1 ? TotalCard.l1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{TotalCard && TotalCard.ls1 && TotalCard.ls1 ? TotalCard.ls1 : "0.00"}</div>
+                                  </div> :
+                                  <div className="odds-khaii py-1.5 w-full text-center cursor-pointer relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{TotalCard && TotalCard.l1 && TotalCard.l1 ? TotalCard.l1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{TotalCard && TotalCard.ls1 && TotalCard.ls1 ? TotalCard.ls1 : "0.00"}</div>
+                                    <BetLocked />
                                   </div>
-
-                                  <div className="flex justify-center items-center">
-                                    {TotalCard.gstatus === "ACTIVE" ?
-                                      <div onClick={() => handleBackOpen({ data: TotalCard, type: "No", odds: TotalCard.l1, nat: TotalCard.nat ? TotalCard.nat : TotalCard.nation, betFor: TotalCard.nat }, section1Ref)} className="odds-khaii py-1.5 w-full text-center cursor-pointer relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{TotalCard && TotalCard.l1 && TotalCard.l1 ? TotalCard.l1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{TotalCard && TotalCard.ls1 && TotalCard.ls1 ? TotalCard.ls1 : "0.00"}</div>
-                                      </div> :
-                                      <div className="odds-khaii py-1.5 w-full text-center cursor-pointer relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{TotalCard && TotalCard.l1 && TotalCard.l1 ? TotalCard.l1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{TotalCard && TotalCard.ls1 && TotalCard.ls1 ? TotalCard.ls1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]" >
-                                      Yes
-                                    </p>
-                                  </div>
-
-                                  <div className="flex justify-center items-center">
-                                    {TotalCard.gstatus === "ACTIVE" ?
-                                      <div onClick={() => handleBackOpen({ data: TotalCard, type: "No", odds: TotalCard.b1, nat: TotalCard.nat ? TotalCard.nat : TotalCard.nation, betFor: TotalCard.nat }, section1Ref)} className="light-blue py-1.5 w-full text-center cursor-pointer relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{TotalCard && TotalCard.b1 && TotalCard.b1 ? TotalCard.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{TotalCard && TotalCard.bs1 && TotalCard.bs1 ? TotalCard.bs1 : "0.00"}</div>
-                                      </div> :
-                                      <div className="light-blue py-1.5 w-full text-center cursor-pointer relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{TotalCard && TotalCard.b1 && TotalCard.b1 ? TotalCard.l1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{TotalCard && TotalCard.bs1 && TotalCard.bs1 ? TotalCard.ls1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
+                                }
                               </div>
-
                             </div>
 
-                            <div className="lg:col-span-4 white-bg px-1.5 border border-gray-300 py-4 space-y-4">
-
-
-                              <div className="grid grid-cols-3 space-x-3">
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]" >
-                                      {Win5 && Win5.nat ? Win5.nat : Win5.nation ? Win5.nation : "Win with 5"}
-                                    </p>
-                                  </div>
-
-                                  <div className="flex justify-center items-center space-x-1">
-                                    {Win5.gstatus === "ACTIVE" ?
-                                      <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win5, type: "Yes", odds: Win5.b1, nat: Win5.nat ? Win5.nat : Win5.nation, betFor: Win5.nat }, section1Ref)}>
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win5 && Win5.b1 && Win5.b1 ? Win5.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win5 && Win5.bs1 && Win5.bs1 ? Win5.bs1 : "0.00"}</div>
-                                      </div>
-                                      :
-                                      <div className="light-blue py-1.5 w-full text-center relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win5 && Win5.b1 && Win5.b1 ? Win5.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win5 && Win5.bs1 && Win5.bs1 ? Win5.bs1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]" >
-                                      {Win6 && Win6.nat ? Win6.nat : Win6.nation ? Win6.nation : "Win with 6"}
-                                    </p>
-                                  </div>
-
-                                  <div className="flex justify-center items-center space-x-1">
-                                    {Win6.gstatus === "ACTIVE" ?
-                                      <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win6, type: "Yes", odds: Win6.b1, nat: Win6.nat ? Win6.nat : Win6.nation, betFor: Win6.nat }, section1Ref)}>
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win6 && Win6.b1 && Win6.b1 ? Win6.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win6 && Win6.bs1 && Win6.bs1 ? Win6.bs1 : "0.00"}</div>
-                                      </div>
-                                      :
-                                      <div className="light-blue py-1.5 w-full text-center relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win6 && Win6.b1 && Win6.b1 ? Win6.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win6 && Win6.bs1 && Win6.bs1 ? Win6.bs1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]" >
-                                      {Win7 && Win7.nat ? Win7.nat : Win7.nation ? Win7.nation : "Win with 7"}
-                                    </p>
-                                  </div>
-
-                                  <div className="flex justify-center items-center space-x-1">
-                                    {Win7.gstatus === "ACTIVE" ?
-                                      <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win7, type: "Yes", odds: Win7.b1, nat: Win7.nat ? Win7.nat : Win7.nation, betFor: Win7.nat }, section1Ref)}>
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win7 && Win7.b1 && Win7.b1 ? Win7.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win7 && Win7.bs1 && Win7.bs1 ? Win7.bs1 : "0.00"}</div>
-                                      </div>
-                                      :
-                                      <div className="light-blue py-1.5 w-full text-center relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win7 && Win7.b1 && Win7.b1 ? Win7.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win7 && Win7.bs1 && Win7.bs1 ? Win7.bs1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
+                            <div className="">
+                              <div className="flex justify-center items-center darktext ">
+                                <p className="lg:text-[15px] text-[13px] font-[600]" >
+                                  Yes
+                                </p>
                               </div>
 
-                              <div className="grid grid-cols-3 space-x-3">
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]" >
-                                      {Win15 && Win15.nat ? Win15.nat : Win15.nation ? Win15.nation : "Win with 15"}
-                                    </p>
+                              <div className="flex justify-center items-center">
+                                {TotalCard.gstatus === "ACTIVE" ?
+                                  <div onClick={() => handleBackOpen({ data: TotalCard, type: "No", odds: TotalCard.b1, nat: TotalCard.nat ? TotalCard.nat : TotalCard.nation, betFor: TotalCard.nat }, section1Ref)} className="light-blue py-1.5 w-full text-center cursor-pointer relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{TotalCard && TotalCard.b1 && TotalCard.b1 ? TotalCard.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{TotalCard && TotalCard.bs1 && TotalCard.bs1 ? TotalCard.bs1 : "0.00"}</div>
+                                  </div> :
+                                  <div className="light-blue py-1.5 w-full text-center cursor-pointer relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{TotalCard && TotalCard.b1 && TotalCard.b1 ? TotalCard.l1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{TotalCard && TotalCard.bs1 && TotalCard.bs1 ? TotalCard.ls1 : "0.00"}</div>
+                                    <BetLocked />
                                   </div>
-
-                                  <div className="flex justify-center items-center space-x-1">
-                                    {Win15.gstatus === "ACTIVE" ?
-                                      <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win15, type: "Yes", odds: Win15.b1, nat: Win15.nat ? Win15.nat : Win15.nation, betFor: Win15.nat }, section1Ref)}>
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win15 && Win15.b1 && Win15.b1 ? Win15.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win15 && Win15.bs1 && Win15.bs1 ? Win15.bs1 : "0.00"}</div>
-                                      </div>
-                                      :
-                                      <div className="light-blue py-1.5 w-full text-center relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win15 && Win15.b1 && Win15.b1 ? Win15.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win15 && Win15.bs1 && Win15.bs1 ? Win15.bs1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]" >
-                                      {Win16 && Win16.nat ? Win16.nat : Win16.nation ? Win16.nation : "Win with 16"}
-                                    </p>
-                                  </div>
-
-                                  <div className="flex justify-center items-center space-x-1">
-                                    {Win16.gstatus === "ACTIVE" ?
-                                      <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win16, type: "Yes", odds: Win16.b1, nat: Win16.nat ? Win16.nat : Win16.nation, betFor: Win16.nat }, section1Ref)}>
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win16 && Win16.b1 && Win16.b1 ? Win16.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win16 && Win16.bs1 && Win16.bs1 ? Win16.bs1 : "0.00"}</div>
-                                      </div>
-                                      :
-                                      <div className="light-blue py-1.5 w-full text-center relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win16 && Win16.b1 && Win16.b1 ? Win16.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win16 && Win16.bs1 && Win16.bs1 ? Win16.bs1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
-                                <div className="">
-                                  <div className="flex justify-center items-center darktext ">
-                                    <p className="lg:text-[15px] text-[13px] font-[600]" >
-                                      {Win17 && Win17.nat ? Win17.nat : Win17.nation ? Win17.nation : "Win with 17"}
-                                    </p>
-                                  </div>
-
-                                  <div className="flex justify-center items-center space-x-1">
-                                    {Win17.gstatus === "ACTIVE" ?
-                                      <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win17, type: "Yes", odds: Win17.b1, nat: Win17.nat ? Win17 : Win17.nation, betFor: Win17.nat }, section1Ref)}>
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win17 && Win17.b1 && Win17.b1 ? Win17.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win17 && Win17.bs1 && Win17.bs1 ? Win17.bs1 : "0.00"}</div>
-                                      </div>
-                                      :
-                                      <div className="light-blue py-1.5 w-full text-center relative">
-                                        <div className="text-[14px] font-[600] darktext leading-4">{Win17 && Win17.b1 && Win17.b1 ? Win17.b1 : "0.00"}</div>
-                                        <div className="text-[10px] font-[500] darktext leading-4">{Win17 && Win17.bs1 && Win17.bs1 ? Win17.bs1 : "0.00"}</div>
-                                        <BetLocked />
-                                      </div>
-                                    }
-                                  </div>
-                                </div>
-
+                                }
                               </div>
-
-
                             </div>
 
                           </div>
 
                         </div>
+
+                        <div className="lg:col-span-4 white-bg px-1.5 border border-gray-300 py-4 space-y-4">
+
+
+                          <div className="grid grid-cols-3 space-x-3">
+
+                            <div className="">
+                              <div className="flex justify-center items-center darktext ">
+                                <p className="lg:text-[15px] text-[13px] font-[600]" >
+                                  {Win5 && Win5.nat ? Win5.nat : Win5.nation ? Win5.nation : "Win with 5"}
+                                </p>
+                              </div>
+
+                              <div className="flex justify-center items-center space-x-1">
+                                {Win5.gstatus === "ACTIVE" ?
+                                  <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win5, type: "Yes", odds: Win5.b1, nat: Win5.nat ? Win5.nat : Win5.nation, betFor: Win5.nat }, section1Ref)}>
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win5 && Win5.b1 && Win5.b1 ? Win5.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win5 && Win5.bs1 && Win5.bs1 ? Win5.bs1 : "0.00"}</div>
+                                  </div>
+                                  :
+                                  <div className="light-blue py-1.5 w-full text-center relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win5 && Win5.b1 && Win5.b1 ? Win5.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win5 && Win5.bs1 && Win5.bs1 ? Win5.bs1 : "0.00"}</div>
+                                    <BetLocked />
+                                  </div>
+                                }
+                              </div>
+                            </div>
+
+                            <div className="">
+                              <div className="flex justify-center items-center darktext ">
+                                <p className="lg:text-[15px] text-[13px] font-[600]" >
+                                  {Win6 && Win6.nat ? Win6.nat : Win6.nation ? Win6.nation : "Win with 6"}
+                                </p>
+                              </div>
+
+                              <div className="flex justify-center items-center space-x-1">
+                                {Win6.gstatus === "ACTIVE" ?
+                                  <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win6, type: "Yes", odds: Win6.b1, nat: Win6.nat ? Win6.nat : Win6.nation, betFor: Win6.nat }, section1Ref)}>
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win6 && Win6.b1 && Win6.b1 ? Win6.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win6 && Win6.bs1 && Win6.bs1 ? Win6.bs1 : "0.00"}</div>
+                                  </div>
+                                  :
+                                  <div className="light-blue py-1.5 w-full text-center relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win6 && Win6.b1 && Win6.b1 ? Win6.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win6 && Win6.bs1 && Win6.bs1 ? Win6.bs1 : "0.00"}</div>
+                                    <BetLocked />
+                                  </div>
+                                }
+                              </div>
+                            </div>
+
+                            <div className="">
+                              <div className="flex justify-center items-center darktext ">
+                                <p className="lg:text-[15px] text-[13px] font-[600]" >
+                                  {Win7 && Win7.nat ? Win7.nat : Win7.nation ? Win7.nation : "Win with 7"}
+                                </p>
+                              </div>
+
+                              <div className="flex justify-center items-center space-x-1">
+                                {Win7.gstatus === "ACTIVE" ?
+                                  <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win7, type: "Yes", odds: Win7.b1, nat: Win7.nat ? Win7.nat : Win7.nation, betFor: Win7.nat }, section1Ref)}>
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win7 && Win7.b1 && Win7.b1 ? Win7.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win7 && Win7.bs1 && Win7.bs1 ? Win7.bs1 : "0.00"}</div>
+                                  </div>
+                                  :
+                                  <div className="light-blue py-1.5 w-full text-center relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win7 && Win7.b1 && Win7.b1 ? Win7.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win7 && Win7.bs1 && Win7.bs1 ? Win7.bs1 : "0.00"}</div>
+                                    <BetLocked />
+                                  </div>
+                                }
+                              </div>
+                            </div>
+
+                          </div>
+
+                          <div className="grid grid-cols-3 space-x-3">
+
+                            <div className="">
+                              <div className="flex justify-center items-center darktext ">
+                                <p className="lg:text-[15px] text-[13px] font-[600]" >
+                                  {Win15 && Win15.nat ? Win15.nat : Win15.nation ? Win15.nation : "Win with 15"}
+                                </p>
+                              </div>
+
+                              <div className="flex justify-center items-center space-x-1">
+                                {Win15.gstatus === "ACTIVE" ?
+                                  <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win15, type: "Yes", odds: Win15.b1, nat: Win15.nat ? Win15.nat : Win15.nation, betFor: Win15.nat }, section1Ref)}>
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win15 && Win15.b1 && Win15.b1 ? Win15.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win15 && Win15.bs1 && Win15.bs1 ? Win15.bs1 : "0.00"}</div>
+                                  </div>
+                                  :
+                                  <div className="light-blue py-1.5 w-full text-center relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win15 && Win15.b1 && Win15.b1 ? Win15.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win15 && Win15.bs1 && Win15.bs1 ? Win15.bs1 : "0.00"}</div>
+                                    <BetLocked />
+                                  </div>
+                                }
+                              </div>
+                            </div>
+
+                            <div className="">
+                              <div className="flex justify-center items-center darktext ">
+                                <p className="lg:text-[15px] text-[13px] font-[600]" >
+                                  {Win16 && Win16.nat ? Win16.nat : Win16.nation ? Win16.nation : "Win with 16"}
+                                </p>
+                              </div>
+
+                              <div className="flex justify-center items-center space-x-1">
+                                {Win16.gstatus === "ACTIVE" ?
+                                  <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win16, type: "Yes", odds: Win16.b1, nat: Win16.nat ? Win16.nat : Win16.nation, betFor: Win16.nat }, section1Ref)}>
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win16 && Win16.b1 && Win16.b1 ? Win16.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win16 && Win16.bs1 && Win16.bs1 ? Win16.bs1 : "0.00"}</div>
+                                  </div>
+                                  :
+                                  <div className="light-blue py-1.5 w-full text-center relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win16 && Win16.b1 && Win16.b1 ? Win16.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win16 && Win16.bs1 && Win16.bs1 ? Win16.bs1 : "0.00"}</div>
+                                    <BetLocked />
+                                  </div>
+                                }
+                              </div>
+                            </div>
+
+                            <div className="">
+                              <div className="flex justify-center items-center darktext ">
+                                <p className="lg:text-[15px] text-[13px] font-[600]" >
+                                  {Win17 && Win17.nat ? Win17.nat : Win17.nation ? Win17.nation : "Win with 17"}
+                                </p>
+                              </div>
+
+                              <div className="flex justify-center items-center space-x-1">
+                                {Win17.gstatus === "ACTIVE" ?
+                                  <div className="light-blue py-1.5 w-full text-center relative cursor-pointer" onClick={() => handleBackOpen({ data: Win17, type: "Yes", odds: Win17.b1, nat: Win17.nat ? Win17 : Win17.nation, betFor: Win17.nat }, section1Ref)}>
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win17 && Win17.b1 && Win17.b1 ? Win17.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win17 && Win17.bs1 && Win17.bs1 ? Win17.bs1 : "0.00"}</div>
+                                  </div>
+                                  :
+                                  <div className="light-blue py-1.5 w-full text-center relative">
+                                    <div className="text-[14px] font-[600] darktext leading-4">{Win17 && Win17.b1 && Win17.b1 ? Win17.b1 : "0.00"}</div>
+                                    <div className="text-[10px] font-[500] darktext leading-4">{Win17 && Win17.bs1 && Win17.bs1 ? Win17.bs1 : "0.00"}</div>
+                                    <BetLocked />
+                                  </div>
+                                }
+                              </div>
+                            </div>
+
+                          </div>
+
+
+                        </div>
+
+                      </div>
+
+                    </div>
 
 
 
@@ -757,17 +758,17 @@ function Race20_20({ eventId }) {
                         {result && result.length > 0 ? result.map((element, index) => (
                           <div key={index} onClick={() => handleResultModel(element)} className="bg-[#ffff] w-7 h-7 cursor-pointer flex justify-center items-center rounded-full shadow-md border border-gray-700" >
                             <p className={`font-[600] text-[13px] text-[#FFFF33]`}>
-                            {
-                                  element && element.result && element.result === "4" ?
-                                    (<BsSuitDiamondFill size={18} className='text-[#FF0000]' />) :
-                                    element && element.result && element.result === "1" ?
-                                      (<BsSuitSpadeFill size={18} className='text-black' />) :
-                                      element && element.result && element.result === "3" ?
-                                        (<BsSuitClubFill size={18} className='text-black' />) :
-                                        element && element.result && element.result === "2" ?
-                                          (<BsFillSuitHeartFill size={18} className='text-[#FF0000]' />) :
-                                          "-"
-                                }
+                              {
+                                element && element.result && element.result === "4" ?
+                                  (<BsSuitDiamondFill size={18} className='text-[#FF0000]' />) :
+                                  element && element.result && element.result === "1" ?
+                                    (<BsSuitSpadeFill size={18} className='text-black' />) :
+                                    element && element.result && element.result === "3" ?
+                                      (<BsSuitClubFill size={18} className='text-black' />) :
+                                      element && element.result && element.result === "2" ?
+                                        (<BsFillSuitHeartFill size={18} className='text-[#FF0000]' />) :
+                                        "-"
+                              }
                             </p>
 
                           </div>
@@ -788,11 +789,7 @@ function Race20_20({ eventId }) {
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }
-                    <div className="bg-[var(--secondary)] text-white text-[14px] px-2 py-[6px] rounded-t-[4px] ">
-                      <span className="font-medium tracking-wide">
-                        My Bet
-                      </span>
-                    </div>
+                    <MyBetHeader />
                     <div className="pb-20">
                       <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                         <BetListTableDesktop betList={betList} />

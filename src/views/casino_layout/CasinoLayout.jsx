@@ -16,12 +16,6 @@ const CasinoLayout = () => {
       //   games: ["All Casino"],
     },
     {
-      name: "Roulette",
-      payload: "Roulette",
-      url: "",
-      //   games: ["All Casino ,Roulette"],
-    },
-    {
       name: "TeenPatti",
       payload: "TeenPatti",
       url: "",
@@ -76,7 +70,7 @@ const CasinoLayout = () => {
       //   game: ["All Casino ,Casino War"],
     },
     {
-      name: "worli",
+      name: "Worli",
       payload: "worli",
       url: "",
       //   game: ["All Casino ,worli"],
@@ -110,6 +104,12 @@ const CasinoLayout = () => {
       payload: "Race",
       url: "",
       //   game: ["All Casino ,Race"],
+    },
+    {
+      name: "Roulette",
+      payload: "Roulette",
+      url: "",
+      //   games: ["All Casino ,Roulette"],
     },
     {
       name: "Others",

@@ -102,7 +102,9 @@ const AppHeader = () => {
     setRulesModalOpen(false);
   };
 
-  const handleClickInside = () => setClickedOutside(true);
+  const handleClickInside = () => {
+    setClickedOutside(prev => !prev)
+  };
 
   const handleSearchIcon = () => {
     setSearchIcon((state) => !state);
@@ -168,7 +170,7 @@ const AppHeader = () => {
               onClick={() => {
                 navigate("/dashboard");
               }}
-              className=" flex justify-start items-center xl:pt-1  "
+              className=" flex justify-start items-center xl:pt-1 cursor-pointer "
             >
               <img
                 src={settings?.logo}
@@ -250,7 +252,7 @@ const AppHeader = () => {
                       ref={myRef}
                       onClick={() => {
                         handleClickInside();
-                        setClickedOutside(!clickedOutside);
+                        // setClickedOutside(!clickedOutside);
                       }}
                     >
                       <div className="flex items-center justify-end   cursor-pointer ">
@@ -260,9 +262,9 @@ const AppHeader = () => {
                         <BiChevronDown size={20} />
                       </div>
                       {clickedOutside ? (
-                        <div className="animate__animated animate__fadeIn animate__faster absolute right-0 shadow-2xl divide-y  bg-[#f1f5f8] w-[185px] md:mx-0 mr-[2%] ml-[2%] text-[16px] text-[#212529] transition duration-2000 border z-40">
+                        <div className="animate__animated animate__fadeIn animate__faster absolute right-0 shadow-2xl rounded divide-y bg-[#f1f5f8] w-[185px] md:mx-0 mr-[2%] ml-[2%] text-[14px] text-[#212529] transition duration-2000 border z-40">
                           <div className="">
-                            <div className=" cursor-pointer space-y-0.5 px-1 py-2 pb-2">
+                            <div className=" cursor-pointer space-y-0.5 px-1 py-1 pb-2.5">
                               <div
                                 onClick={() => navigate("/dashboard")}
                                 className="  xl:hidden px-1.5  w-full flex text-black font-normal hover:underline"
@@ -293,21 +295,21 @@ const AppHeader = () => {
                               >
                                 Unsettled Bets{" "}
                               </div>
-                              <div
+                              {/* <div
                                 onClick={() => navigate("/current-bet")}
                                 className=" px-1.5  w-full flex text-black font-normal hover:underline"
                               >
                                 Current Bet
-                              </div>
-                              <div onClick={() => navigate("/active-logs")} className=" px-1.5  w-full flex text-black font-normal hover:underline">
+                              </div> */}
+                              {/* <div onClick={() => navigate("/active-logs")} className=" px-1.5  w-full flex text-black font-normal hover:underline">
                                 Activity Logs{" "}
-                              </div>
-                              <div
+                              </div> */}
+                              {/* <div
                                 onClick={() => navigate("/casino-results")}
                                 className=" px-1.5  w-full flex text-black font-normal hover:underline"
                               >
                                 Casino Results{" "}
-                              </div>
+                              </div> */}
 
                               <div
                                 className=" px-1.5  w-full flex text-black font-normal hover:underline"
@@ -368,7 +370,7 @@ const AppHeader = () => {
                               navigate("/login");
                               localStorage.clear();
                             }}
-                            className="px-2 pt-3 pb-2 w-full lg:block hidden text-black hover:underline text-[16px] cursor-pointer font-[400]">
+                            className="px-2 py-3 w-full lg:block hidden text-black hover:underline text-[15px] cursor-pointer font-[400]">
                             Signout
                           </div>
                           <div
@@ -376,7 +378,7 @@ const AppHeader = () => {
                               navigate("/login");
                               localStorage.clear();
                             }}
-                            className="px-2 pt-3 pb-2 w-full lg:hidden block text-[#b71e2d] text-[16px] cursor-pointer font-[700]">
+                            className="px-2 py-3 w-full lg:hidden block text-[#b71e2d] text-[15px] cursor-pointer font-[700]">
                             Logout
                           </div>
                         </div>
@@ -410,18 +412,19 @@ const AppHeader = () => {
               onClick={handleSearchIcon}
             />
           </div> */}
-          <div className="flex items-center gap-1 relative">
+          <div className="flex items-center justify-center gap-1 relative">
             <input
+            type="text"
               placeholder=""
-              className={`text-[14px] transition-all duration-500 ease-in-out bg-white border rounded-full flex justify-center items-center h-[30px] px-[15px] ${searchIcon ? "w-[190px] px-[10px]" : "w-0 px-0 overflow-hidden"
+              className={`text-[14px] text-black transition-all duration-500 ease-in-out bg-white border rounded-full flex justify-center items-center h-[30px] px-[14px] ${searchIcon ? "w-[190px] px-[10px]" : "w-0 px-0 overflow-hidden"
                 }`}
             />
             {!searchIcon && (
               <div
-                className="bg-white rounded-full absolute z-50 flex justify-center items-center p-[7px] cursor-pointer right-0"
+                className="bg-white rounded-full absolute z-50 flex justify-center items-center p-[8px] cursor-pointer right-0"
                 onClick={handleSearchIcon}
               >
-                <FaSearch className="text-black" size={16} />
+                <FaSearch className="text-black" size={14} />
               </div>
             )}
             {searchIcon && (
@@ -429,7 +432,7 @@ const AppHeader = () => {
                 className="absolute right-2 z-50 text-black cursor-pointer"
                 onClick={handleSearchIcon}
               >
-                <FaTimes size={16} />
+                <FaTimes size={15} />
               </div>
             )}
           </div>

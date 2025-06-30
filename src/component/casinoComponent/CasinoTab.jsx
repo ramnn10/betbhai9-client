@@ -12,7 +12,7 @@ export default function CasinoTab(props) {
     };
 
     return (
-        <div className="bg-[var(--secondary)]">
+        <div className="bg-[var(--casinoBlue)]">
             {rulesModal ?
                 <RulesModelCasino ruleImage={ruleImage} PageTitle={PageTitle} setRulesModal={setRulesModal} />
                 : null}

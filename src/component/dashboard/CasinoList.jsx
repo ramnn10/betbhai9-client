@@ -40,7 +40,11 @@ const CasinoList = () => {
     const [casinoList, setCasinoList] = useState([]);
     const navigate = useNavigate();
 
-    const handleResponseCasino = (product) => {
+    const handleDiamondCasino = (product) => {
+        navigate(`/casino/${product.shortName}/${product.eventId}`)
+    };
+
+    const handleIntCasino = (product) => {
         navigate(`/iframe-casino-new/${product.shortName}/${product.eventId}`);
     };
 
@@ -64,7 +68,7 @@ const CasinoList = () => {
                             {diamondCasinos?.map((product, index) => (
                                 <div
                                     key={`diamond-${index}`}
-                                    onClick={() => handleResponseCasino(product)}
+                                    onClick={() => handleDiamondCasino(product)}
                                     className="shadow-lg relative duration-500 w-full h-[160px] sm:h-[170px] lg:h-[170px]"
                                     style={{
                                         backgroundImage: `url(${product.img})`,
@@ -96,7 +100,7 @@ const CasinoList = () => {
                             {intCasinos?.map((product, index) => (
                                 <div
                                     key={`intl-${index}`}
-                                    onClick={() => handleResponseCasino(product)}
+                                    onClick={() => handleIntCasino(product)}
                                     className="shadow-lg relative duration-500 w-full h-[100px] sm:h-[150px] lg:h-[160px]"
                                     style={{
                                         backgroundImage: `url(${product.img})`,

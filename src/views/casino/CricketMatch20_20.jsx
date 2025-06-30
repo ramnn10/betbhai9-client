@@ -35,6 +35,7 @@ import Ball9 from "../../component/casinoComponent/images/ball9.png";
 import Ball10 from "../../component/casinoComponent/images/ball10.png";
 import ScoreBg from "../../component/casinoComponent/images/score-bg-cricket.png"
 import scorebat from "../../component/casinoComponent/images/score-bat-icon.png";
+import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
 
 function CricketMatch20_20({ eventId }) {
   const {
@@ -228,7 +229,7 @@ function CricketMatch20_20({ eventId }) {
           ) : null}
           {backBetModal && (
             <div
-              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-5 z-50"
+              className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
               onClick={handleClose}
             >
 
@@ -781,11 +782,7 @@ function CricketMatch20_20({ eventId }) {
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }
-                    <div className="bg-[var(--secondary)] text-white text-[14px] px-2 py-[6px] rounded-t-[4px] ">
-                      <span className="font-medium tracking-wide">
-                        My Bet
-                      </span>
-                    </div>
+                   <MyBetHeader />
                     <div className="pb-20">
                       <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                         <BetListTableDesktop betList={betList} eventId={eventId} />

@@ -18,7 +18,6 @@ import CasinoWar from "./CasinoWar";
 import Baccarat from "./Baccarat";
 import Baccarat2 from "./Baccarat2";
 import Anadarbahar from "./Anadarbahar";
-import Cards32_A from "./Cards32_A";
 import Cards32_B from "./Cards32_B";
 import Card3Judgement from "./Card3Judgement";
 import CasinoQueen from "./CasinoQueen";
@@ -29,6 +28,7 @@ import SuperOver from "./SuperOver";
 import CricketMatch20_20 from "./CricketMatch20_20";
 import InstantWorli from "./InstantWorli";
 import TeenPattiOpen from "./TeenPattiOpen";
+import Cards32_A from "./Cards32_A";
 
 function CasinoScreen() {
     const {eventId} = useParams();

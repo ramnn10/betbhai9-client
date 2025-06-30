@@ -63,7 +63,7 @@ export default function BetListTableDesktop({betList ,eventId}) {
         </div>
         {eventId == 3060 ?
             <div className='w-full'>
-                <div className="even-background text-white text-[14px] px-2 py-[6px] font-medium tracking-wide mt-3">
+                <div className="bg-[var(--casinoHeader)] text-white text-[14px] px-2 py-[6px] font-medium tracking-wide mt-3">
                     ENGLAND vs RSA Inning&apos;s Card Rules
                 </div>
                 <div className='overflow-x-auto w-full'>
@@ -121,7 +121,7 @@ export default function BetListTableDesktop({betList ,eventId}) {
             :
             eventId == 3051 ?
                 <div className='w-full'>
-                    <div className="even-background text-white text-[14px] px-2 py-[6px] font-medium tracking-wide mt-3">
+                    <div className="bg-[var(--casinoHeader)] text-white text-[14px] px-2 py-[6px] font-medium tracking-wide mt-3">
                         Rules
                     </div>
                     <div className='overflow-x-auto w-full'>
@@ -206,7 +206,7 @@ export default function BetListTableDesktop({betList ,eventId}) {
                 :
                 eventId == 3030 ?
                     <div className='w-full'>
-                        <div className="even-background text-white text-[14px] px-2 py-[6px] font-medium tracking-wide mt-3">
+                        <div className="bg-[var(--casinoHeader)] text-white text-[14px] px-2 py-[6px] font-medium tracking-wide mt-3">
                             Rules
                         </div>
                         <div className='overflow-x-auto w-full'>
@@ -244,7 +244,7 @@ export default function BetListTableDesktop({betList ,eventId}) {
                     :
                     eventId == 3049 ?
                         <div className='w-full'>
-                            <div className="even-background text-white text-[14px] px-2 py-[6px] font-medium tracking-wide mt-3">
+                            <div className="bg-[var(--casinoHeader)] text-white text-[14px] px-2 py-[6px] font-medium tracking-wide mt-3">
                                 Rules
                             </div>
                             <div className='overflow-x-auto w-full'>

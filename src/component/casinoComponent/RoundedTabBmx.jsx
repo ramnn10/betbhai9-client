@@ -2,7 +2,7 @@
 
 export default function RoundedTabBmx() {
   return (
-    <div className="bg-[var(--secondary)] text-white text-[14px] font-[500] tracking-normal p-2 flex justify-between items-center">
+    <div className="bg-[var(--casinoResult)] text-white text-[14px] font-[500] tracking-normal p-2 flex justify-between items-center">
       <span>
         Last Result
       </span>

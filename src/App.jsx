@@ -32,7 +32,7 @@ function App() {
   const dispatch = useDispatch();
   !localStorage.getItem('dashboardActiveTabKey') && localStorage.setItem('dashboardActiveTabKey', 0)
 
-  const cosinoGroupList = JSON.parse(localStorage.getItem('cosinoGroupList'))
+  const casinoGroupList = JSON.parse(localStorage.getItem('casinoGroupList'))
 
   useEffect(() => {
     if (settings.title) {
@@ -66,7 +66,7 @@ function App() {
       "liveGames": true
     };
     {
-      !cosinoGroupList && (
+      !casinoGroupList && (
         dispatch(getInternationalGroupCasinoList(ReqData))
       )
     }

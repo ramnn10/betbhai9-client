@@ -13,6 +13,10 @@ import { CiBaseball, CiBasketball } from "react-icons/ci";
 import { BiCricketBall } from "react-icons/bi";
 import { GiBoxingGlove, GiPoolTriangle, GiTennisRacket } from "react-icons/gi";
 import { PiFootballHelmetFill } from "react-icons/pi";
+import TrendingGames from "../../component/dashboard/groupCasino/TrendingGames";
+import PopularGames from "../../component/dashboard/groupCasino/PopularGames";
+import LiveCasino from "../../component/dashboard/groupCasino/LiveGames";
+import useGroupCasinoList from "../../component/IntGroupCasinoList/IntGroupCasinoList";
 
 export const sportlistArray = [
   {
@@ -158,14 +162,13 @@ const Dashboard = () => {
 
   const dashboardModalOpen = JSON.parse(localStorage?.getItem("dashboardModalOpen"));
   const { sportMatchList } = useSelector((state) => state.sport);
-  const [activeAllSporttab, setactiveAllSporttab] = useState(0)
+  const [activeAllSporttab, setactiveAllSporttab] = useState(0);
+  const groupCasinoList = useGroupCasinoList();
   // localStorage.getItem('dashboardActiveTabKey')
   const [matchData, setMatchData] = useState([]);
   const matchlistLocal = localStorage.getItem("matchList")
     ? JSON.parse(localStorage.getItem("matchList"))
     : null;
-
-
 
   useEffect(() => {
     let matchListData = matchlistLocal ? matchlistLocal : sportMatchList;
@@ -180,6 +183,9 @@ const Dashboard = () => {
 
       <TopHeader activeAllSporttab={activeAllSporttab} setactiveAllSporttab={setactiveAllSporttab} matchList={matchData} />
       <InplayMatches activeTab={activeAllSporttab} matchlistItems={matchData} />
+      <TrendingGames name={"Trending"} data={groupCasinoList?.trendingGames} />
+      <PopularGames name={"Popular Games"} data={groupCasinoList.popularGames} />
+      <LiveCasino filterSection={"liveCasino"} name={"Live Casino"} data={groupCasinoList?.liveGames} />
       <div className="w-full py-4">
         <CasinoList />
       </div>

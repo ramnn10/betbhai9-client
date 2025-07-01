@@ -38,7 +38,7 @@ function AllSports({ activeAllSporttab, setactiveAllSporttab }) {
                     <div
                         key={index}
                         onClick={() => handleTabClick(element, index)}
-                        className={`${activeAllSporttab == element?.sportId ? "bg-[var(--primary)] " : ""} text-white flex flex-col py-2 justify-center items-center px-5 text-nowrap`}
+                        className={`${activeAllSporttab == element?.sportId ? "bg-[var(--primary)] " : ""} text-white flex flex-col py-1.5 justify-center items-center px-5 text-nowrap`}
                         ref={(el) => (tabRefs.current[index] = el)}
                     >
                         {element.icons ? (

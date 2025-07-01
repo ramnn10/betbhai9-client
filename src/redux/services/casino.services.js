@@ -39,9 +39,9 @@ async function getCasinoListByCateogeory(data) {
 
 async function getCasinoListByProviderName(data) {
   try {
-    const cosinoGroupList = await apiCall("POST", "website/getCasinoListByProviderName", data);
-    if (cosinoGroupList) {
-      return cosinoGroupList;
+    const casinoGroupList = await apiCall("POST", "website/getCasinoListByProviderName", data);
+    if (casinoGroupList) {
+      return casinoGroupList;
     }
   } catch (error) {
     console.error("user Update error:", error);
@@ -51,10 +51,10 @@ async function getCasinoListByProviderName(data) {
 
 async function getInternationalGroupCasinoList(data) {
   try {
-    const cosinoGroupList = await apiCall("POST", "website/getInternationalGroupCasinoList", data);
-    if (cosinoGroupList) {
-      localStorage.setItem("cosinoGroupList", JSON.stringify(cosinoGroupList.data));
-      return cosinoGroupList;
+    const casinoGroupList = await apiCall("POST", "website/getInternationalGroupCasinoList", data);
+    if (casinoGroupList) {
+      localStorage.setItem("casinoGroupList", JSON.stringify(casinoGroupList.data));
+      return casinoGroupList;
     }
   } catch (error) {
     console.error("user Update error:", error);

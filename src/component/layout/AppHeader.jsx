@@ -36,6 +36,7 @@ const AppHeader = () => {
     ? JSON.parse(localStorage.getItem("matchList"))
     : null;
   const [clickedOutside, setClickedOutside] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [rulesModalOpen, setRulesModalOpen] = useState(false);
 
   const [searchIcon, setSearchIcon] = useState(false);
@@ -44,6 +45,12 @@ const AppHeader = () => {
   const [isPast, setisPast] = useState(false);
   const { exposureData, loading, userBalance } = useSelector((state) => state.user);
 
+  const handleMouseEnter = () => setIsOpen(true);
+  const handleMouseLeave = () => setIsOpen(false);
+
+  const handleToggleMenu = () => {
+    setIsOpen(prev => !prev);
+  };
 
   useEffect(() => {
     getExposureFunc();
@@ -157,7 +164,7 @@ const AppHeader = () => {
 
       <div className="">
         <div className=" flex justify-between top-0 z-30 px-1">
-          <div className="flex items-center md:space-x-2 gap-1.5 w-1/2 pl-1 md:py-0 py-2">
+          <div className="flex items-center md:space-x-2 gap-1.5 2xl:w-[16%] xl:w-[25%] w-1/2 pl-1 md:py-0 py-2">
             <span
               onClick={() => {
                 navigate("/dashboard");
@@ -182,7 +189,7 @@ const AppHeader = () => {
             </div>
           </div>
 
-          <div className="w-1/2">
+          <div className="2xl:w-[84%] xl:w-[75%] w-1/2">
             <div className="flex items-center  justify-end gap-1 xl:gap-4 xl:px-1 px-2">
               <div className="text-white xl:flex hidden font-semibold xl:pt-4 gap-1 items-center text-base cursor-pointer">
                 <input
@@ -247,13 +254,15 @@ const AppHeader = () => {
                       }`}
                   </div>
 
-                  <div className="text-white  md:relative">
+                  <div className="text-white  md:relative" onMouseLeave={handleMouseLeave}>
                     <div
                       ref={myRef}
-                      onClick={() => {
-                        handleClickInside();
-                        // setClickedOutside(!clickedOutside);
-                      }}
+                      onClick={handleToggleMenu}
+                      onMouseEnter={handleMouseEnter}
+                    // onClick={() => {
+                    //   handleClickInside();
+                    //   setClickedOutside(!clickedOutside);
+                    // }}
                     >
                       <div className="flex items-center justify-end   cursor-pointer ">
                         <span className="select-none text-sm xl:text-lg pl-1 ">
@@ -261,7 +270,7 @@ const AppHeader = () => {
                         </span>
                         <BiChevronDown size={20} />
                       </div>
-                      {clickedOutside ? (
+                      {isOpen && (
                         <div className="animate__animated animate__fadeIn animate__faster absolute right-0 shadow-2xl rounded divide-y bg-[#f1f5f8] w-[185px] md:mx-0 mr-[2%] ml-[2%] text-[14px] text-[#212529] transition duration-2000 border z-40">
                           <div className="">
                             <div className=" cursor-pointer space-y-0.5 px-1 py-1 pb-2.5">
@@ -382,13 +391,26 @@ const AppHeader = () => {
                             Logout
                           </div>
                         </div>
-                      ) : null}
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
+            <div className=" w-full overflow-hidden xl:block hidden">
+              <div className=" px-1 font-[700] animate-[marquee_30s_linear_infinite]  text-white text-[12px] whitespace-nowrap uppercase tracking-wider">
+                🏏 OUR EXCLUSIVE PREMIUM MARKET FOR (SRL) IS NOW STARTED IN OUR EXCHANGE  🏏, DREAM BIG WIN BIG
+                {/* 𝐎𝐔𝐑 𝐄𝐗𝐂𝐋𝐔𝐒𝐈𝐕𝐄 𝐏𝐑𝐄𝐌𝐈𝐔𝐌 𝐌𝐀𝐑𝐊𝐄𝐓 𝐅𝐎𝐑 (𝐒𝐑𝐋) 𝐈𝐒 𝐍𝐎𝐖 𝐒𝐓𝐀𝐑𝐓𝐄𝐃 𝐈𝐍 𝐎𝐔𝐑 𝐄𝐗𝐂𝐇𝐀𝐍𝐆𝐄 🏏, 𝐃𝐑𝐄𝐀𝐌 𝐁𝐈𝐆 𝐖𝐈𝐍 𝐁𝐈𝐆 */}
+              </div>
+              <style>
+                {`
+          @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+          }
+        `}
+              </style>
+            </div>
             {/* <div className="sm:block hidden text-header_bg-white text-sm">
               <Marquee gradient={false} speed={50}>
                 {wallet_balanceItems && wallet_balanceItems.site_message
@@ -414,7 +436,7 @@ const AppHeader = () => {
           </div> */}
           <div className="flex items-center justify-center gap-1 relative">
             <input
-            type="text"
+              type="text"
               placeholder=""
               className={`text-[14px] text-black transition-all duration-500 ease-in-out bg-white border rounded-full flex justify-center items-center h-[30px] px-[14px] ${searchIcon ? "w-[190px] px-[10px]" : "w-0 px-0 overflow-hidden"
                 }`}

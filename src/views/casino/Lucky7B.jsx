@@ -21,6 +21,7 @@ import Card from "../../component/casinoComponent/Card";
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function Lucky7B({ eventId }) {
     const {
@@ -63,8 +64,7 @@ function Lucky7B({ eventId }) {
         setIsModalOpen(state => !state)
     }
 
-
-
+    const [buttonValue, setbuttonValue] = useState(false);
 
     const handleBackOpen = (data) => {
         betForSet(data.nation)
@@ -79,7 +79,7 @@ function Lucky7B({ eventId }) {
 
         }));
     };
-    
+
     const betForSet = (nation) => {
         let value = nation.split(' ')[0];
         if (value === "HIGH") {
@@ -183,8 +183,15 @@ function Lucky7B({ eventId }) {
     };
     const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+    const handleButtonValues = (e) => {
+        setbuttonValue((prev) => !prev);
+        document.body.classList.toggle("StakeModalOpen");
+        // e.stopPropagation();
+        // setBetSlipData(prev => ({
+        //     ...prev,
+        //     count: value
+        // }));
+    };
 
     const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
     let { result } = casinoData
@@ -226,6 +233,22 @@ function Lucky7B({ eventId }) {
                             result={state.result}
                         />
                     ) : null}
+                    {buttonValue && (
+                        <div
+                            onClick={(e) => {
+                                handleButtonValues();
+                                e.stopPropagation();
+                            }}
+                            className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+                        >
+                            <div
+                                onClick={(e) => e.stopPropagation()}
+                                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+                            >
+                                <ButtonValuesModal handleClose={handleButtonValues} />
+                            </div>
+                        </div>
+                    )}
                     {backBetModal && (
                         <div
                             className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -241,6 +264,7 @@ function Lucky7B({ eventId }) {
                                     LoadingBet={LoadingBet}
                                     handleClose={handleClose}
                                     updateStake={updateStake}
+                                    handleButtonValues={handleButtonValues}
                                     clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                 />
                             </div>
@@ -529,6 +553,7 @@ function Lucky7B({ eventId }) {
                                             LoadingBet={LoadingBet}
                                             handleClose={handleClose}
                                             updateStake={updateStake}
+                                            handleButtonValues={handleButtonValues}
                                             clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                         />
                                         }

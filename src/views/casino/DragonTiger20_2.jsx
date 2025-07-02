@@ -19,6 +19,7 @@ import GameCard from "../../component/casinoComponent/GameCard";
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function DragonTiger20_2({ eventId }) {
     const {
@@ -57,8 +58,7 @@ function DragonTiger20_2({ eventId }) {
         activeTab: 1,
     });
 
-
-
+    const [buttonValue, setbuttonValue] = useState(false);
 
     const handleBackOpen = (data) => {
         if (scrollTimeout.current) {
@@ -159,8 +159,15 @@ function DragonTiger20_2({ eventId }) {
     };
     const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+    const handleButtonValues = (e) => {
+        setbuttonValue((prev) => !prev);
+        document.body.classList.toggle("StakeModalOpen");
+        // e.stopPropagation();
+        // setBetSlipData(prev => ({
+        //     ...prev,
+        //     count: value
+        // }));
+    };
 
     const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
     let { data, result } = casinoData ? casinoData : {};
@@ -187,6 +194,23 @@ function DragonTiger20_2({ eventId }) {
                             result={state.result}
                         />
                     ) : null}
+
+                    {buttonValue && (
+                        <div
+                            onClick={(e) => {
+                                handleButtonValues();
+                                e.stopPropagation();
+                            }}
+                            className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+                        >
+                            <div
+                                onClick={(e) => e.stopPropagation()}
+                                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+                            >
+                                <ButtonValuesModal handleClose={handleButtonValues} />
+                            </div>
+                        </div>
+                    )}
                     {backBetModal && (
                         <div
                             className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -202,6 +226,7 @@ function DragonTiger20_2({ eventId }) {
                                     LoadingBet={LoadingBet}
                                     handleClose={handleClose}
                                     updateStake={updateStake}
+                                    handleButtonValues={handleButtonValues}
                                     clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                 />
                             </div>
@@ -297,10 +322,11 @@ function DragonTiger20_2({ eventId }) {
                                             LoadingBet={LoadingBet}
                                             handleClose={handleClose}
                                             updateStake={updateStake}
+                                            handleButtonValues={handleButtonValues}
                                             clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                         />
                                         }
-                                       <MyBetHeader />
+                                        <MyBetHeader />
                                         <div className="pb-20">
                                             <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                                                 <BetListTableDesktop betList={betList} />

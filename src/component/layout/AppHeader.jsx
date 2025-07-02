@@ -398,7 +398,7 @@ const AppHeader = () => {
               </div>
             </div>
             <div className=" w-full overflow-hidden xl:block hidden">
-              <div className=" px-1 font-[700] animate-[marquee_30s_linear_infinite]  text-white text-[12px] whitespace-nowrap uppercase tracking-wider">
+              <div className=" px-1 font-[700] animate-[marquee_20s_linear_infinite]  text-white text-[12px] whitespace-nowrap uppercase italic tracking-wider">
                 🏏 OUR EXCLUSIVE PREMIUM MARKET FOR (SRL) IS NOW STARTED IN OUR EXCHANGE  🏏, DREAM BIG WIN BIG
                 {/* 𝐎𝐔𝐑 𝐄𝐗𝐂𝐋𝐔𝐒𝐈𝐕𝐄 𝐏𝐑𝐄𝐌𝐈𝐔𝐌 𝐌𝐀𝐑𝐊𝐄𝐓 𝐅𝐎𝐑 (𝐒𝐑𝐋) 𝐈𝐒 𝐍𝐎𝐖 𝐒𝐓𝐀𝐑𝐓𝐄𝐃 𝐈𝐍 𝐎𝐔𝐑 𝐄𝐗𝐂𝐇𝐀𝐍𝐆𝐄 🏏, 𝐃𝐑𝐄𝐀𝐌 𝐁𝐈𝐆 𝐖𝐈𝐍 𝐁𝐈𝐆 */}
               </div>

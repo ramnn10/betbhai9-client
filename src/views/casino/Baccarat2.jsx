@@ -24,6 +24,7 @@ import BaccaratButton from "../../component/casinoComponent/BaccaratButton";
 import BaccaratChart from "../../component/casinoComponent/images/baccaratchart.png";
 import { FaLock } from "react-icons/fa";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function Baccarat2({ eventId }) {
   const {
@@ -62,8 +63,7 @@ function Baccarat2({ eventId }) {
     activeTab: 1,
   });
 
-
-
+  const [buttonValue, setbuttonValue] = useState(false);
 
   const handleBackOpen = (data) => {
     if (scrollTimeout.current) {
@@ -167,8 +167,15 @@ function Baccarat2({ eventId }) {
   };
   const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+  const handleButtonValues = (e) => {
+    setbuttonValue((prev) => !prev);
+    document.body.classList.toggle("StakeModalOpen");
+    // e.stopPropagation();
+    // setBetSlipData(prev => ({
+    //     ...prev,
+    //     count: value
+    // }));
+  };
 
   const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
   const { data, result } = casinoData ? casinoData : {};
@@ -200,6 +207,22 @@ function Baccarat2({ eventId }) {
               result={state.result}
             />
           ) : null}
+          {buttonValue && (
+            <div
+              onClick={(e) => {
+                handleButtonValues();
+                e.stopPropagation();
+              }}
+              className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+              >
+                <ButtonValuesModal handleClose={handleButtonValues} />
+              </div>
+            </div>
+          )}
           {backBetModal && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -215,6 +238,7 @@ function Baccarat2({ eventId }) {
                   LoadingBet={LoadingBet}
                   handleClose={handleClose}
                   updateStake={updateStake}
+                  handleButtonValues={handleButtonValues}
                   clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                 />
               </div>
@@ -436,7 +460,7 @@ function Baccarat2({ eventId }) {
                         {result && result.length > 0 ? result.map((element, index) => (
                           <div key={index} onClick={() => handleResultModel(element)} className={`w-7 h-7 cursor-pointer flex justify-center items-center rounded-full shadow-sm ${element?.result === "1" ? "bg-[#086cb8] text-white" : element?.result === "2" ? "text-white bg-[#ae2130]" : element?.result === "3" ? "text-white bg-[#d0012f]" : "text-[#000]"}`}>
                             <p className="font-[600] text-[12px]">
-                            {element?.result === "1" ? "P" : element?.result === "2" ? "B" : element?.result === "3" ? "T" : "-"}
+                              {element?.result === "1" ? "P" : element?.result === "2" ? "B" : element?.result === "3" ? "T" : "-"}
                             </p>
                           </div>
                         )) : null}
@@ -453,6 +477,7 @@ function Baccarat2({ eventId }) {
                       LoadingBet={LoadingBet}
                       handleClose={handleClose}
                       updateStake={updateStake}
+                      handleButtonValues={handleButtonValues}
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }

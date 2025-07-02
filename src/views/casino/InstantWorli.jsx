@@ -36,6 +36,7 @@ import Ball10 from "../../component/casinoComponent/images/ball10.png";
 import ScoreBg from "../../component/casinoComponent/images/score-bg-cricket.png"
 import scorebat from "../../component/casinoComponent/images/score-bat-icon.png";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function InstantWorli({ eventId }) {
   const {
@@ -75,6 +76,7 @@ function InstantWorli({ eventId }) {
     activeTab: 1,
   });
 
+  const [buttonValue, setbuttonValue] = useState(false);
 
   const [activeTab2, setActivetab2] = useState(1)
 
@@ -183,8 +185,15 @@ function InstantWorli({ eventId }) {
   };
   const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+  const handleButtonValues = (e) => {
+    setbuttonValue((prev) => !prev);
+    document.body.classList.toggle("StakeModalOpen");
+    // e.stopPropagation();
+    // setBetSlipData(prev => ({
+    //     ...prev,
+    //     count: value
+    // }));
+  };
 
   const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
   const { data, result } = casinoData ? casinoData : {};
@@ -207,6 +216,22 @@ function InstantWorli({ eventId }) {
               result={state.result}
             />
           ) : null}
+          {buttonValue && (
+            <div
+              onClick={(e) => {
+                handleButtonValues();
+                e.stopPropagation();
+              }}
+              className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+              >
+                <ButtonValuesModal handleClose={handleButtonValues} />
+              </div>
+            </div>
+          )}
           {backBetModal && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -222,6 +247,7 @@ function InstantWorli({ eventId }) {
                   LoadingBet={LoadingBet}
                   handleClose={handleClose}
                   updateStake={updateStake}
+                  handleButtonValues={handleButtonValues}
                   clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                 />
               </div>
@@ -230,8 +256,6 @@ function InstantWorli({ eventId }) {
           )}
 
           <div className="lg:flex block w-full lg:pt-1 pt-0 scroll-md lg:space-x-2">
-
-
 
             <div className="lg:hidden block">
               <CasinoTab
@@ -397,6 +421,7 @@ function InstantWorli({ eventId }) {
                       LoadingBet={LoadingBet}
                       handleClose={handleClose}
                       updateStake={updateStake}
+                      handleButtonValues={handleButtonValues}
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }

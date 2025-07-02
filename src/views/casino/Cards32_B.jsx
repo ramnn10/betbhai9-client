@@ -23,6 +23,7 @@ import Poker6PlayerBetButton from "../../component/casinoComponent/Poker6PlayerB
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function Cards32_B({ eventId }) {
   const {
@@ -41,6 +42,7 @@ function Cards32_B({ eventId }) {
 
   const section1Ref = useRef(null);
   const scrollTimeout = useRef(null);
+  const [buttonValue, setbuttonValue] = useState(false);
 
   const dispatch = useDispatch()
 
@@ -63,7 +65,7 @@ function Cards32_B({ eventId }) {
   });
 
 
- 
+
   const handleBackOpen = (data) => {
     betForSet(data.nat)
     if (scrollTimeout.current) {
@@ -93,7 +95,7 @@ function Cards32_B({ eventId }) {
       setState(prevState => ({ ...prevState, betFor: "number" }));
     }
   };
-  
+
   const handleResultModel = (data) => {
     setState(prevState => ({ ...prevState, ResultModel: true, result: data }));
   };
@@ -183,8 +185,15 @@ function Cards32_B({ eventId }) {
   };
   const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+  const handleButtonValues = (e) => {
+    setbuttonValue((prev) => !prev);
+    document.body.classList.toggle("StakeModalOpen");
+    // e.stopPropagation();
+    // setBetSlipData(prev => ({
+    //     ...prev,
+    //     count: value
+    // }));
+  };
 
   const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
   const { data, result } = casinoData ? casinoData : {};
@@ -260,6 +269,22 @@ function Cards32_B({ eventId }) {
               result={state.result}
             />
           ) : null}
+          {buttonValue && (
+            <div
+              onClick={(e) => {
+                handleButtonValues();
+                e.stopPropagation();
+              }}
+              className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+              >
+                <ButtonValuesModal handleClose={handleButtonValues} />
+              </div>
+            </div>
+          )}
           {backBetModal && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -275,6 +300,7 @@ function Cards32_B({ eventId }) {
                   LoadingBet={LoadingBet}
                   handleClose={handleClose}
                   updateStake={updateStake}
+                  handleButtonValues={handleButtonValues}
                   clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                 />
               </div>
@@ -393,798 +419,798 @@ function Cards32_B({ eventId }) {
 
                     <div className="w-full space-y-3">
 
-<div className="grid lg:grid-cols-2 grid-cols-1 lg:space-x-2 space-x-0">
+                      <div className="grid lg:grid-cols-2 grid-cols-1 lg:space-x-2 space-x-0">
 
-  <div className="border border-gray-300 grey-color white-text divide-y divide-[#c7c8ca] ">
+                        <div className="border border-gray-300 grey-color white-text divide-y divide-[#c7c8ca] ">
 
-    <div className="grid grid-cols-4 text-center darktext font-[600] text-[14px] capitalize divide-x divide-[#c7c8ca]">
-      <div className="col-span-2 white-bg w-full flex justify-start white-text items-center py-1">
-      </div>
-      <div className="w-full flex justify-center light-blue items-center py-1">Back</div>
-      <div className="w-full flex justify-center odds-khaii items-center py-1">Lay</div>
-    </div>
+                          <div className="grid grid-cols-4 text-center darktext font-[600] text-[14px] capitalize divide-x divide-[#c7c8ca]">
+                            <div className="col-span-2 white-bg w-full flex justify-start white-text items-center py-1">
+                            </div>
+                            <div className="w-full flex justify-center light-blue items-center py-1">Back</div>
+                            <div className="w-full flex justify-center odds-khaii items-center py-1">Lay</div>
+                          </div>
 
-    <div className="w-full text-center white-bg">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca] ">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full lg:text-center text-left flex justify-between items-center">
-          <div className="">
-            {Player8 && Player8.nat ? Player8.nat : Player8.nation ? Player8.nation : "Player 11"}
-          </div>
-          <div className={`${posArray[Player8.sid] < 0 ? "text-red-500" : "text-green-800"} text-[10px]`} > {posArray[Player8.sid]}</div>
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {Player8 && Player8.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (Player8 && Player8.b1 !== 0) {
-                handleBackOpen({ data: Player8, type: "Yes", odds: Player8.b1, nat: Player8.nat ? Player8.nat : Player8.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{Player8 && Player8.b1 ? (Player8.b1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player8 && Player8.bs1 ? (Player8.bs1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{Player8 && Player8.b1 ? (Player8.b1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player8 && Player8.bs1 ? (Player8.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {Player8 && Player8.gstatus === 'ACTIVE' ?
-            <div className="w-full odds-khaii cursor-pointer " onClick={() => {
-              if (Player8 && Player8.l1 !== 0) {
-                handleBackOpen({ data: Player8, odds: Player8.l1, nat: Player8.nat ? Player8.nat : Player8.nation, type: "No" },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center dark-text py-1" >
-                <div className="text-[14px] font-[600]">{Player8 && Player8.l1 ? (Player8.l1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player8 && Player8.ls1 ? (Player8.ls1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full odds-khaii" >
-              <div className=" text-center relative dark-text py-1">
-                <div className="text-[14px] font-[600]">{Player8 && Player8.l1 ? (Player8.l1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player8 && Player8.ls1 ? (Player8.ls1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-      </div>
-    </div>
+                          <div className="w-full text-center white-bg">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca] ">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full lg:text-center text-left flex justify-between items-center">
+                                <div className="">
+                                  {Player8 && Player8.nat ? Player8.nat : Player8.nation ? Player8.nation : "Player 11"}
+                                </div>
+                                <div className={`${posArray[Player8.sid] < 0 ? "text-red-500" : "text-green-800"} text-[10px]`} > {posArray[Player8.sid]}</div>
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {Player8 && Player8.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (Player8 && Player8.b1 !== 0) {
+                                      handleBackOpen({ data: Player8, type: "Yes", odds: Player8.b1, nat: Player8.nat ? Player8.nat : Player8.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{Player8 && Player8.b1 ? (Player8.b1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player8 && Player8.bs1 ? (Player8.bs1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{Player8 && Player8.b1 ? (Player8.b1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player8 && Player8.bs1 ? (Player8.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {Player8 && Player8.gstatus === 'ACTIVE' ?
+                                  <div className="w-full odds-khaii cursor-pointer " onClick={() => {
+                                    if (Player8 && Player8.l1 !== 0) {
+                                      handleBackOpen({ data: Player8, odds: Player8.l1, nat: Player8.nat ? Player8.nat : Player8.nation, type: "No" },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center dark-text py-1" >
+                                      <div className="text-[14px] font-[600]">{Player8 && Player8.l1 ? (Player8.l1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player8 && Player8.ls1 ? (Player8.ls1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full odds-khaii" >
+                                    <div className=" text-center relative dark-text py-1">
+                                      <div className="text-[14px] font-[600]">{Player8 && Player8.l1 ? (Player8.l1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player8 && Player8.ls1 ? (Player8.ls1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                            </div>
+                          </div>
 
-    <div className="w-full text-center white-bg">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full lg:text-center text-left flex justify-between items-center ">
-          <div>
-            {Player9 && Player9.nat ? Player9.nat : Player9.nation ? Player9.nation : "Player 9"}
-          </div>
-          <div className={`${posArray[Player9.sid] < 0 ? "text-red-500" : "text-green-800"} text-[12px]`} > {posArray[Player9.sid]}</div>
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {Player9 && Player9.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (Player9 && Player9.b1 !== 0) {
-                handleBackOpen({ data: Player9, odds: Player9.b1, nat: Player9.nat ? Player9.nat : Player9.nation, type: "Yes" },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{Player9 && Player9.b1 ? (Player9.b1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player9 && Player9.bs1 ? (Player9.bs1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{Player9 && Player9.b1 ? (Player9.b1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player9 && Player9.bs1 ? (Player9.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {Player9 && Player9.gstatus === 'ACTIVE' ?
-            <div className="w-full odds-khaii cursor-pointer " onClick={() => {
-              if (Player9 && Player9.l1 !== 0) {
-                handleBackOpen({ data: Player9, odds: Player9.l1, nat: Player9.nat ? Player9.nat : Player9.nation, type: "No" },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{Player9 && Player9.l1 ? (Player9.l1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player9 && Player9.ls1 ? (Player9.ls1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full odds-khaii" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{Player9 && Player9.l1 ? (Player9.l1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player9 && Player9.ls1 ? (Player9.ls1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-      </div>
-    </div>
+                          <div className="w-full text-center white-bg">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full lg:text-center text-left flex justify-between items-center ">
+                                <div>
+                                  {Player9 && Player9.nat ? Player9.nat : Player9.nation ? Player9.nation : "Player 9"}
+                                </div>
+                                <div className={`${posArray[Player9.sid] < 0 ? "text-red-500" : "text-green-800"} text-[12px]`} > {posArray[Player9.sid]}</div>
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {Player9 && Player9.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (Player9 && Player9.b1 !== 0) {
+                                      handleBackOpen({ data: Player9, odds: Player9.b1, nat: Player9.nat ? Player9.nat : Player9.nation, type: "Yes" },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{Player9 && Player9.b1 ? (Player9.b1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player9 && Player9.bs1 ? (Player9.bs1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{Player9 && Player9.b1 ? (Player9.b1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player9 && Player9.bs1 ? (Player9.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {Player9 && Player9.gstatus === 'ACTIVE' ?
+                                  <div className="w-full odds-khaii cursor-pointer " onClick={() => {
+                                    if (Player9 && Player9.l1 !== 0) {
+                                      handleBackOpen({ data: Player9, odds: Player9.l1, nat: Player9.nat ? Player9.nat : Player9.nation, type: "No" },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{Player9 && Player9.l1 ? (Player9.l1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player9 && Player9.ls1 ? (Player9.ls1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full odds-khaii" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{Player9 && Player9.l1 ? (Player9.l1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player9 && Player9.ls1 ? (Player9.ls1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                            </div>
+                          </div>
 
-    <div className="w-full text-center white-bg">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full lg:text-center text-left flex justify-between items-center ">
-          <div>
-            {Player10 && Player10.nat ? Player10.nat : Player10.nation ? Player10.nation : "Player 10"}
-          </div>
-          <div className={`${posArray[Player10.sid] < 0 ? "text-red-500" : "text-green-800"} text-[12px]`} > {posArray[Player10.sid]}</div>
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {Player10 && Player10.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (Player10 && Player10.b1 !== 0) {
-                handleBackOpen({ data: Player10, odds: Player10.b1, nat: Player10.nat ? Player10.nat : Player10.nation, type: "Yes" },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{Player10 && Player10.b1 ? (Player10.b1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player10 && Player10.bs1 ? (Player10.bs1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{Player10 && Player10.b1 ? (Player10.b1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player10 && Player10.bs1 ? (Player10.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {Player10 && Player10.gstatus === 'ACTIVE' ?
-            <div className="w-full odds-khaii cursor-pointer " onClick={() => {
-              if (Player10 && Player10.b1 !== 0) {
-                handleBackOpen({ data: Player10, odds: Player10.l1, nat: Player10.nat ? Player10.nat : Player10.nation, type: "No" },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{Player10 && Player10.l1 ? (Player10.l1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player10 && Player10.ls1 ? (Player10.ls1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full odds-khaii" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{Player10 && Player10.l1 ? (Player10.l1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player10 && Player10.ls1 ? (Player10.ls1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-      </div>
-    </div>
+                          <div className="w-full text-center white-bg">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full lg:text-center text-left flex justify-between items-center ">
+                                <div>
+                                  {Player10 && Player10.nat ? Player10.nat : Player10.nation ? Player10.nation : "Player 10"}
+                                </div>
+                                <div className={`${posArray[Player10.sid] < 0 ? "text-red-500" : "text-green-800"} text-[12px]`} > {posArray[Player10.sid]}</div>
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {Player10 && Player10.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (Player10 && Player10.b1 !== 0) {
+                                      handleBackOpen({ data: Player10, odds: Player10.b1, nat: Player10.nat ? Player10.nat : Player10.nation, type: "Yes" },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{Player10 && Player10.b1 ? (Player10.b1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player10 && Player10.bs1 ? (Player10.bs1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{Player10 && Player10.b1 ? (Player10.b1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player10 && Player10.bs1 ? (Player10.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {Player10 && Player10.gstatus === 'ACTIVE' ?
+                                  <div className="w-full odds-khaii cursor-pointer " onClick={() => {
+                                    if (Player10 && Player10.b1 !== 0) {
+                                      handleBackOpen({ data: Player10, odds: Player10.l1, nat: Player10.nat ? Player10.nat : Player10.nation, type: "No" },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{Player10 && Player10.l1 ? (Player10.l1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player10 && Player10.ls1 ? (Player10.ls1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full odds-khaii" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{Player10 && Player10.l1 ? (Player10.l1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player10 && Player10.ls1 ? (Player10.ls1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                            </div>
+                          </div>
 
-    <div className="w-full text-center white-bg">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full lg:text-center text-left flex justify-between items-center ">
-          <div>
-            {Player11 && Player11.nat ? Player11.nat : Player11.nation ? Player11.nation : "Player 11"}
-          </div>
-          <div className={`${posArray[Player11.sid] < 0 ? "text-red-500" : "text-green-800"} text-[12px]`} > {posArray[Player11.sid]}</div>
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {Player11 && Player11.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (Player11 && Player11.l1 !== 0) {
-                handleBackOpen({ data: Player11, odds: Player11.b1, nat: Player11.nat ? Player11.nat : Player11.nation, type: "Yes" },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{Player11 && Player11.b1 ? (Player11.b1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player11 && Player11.bs1 ? (Player11.bs1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{Player11 && Player11.b1 ? (Player11.b1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player11 && Player11.bs1 ? (Player11.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {Player11 && Player11.gstatus === 'ACTIVE' ?
-            <div className="w-full odds-khaii cursor-pointer " onClick={() => {
-              if (Player11 && Player11.l1 !== 0) {
-                handleBackOpen({ data: Player11, odds: Player11.l1, nat: Player11.nat ? Player11.nat : Player11.nation, type: "No" },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{Player11 && Player11.l1 ? (Player11.l1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player11 && Player11.ls1 ? (Player11.ls1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full odds-khaii" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{Player11 && Player11.l1 ? (Player11.l1) : "-"}</div>
-                <div className="text-[10px] font-[500]">{Player11 && Player11.ls1 ? (Player11.ls1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-      </div>
-    </div>
+                          <div className="w-full text-center white-bg">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full lg:text-center text-left flex justify-between items-center ">
+                                <div>
+                                  {Player11 && Player11.nat ? Player11.nat : Player11.nation ? Player11.nation : "Player 11"}
+                                </div>
+                                <div className={`${posArray[Player11.sid] < 0 ? "text-red-500" : "text-green-800"} text-[12px]`} > {posArray[Player11.sid]}</div>
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {Player11 && Player11.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (Player11 && Player11.l1 !== 0) {
+                                      handleBackOpen({ data: Player11, odds: Player11.b1, nat: Player11.nat ? Player11.nat : Player11.nation, type: "Yes" },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{Player11 && Player11.b1 ? (Player11.b1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player11 && Player11.bs1 ? (Player11.bs1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{Player11 && Player11.b1 ? (Player11.b1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player11 && Player11.bs1 ? (Player11.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {Player11 && Player11.gstatus === 'ACTIVE' ?
+                                  <div className="w-full odds-khaii cursor-pointer " onClick={() => {
+                                    if (Player11 && Player11.l1 !== 0) {
+                                      handleBackOpen({ data: Player11, odds: Player11.l1, nat: Player11.nat ? Player11.nat : Player11.nation, type: "No" },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{Player11 && Player11.l1 ? (Player11.l1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player11 && Player11.ls1 ? (Player11.ls1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full odds-khaii" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{Player11 && Player11.l1 ? (Player11.l1) : "-"}</div>
+                                      <div className="text-[10px] font-[500]">{Player11 && Player11.ls1 ? (Player11.ls1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                            </div>
+                          </div>
 
-  </div>
+                        </div>
 
-  <div className="white-bg white-text divide-y divide-[#c7c8ca] ">
+                        <div className="white-bg white-text divide-y divide-[#c7c8ca] ">
 
-    <div className="card-border divide-y divide-[#c7c8ca]">
+                          <div className="card-border divide-y divide-[#c7c8ca]">
 
-      <div className="grid grid-cols-4 text-center darktext font-[600] text-[14px] capitalize divide-x divide-[#c7c8ca]">
-        <div className="col-span-2 white-bg w-full text-[12px] flex justify-start white-text items-center px-[6px] py-1">
-        </div>
-        <div className="w-full flex justify-center light-blue items-center py-1">Odd</div>
-        <div className="w-full flex justify-center light-blue items-center py-1">Even</div>
-      </div>
+                            <div className="grid grid-cols-4 text-center darktext font-[600] text-[14px] capitalize divide-x divide-[#c7c8ca]">
+                              <div className="col-span-2 white-bg w-full text-[12px] flex justify-start white-text items-center px-[6px] py-1">
+                              </div>
+                              <div className="w-full flex justify-center light-blue items-center py-1">Odd</div>
+                              <div className="w-full flex justify-center light-blue items-center py-1">Even</div>
+                            </div>
 
-      <div className="w-full text-center white-bg">
-        <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-          <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
-            <div>
-              {Player8 && Player8.nat ? Player8.nat : Player8.nation ? Player8.nation : "Player 8"}
-            </div>
-            <div className={`${posArray[Player8Odd.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Player8Odd.sid]} </div>
-          </div>
-          <div className="flex justify-end items-center divide-x w-full">
-            {Player8Odd && Player8Odd.gstatus === 'ACTIVE' ?
-              <div className="w-full light-blue cursor-pointer "
-                onClick={() => {
-                  if (Player8Odd && Player8Odd.b1 !== 0) {
-                    handleBackOpen({
-                      data: Player8Odd,
-                      odds: Player8Odd.b1,
-                      nat: Player8Odd.nat ? Player8Odd.nat : Player8Odd.nation,
-                      type: "Yes"
-                    }, section1Ref);
-                  }
-                }}
-              >
-                <div className=" text-center darktext py-1" >
-                  <div className="text-[14px] font-[600]">{Player8Odd && Player8Odd.b1 ? (Player8Odd.b1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player8Odd && Player8Odd.bs1 ? (Player8Odd.bs1) : "-"}</div>
-                </div>
-              </div> :
-              <div className="w-full light-blue" >
-                <div className=" text-center relative darktext py-1">
-                  <div className="text-[14px] font-[600]">{Player8Odd && Player8Odd.b1 ? (Player8Odd.b1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player8Odd && Player8Odd.bs1 ? (Player8Odd.bs1) : "-"}</div>
-                  <BetLocked />
-                </div>
-              </div>}
-          </div>
-          <div className="flex justify-end items-center divide-x w-full">
-            {Player8Even && Player8Even.gstatus === 'ACTIVE' ?
-              <div className="w-full light-blue cursor-pointer "
-                onClick={() => {
-                  if (Player8Even && Player8Even.l1 != 0) {
-                    handleBackOpen({
-                      data: Player8Even, odds: Player8Even.l1, nat: Player8Even.nat ? Player8Even.nat : Player8Even.nation, type: "Yes"
-                    }, section1Ref);
-                  }
-                }}>
-                <div className=" text-center darktext py-1" >
-                  <div className="text-[14px] font-[600]">{Player8Even && Player8Even.l1 ? (Player8Even.l1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player8Even && Player8Even.ls1 ? (Player8Even.ls1) : "-"}</div>
-                </div>
-              </div> :
-              <div className="w-full light-blue" >
-                <div className=" text-center relative darktext py-1">
-                  <div className="text-[14px] font-[600]">{Player8Even && Player8Even.l1 ? (Player8Even.l1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player8Even && Player8Even.ls1 ? (Player8Even.ls1) : "-"}</div>
-                  <BetLocked />
-                </div>
-              </div>}
-          </div>
-        </div>
-      </div>
+                            <div className="w-full text-center white-bg">
+                              <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                                <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
+                                  <div>
+                                    {Player8 && Player8.nat ? Player8.nat : Player8.nation ? Player8.nation : "Player 8"}
+                                  </div>
+                                  <div className={`${posArray[Player8Odd.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Player8Odd.sid]} </div>
+                                </div>
+                                <div className="flex justify-end items-center divide-x w-full">
+                                  {Player8Odd && Player8Odd.gstatus === 'ACTIVE' ?
+                                    <div className="w-full light-blue cursor-pointer "
+                                      onClick={() => {
+                                        if (Player8Odd && Player8Odd.b1 !== 0) {
+                                          handleBackOpen({
+                                            data: Player8Odd,
+                                            odds: Player8Odd.b1,
+                                            nat: Player8Odd.nat ? Player8Odd.nat : Player8Odd.nation,
+                                            type: "Yes"
+                                          }, section1Ref);
+                                        }
+                                      }}
+                                    >
+                                      <div className=" text-center darktext py-1" >
+                                        <div className="text-[14px] font-[600]">{Player8Odd && Player8Odd.b1 ? (Player8Odd.b1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player8Odd && Player8Odd.bs1 ? (Player8Odd.bs1) : "-"}</div>
+                                      </div>
+                                    </div> :
+                                    <div className="w-full light-blue" >
+                                      <div className=" text-center relative darktext py-1">
+                                        <div className="text-[14px] font-[600]">{Player8Odd && Player8Odd.b1 ? (Player8Odd.b1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player8Odd && Player8Odd.bs1 ? (Player8Odd.bs1) : "-"}</div>
+                                        <BetLocked />
+                                      </div>
+                                    </div>}
+                                </div>
+                                <div className="flex justify-end items-center divide-x w-full">
+                                  {Player8Even && Player8Even.gstatus === 'ACTIVE' ?
+                                    <div className="w-full light-blue cursor-pointer "
+                                      onClick={() => {
+                                        if (Player8Even && Player8Even.l1 != 0) {
+                                          handleBackOpen({
+                                            data: Player8Even, odds: Player8Even.l1, nat: Player8Even.nat ? Player8Even.nat : Player8Even.nation, type: "Yes"
+                                          }, section1Ref);
+                                        }
+                                      }}>
+                                      <div className=" text-center darktext py-1" >
+                                        <div className="text-[14px] font-[600]">{Player8Even && Player8Even.l1 ? (Player8Even.l1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player8Even && Player8Even.ls1 ? (Player8Even.ls1) : "-"}</div>
+                                      </div>
+                                    </div> :
+                                    <div className="w-full light-blue" >
+                                      <div className=" text-center relative darktext py-1">
+                                        <div className="text-[14px] font-[600]">{Player8Even && Player8Even.l1 ? (Player8Even.l1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player8Even && Player8Even.ls1 ? (Player8Even.ls1) : "-"}</div>
+                                        <BetLocked />
+                                      </div>
+                                    </div>}
+                                </div>
+                              </div>
+                            </div>
 
-      <div className="w-full text-center white-bg">
-        <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-          <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
-            <div>
-              {Player9 && Player9.nat ? Player9.nat : Player9.nation ? Player9.nation : "Player 8"}
-            </div>
-            <div className={`${posArray[Player9Odd.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Player9Odd.sid]}</div>
-          </div>
-          <div className="flex justify-end items-center divide-x w-full">
-            {Player9Odd && Player9Odd.gstatus === 'ACTIVE' ?
-              <div className="w-full light-blue cursor-pointer " onClick={() => {
-                if (Player9Odd && Player9Odd.b1 != 0) {
-                  handleBackOpen({ data: Player9Odd, type: "Yes", odds: Player9Odd.b1, nat: Player9Odd.nat ? Player9Odd.nat : Player9Odd.nation },
-                    section1Ref);
-                }
-              }}>
-                <div className=" text-center darktext py-1" >
-                  <div className="text-[14px] font-[600]">{Player9Odd && Player9Odd.b1 ? (Player9Odd.b1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player9Odd && Player9Odd.bs1 ? (Player9Odd.bs1) : "-"}</div>
-                </div>
-              </div> :
-              <div className="w-full light-blue" >
-                <div className=" text-center relative darktext py-1">
-                  <div className="text-[14px] font-[600]">{Player9Odd && Player9Odd.b1 ? (Player9Odd.b1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player9Odd && Player9Odd.bs1 ? (Player9Odd.bs1) : "-"}</div>
-                  <BetLocked />
-                </div>
-              </div>}
-          </div>
-          <div className="flex justify-end items-center divide-x w-full">
-            {Player9Even && Player9Even.gstatus === 'ACTIVE' ?
-              <div className="w-full light-blue cursor-pointer " onClick={() => {
-                if (Player9Even && Player9Even.l1 != 0) {
-                  handleBackOpen({ data: Player9Even, type: "Yes", odds: Player9Even.l1, nat: Player9Even.nat ? Player9Even.nat : Player9Even.nation },
-                    section1Ref);
-                }
-              }}>
-                <div className=" text-center darktext py-1" >
-                  <div className="text-[14px] font-[600]">{Player9Even && Player9Even.l1 ? (Player9Even.l1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player9Even && Player9Even.ls1 ? (Player9Even.ls1) : "-"}</div>
-                </div>
-              </div> :
-              <div className="w-full light-blue" >
-                <div className=" text-center relative darktext py-1">
-                  <div className="text-[14px] font-[600]">{Player9Even && Player9Even.l1 ? (Player9Even.l1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player9Even && Player9Even.ls1 ? (Player9Even.ls1) : "-"}</div>
-                  <BetLocked />
-                </div>
-              </div>}
-          </div>
-        </div>
-      </div>
+                            <div className="w-full text-center white-bg">
+                              <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                                <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
+                                  <div>
+                                    {Player9 && Player9.nat ? Player9.nat : Player9.nation ? Player9.nation : "Player 8"}
+                                  </div>
+                                  <div className={`${posArray[Player9Odd.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Player9Odd.sid]}</div>
+                                </div>
+                                <div className="flex justify-end items-center divide-x w-full">
+                                  {Player9Odd && Player9Odd.gstatus === 'ACTIVE' ?
+                                    <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                      if (Player9Odd && Player9Odd.b1 != 0) {
+                                        handleBackOpen({ data: Player9Odd, type: "Yes", odds: Player9Odd.b1, nat: Player9Odd.nat ? Player9Odd.nat : Player9Odd.nation },
+                                          section1Ref);
+                                      }
+                                    }}>
+                                      <div className=" text-center darktext py-1" >
+                                        <div className="text-[14px] font-[600]">{Player9Odd && Player9Odd.b1 ? (Player9Odd.b1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player9Odd && Player9Odd.bs1 ? (Player9Odd.bs1) : "-"}</div>
+                                      </div>
+                                    </div> :
+                                    <div className="w-full light-blue" >
+                                      <div className=" text-center relative darktext py-1">
+                                        <div className="text-[14px] font-[600]">{Player9Odd && Player9Odd.b1 ? (Player9Odd.b1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player9Odd && Player9Odd.bs1 ? (Player9Odd.bs1) : "-"}</div>
+                                        <BetLocked />
+                                      </div>
+                                    </div>}
+                                </div>
+                                <div className="flex justify-end items-center divide-x w-full">
+                                  {Player9Even && Player9Even.gstatus === 'ACTIVE' ?
+                                    <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                      if (Player9Even && Player9Even.l1 != 0) {
+                                        handleBackOpen({ data: Player9Even, type: "Yes", odds: Player9Even.l1, nat: Player9Even.nat ? Player9Even.nat : Player9Even.nation },
+                                          section1Ref);
+                                      }
+                                    }}>
+                                      <div className=" text-center darktext py-1" >
+                                        <div className="text-[14px] font-[600]">{Player9Even && Player9Even.l1 ? (Player9Even.l1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player9Even && Player9Even.ls1 ? (Player9Even.ls1) : "-"}</div>
+                                      </div>
+                                    </div> :
+                                    <div className="w-full light-blue" >
+                                      <div className=" text-center relative darktext py-1">
+                                        <div className="text-[14px] font-[600]">{Player9Even && Player9Even.l1 ? (Player9Even.l1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player9Even && Player9Even.ls1 ? (Player9Even.ls1) : "-"}</div>
+                                        <BetLocked />
+                                      </div>
+                                    </div>}
+                                </div>
+                              </div>
+                            </div>
 
-      <div className="w-full text-center white-bg">
-        <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-          <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
-            <div>
-              {Player10 && Player10.nat ? Player10.nat : Player10.nation ? Player10.nation : "Player 10"}
-            </div>
-            <div className={`${posArray[Player10Odd.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Player10Odd.sid]} </div>
-          </div>
-          <div className="flex justify-end items-center divide-x w-full">
-            {Player10Odd && Player10Odd.gstatus === 'ACTIVE' ?
-              <div className="w-full light-blue cursor-pointer " onClick={() => {
-                if (Player10Odd && Player10Odd.b1 != 0) {
-                  handleBackOpen({ data: Player10Odd, type: "Yes", odds: Player10Odd.b1, nat: Player10Odd.nat ? Player10Odd.nat : Player10Odd.nation },
-                    section1Ref);
-                }
-              }}>
-                <div className=" text-center darktext py-1" >
-                  <div className="text-[14px] font-[600]">{Player10Odd && Player10Odd.b1 ? (Player10Odd.b1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player10Odd && Player10Odd.bs1 ? (Player10Odd.bs1) : "-"}</div>
-                </div>
-              </div> :
-              <div className="w-full light-blue" >
-                <div className=" text-center relative darktext py-1">
-                  <div className="text-[14px] font-[600]">{Player10Odd && Player10Odd.b1 ? (Player10Odd.b1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player10Odd && Player10Odd.bs1 ? (Player10Odd.bs1) : "-"}</div>
-                  <BetLocked />
-                </div>
-              </div>}
-          </div>
-          <div className="flex justify-end items-center divide-x w-full">
-            {Player10Even && Player10Even.gstatus === 'ACTIVE' ?
-              <div className="w-full light-blue cursor-pointer " onClick={() => {
-                if (Player10Even && Player10Even.l1 != 0) {
-                  handleBackOpen({ data: Player10Even, type: "Yes", odds: Player10Even.l1, nat: Player10Even.nat ? Player10Even.nat : Player10Even.nation },
-                    section1Ref);
-                }
-              }}>
-                <div className=" text-center darktext py-1" >
-                  <div className="text-[14px] font-[600]">{Player10Even && Player10Even.l1 ? (Player10Even.l1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player10Even && Player10Even.ls1 ? (Player10Even.ls1) : "-"}</div>
-                </div>
-              </div> :
-              <div className="w-full light-blue" >
-                <div className=" text-center relative darktext py-1">
-                  <div className="text-[14px] font-[600]">{Player10Even && Player10Even.l1 ? (Player10Even.l1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player10Even && Player10Even.ls1 ? (Player10Even.ls1) : "-"}</div>
-                  <BetLocked />
-                </div>
-              </div>}
-          </div>
+                            <div className="w-full text-center white-bg">
+                              <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                                <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
+                                  <div>
+                                    {Player10 && Player10.nat ? Player10.nat : Player10.nation ? Player10.nation : "Player 10"}
+                                  </div>
+                                  <div className={`${posArray[Player10Odd.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Player10Odd.sid]} </div>
+                                </div>
+                                <div className="flex justify-end items-center divide-x w-full">
+                                  {Player10Odd && Player10Odd.gstatus === 'ACTIVE' ?
+                                    <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                      if (Player10Odd && Player10Odd.b1 != 0) {
+                                        handleBackOpen({ data: Player10Odd, type: "Yes", odds: Player10Odd.b1, nat: Player10Odd.nat ? Player10Odd.nat : Player10Odd.nation },
+                                          section1Ref);
+                                      }
+                                    }}>
+                                      <div className=" text-center darktext py-1" >
+                                        <div className="text-[14px] font-[600]">{Player10Odd && Player10Odd.b1 ? (Player10Odd.b1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player10Odd && Player10Odd.bs1 ? (Player10Odd.bs1) : "-"}</div>
+                                      </div>
+                                    </div> :
+                                    <div className="w-full light-blue" >
+                                      <div className=" text-center relative darktext py-1">
+                                        <div className="text-[14px] font-[600]">{Player10Odd && Player10Odd.b1 ? (Player10Odd.b1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player10Odd && Player10Odd.bs1 ? (Player10Odd.bs1) : "-"}</div>
+                                        <BetLocked />
+                                      </div>
+                                    </div>}
+                                </div>
+                                <div className="flex justify-end items-center divide-x w-full">
+                                  {Player10Even && Player10Even.gstatus === 'ACTIVE' ?
+                                    <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                      if (Player10Even && Player10Even.l1 != 0) {
+                                        handleBackOpen({ data: Player10Even, type: "Yes", odds: Player10Even.l1, nat: Player10Even.nat ? Player10Even.nat : Player10Even.nation },
+                                          section1Ref);
+                                      }
+                                    }}>
+                                      <div className=" text-center darktext py-1" >
+                                        <div className="text-[14px] font-[600]">{Player10Even && Player10Even.l1 ? (Player10Even.l1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player10Even && Player10Even.ls1 ? (Player10Even.ls1) : "-"}</div>
+                                      </div>
+                                    </div> :
+                                    <div className="w-full light-blue" >
+                                      <div className=" text-center relative darktext py-1">
+                                        <div className="text-[14px] font-[600]">{Player10Even && Player10Even.l1 ? (Player10Even.l1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player10Even && Player10Even.ls1 ? (Player10Even.ls1) : "-"}</div>
+                                        <BetLocked />
+                                      </div>
+                                    </div>}
+                                </div>
 
-        </div>
-      </div>
+                              </div>
+                            </div>
 
-      <div className="w-full text-center white-bg">
-        <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-          <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
-            <div>
-              {Player11 && Player11.nat ? Player11.nat : Player11.nation ? Player11.nation : "Player 11"}
+                            <div className="w-full text-center white-bg">
+                              <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                                <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
+                                  <div>
+                                    {Player11 && Player11.nat ? Player11.nat : Player11.nation ? Player11.nation : "Player 11"}
 
-            </div>
-            <div className={`${posArray[Player11Odd.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Player11Odd.sid]}</div>
-          </div>
-          <div className="flex justify-end items-center divide-x w-full">
-            {Player11Odd && Player11Odd.gstatus === 'ACTIVE' ?
-              <div className="w-full light-blue cursor-pointer " onClick={() => {
-                if (Player11Odd && Player11Odd.b1 != 0) {
-                  handleBackOpen({ data: Player11Odd, type: "Yes", odds: Player11Odd.b1, nat: Player10Odd.nat ? Player10Odd.nat : Player10Odd.nation },
-                    section1Ref);
-                }
-              }}>
-                <div className=" text-center darktext py-1" >
-                  <div className="text-[14px] font-[600]">{Player11Odd && Player11Odd.b1 ? (Player11Odd.b1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player11Odd && Player11Odd.bs1 ? (Player11Odd.bs1) : "-"}</div>
-                </div>
-              </div> :
-              <div className="w-full light-blue" >
-                <div className=" text-center relative darktext py-1">
-                  <div className="text-[14px] font-[600]">{Player11Odd && Player11Odd.b1 ? (Player11Odd.b1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player11Odd && Player11Odd.bs1 ? (Player11Odd.bs1) : "-"}</div>
-                  <BetLocked />
-                </div>
-              </div>}
-          </div>
-          <div className="flex justify-end items-center divide-x w-full">
-            {Player11Even && Player11Even.gstatus === 'ACTIVE' ?
-              <div className="w-full light-blue cursor-pointer " onClick={() => {
-                if (Player11Even && Player11Even.l1 != 0) {
-                  handleBackOpen({ data: Player11Even, type: "Yes", odds: Player11Even.l1, nat: Player11Even.nat ? Player11Even.nat : Player11Even.nation },
-                    section1Ref);
-                }
-              }}>
-                <div className=" text-center darktext py-1" >
-                  <div className="text-[14px] font-[600]">{Player11Even && Player11Even.l1 ? (Player11Even.l1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player11Even && Player11Even.ls1 ? (Player11Even.ls1) : "-"}</div>
-                </div>
-              </div> :
-              <div className="w-full light-blue" >
-                <div className=" text-center relative darktext py-1">
-                  <div className="text-[14px] font-[600]">{Player11Even && Player11Even.l1 ? (Player11Even.l1) : "-"}</div>
-                  <div className="text-[10px] font-normal">{Player11Even && Player11Even.ls1 ? (Player11Even.ls1) : "-"}</div>
-                  <BetLocked />
-                </div>
-              </div>}
-          </div>
+                                  </div>
+                                  <div className={`${posArray[Player11Odd.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Player11Odd.sid]}</div>
+                                </div>
+                                <div className="flex justify-end items-center divide-x w-full">
+                                  {Player11Odd && Player11Odd.gstatus === 'ACTIVE' ?
+                                    <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                      if (Player11Odd && Player11Odd.b1 != 0) {
+                                        handleBackOpen({ data: Player11Odd, type: "Yes", odds: Player11Odd.b1, nat: Player10Odd.nat ? Player10Odd.nat : Player10Odd.nation },
+                                          section1Ref);
+                                      }
+                                    }}>
+                                      <div className=" text-center darktext py-1" >
+                                        <div className="text-[14px] font-[600]">{Player11Odd && Player11Odd.b1 ? (Player11Odd.b1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player11Odd && Player11Odd.bs1 ? (Player11Odd.bs1) : "-"}</div>
+                                      </div>
+                                    </div> :
+                                    <div className="w-full light-blue" >
+                                      <div className=" text-center relative darktext py-1">
+                                        <div className="text-[14px] font-[600]">{Player11Odd && Player11Odd.b1 ? (Player11Odd.b1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player11Odd && Player11Odd.bs1 ? (Player11Odd.bs1) : "-"}</div>
+                                        <BetLocked />
+                                      </div>
+                                    </div>}
+                                </div>
+                                <div className="flex justify-end items-center divide-x w-full">
+                                  {Player11Even && Player11Even.gstatus === 'ACTIVE' ?
+                                    <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                      if (Player11Even && Player11Even.l1 != 0) {
+                                        handleBackOpen({ data: Player11Even, type: "Yes", odds: Player11Even.l1, nat: Player11Even.nat ? Player11Even.nat : Player11Even.nation },
+                                          section1Ref);
+                                      }
+                                    }}>
+                                      <div className=" text-center darktext py-1" >
+                                        <div className="text-[14px] font-[600]">{Player11Even && Player11Even.l1 ? (Player11Even.l1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player11Even && Player11Even.ls1 ? (Player11Even.ls1) : "-"}</div>
+                                      </div>
+                                    </div> :
+                                    <div className="w-full light-blue" >
+                                      <div className=" text-center relative darktext py-1">
+                                        <div className="text-[14px] font-[600]">{Player11Even && Player11Even.l1 ? (Player11Even.l1) : "-"}</div>
+                                        <div className="text-[10px] font-normal">{Player11Even && Player11Even.ls1 ? (Player11Even.ls1) : "-"}</div>
+                                        <BetLocked />
+                                      </div>
+                                    </div>}
+                                </div>
 
-        </div>
-      </div>
+                              </div>
+                            </div>
 
-    </div>
+                          </div>
 
-  </div>
+                        </div>
 
-</div>
+                      </div>
 
-<div className="grid lg:grid-cols-2 grid-cols-1 lg:space-x-2 space-x-0">
+                      <div className="grid lg:grid-cols-2 grid-cols-1 lg:space-x-2 space-x-0">
 
-  <div className="card-border divide-y divide-[#c7c8ca]">
+                        <div className="card-border divide-y divide-[#c7c8ca]">
 
-    <div className="grid grid-cols-4 text-center darktext font-[600] text-[14px] capitalize divide-x divide-[#c7c8ca]">
-      <div className="col-span-2 white-bg w-full flex justify-start white-text items-center py-1">
-      </div>
-      <div className="w-full flex justify-center light-blue items-center py-1">Back</div>
-      <div className="w-full flex justify-center odds-khaii items-center py-1">Lay</div>
-    </div>
+                          <div className="grid grid-cols-4 text-center darktext font-[600] text-[14px] capitalize divide-x divide-[#c7c8ca]">
+                            <div className="col-span-2 white-bg w-full flex justify-start white-text items-center py-1">
+                            </div>
+                            <div className="w-full flex justify-center light-blue items-center py-1">Back</div>
+                            <div className="w-full flex justify-center odds-khaii items-center py-1">Lay</div>
+                          </div>
 
-    <div className="w-full text-center white-bg">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext py-1 font-[600] px-2 col-span-2 w-full text-left flex justify-between items-center">
-          <div>
-            {CardBlack && CardBlack.nat ? CardBlack.nat : CardBlack.nation ? CardBlack.nation : "Any 3 Card Black"}
-          </div>
-          <div className={`${posArray[CardBlack.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[CardBlack.sid]} </div>
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {CardBlack && CardBlack.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (CardBlack && CardBlack.b1 != 0) {
-                handleBackOpen({ data: CardBlack, type: "Yes", odds: CardBlack.b1, nat: CardBlack.nat ? CardBlack.nat : CardBlack.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{CardBlack && CardBlack.b1 ? (CardBlack.b1) : "-"}</div>
-                <div className="text-[10px] font-normal">{CardBlack && CardBlack.bs1 ? (CardBlack.bs1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{CardBlack && CardBlack.b1 ? (CardBlack.b1) : "-"}</div>
-                <div className="text-[10px] font-normal">{CardBlack && CardBlack.bs1 ? (CardBlack.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {CardBlack && CardBlack.gstatus === 'ACTIVE' ?
-            <div className="w-full odds-khaii cursor-pointer " onClick={() => {
-              if (CardBlack && CardBlack.l1 != 0) {
-                handleBackOpen({ data: CardBlack, type: "No", odds: CardBlack.l1, nat: CardBlack.nat ? CardBlack.nat : CardBlack.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{CardBlack && CardBlack.l1 ? (CardBlack.l1) : "-"}</div>
-                <div className="text-[10px] font-normal">{CardBlack && CardBlack.ls1 ? (CardBlack.ls1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full odds-khaii" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{CardBlack && CardBlack.l1 ? (CardBlack.l1) : "-"}</div>
-                <div className="text-[10px] font-normal">{CardBlack && CardBlack.ls1 ? (CardBlack.ls1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-      </div>
-    </div>
+                          <div className="w-full text-center white-bg">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext py-1 font-[600] px-2 col-span-2 w-full text-left flex justify-between items-center">
+                                <div>
+                                  {CardBlack && CardBlack.nat ? CardBlack.nat : CardBlack.nation ? CardBlack.nation : "Any 3 Card Black"}
+                                </div>
+                                <div className={`${posArray[CardBlack.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[CardBlack.sid]} </div>
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {CardBlack && CardBlack.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (CardBlack && CardBlack.b1 != 0) {
+                                      handleBackOpen({ data: CardBlack, type: "Yes", odds: CardBlack.b1, nat: CardBlack.nat ? CardBlack.nat : CardBlack.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{CardBlack && CardBlack.b1 ? (CardBlack.b1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{CardBlack && CardBlack.bs1 ? (CardBlack.bs1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{CardBlack && CardBlack.b1 ? (CardBlack.b1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{CardBlack && CardBlack.bs1 ? (CardBlack.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {CardBlack && CardBlack.gstatus === 'ACTIVE' ?
+                                  <div className="w-full odds-khaii cursor-pointer " onClick={() => {
+                                    if (CardBlack && CardBlack.l1 != 0) {
+                                      handleBackOpen({ data: CardBlack, type: "No", odds: CardBlack.l1, nat: CardBlack.nat ? CardBlack.nat : CardBlack.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{CardBlack && CardBlack.l1 ? (CardBlack.l1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{CardBlack && CardBlack.ls1 ? (CardBlack.ls1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full odds-khaii" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{CardBlack && CardBlack.l1 ? (CardBlack.l1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{CardBlack && CardBlack.ls1 ? (CardBlack.ls1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                            </div>
+                          </div>
 
-    <div className="w-full text-center white-bg">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca] ">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center ">
-          <div>
-            {CardRed && CardRed.nat ? CardRed.nat : CardRed.nation ? CardRed.nation : "Any 3 Card Red"}
-          </div>
-          <div className={`${posArray[CardRed.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[CardRed.sid]}</div>
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {CardRed && CardRed.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (CardRed && CardRed.b1 != 0) {
-                handleBackOpen({ data: CardRed, type: "Yes", odds: CardRed.b1, nat: CardRed.nat ? CardRed.nat : CardRed.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{CardRed && CardRed.b1 ? (CardRed.b1) : "-"}</div>
-                <div className="text-[10px] font-normal">{CardRed && CardRed.bs1 ? (CardRed.bs1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{CardRed && CardRed.b1 ? (CardRed.b1) : "-"}</div>
-                <div className="text-[10px] font-normal">{CardRed && CardRed.bs1 ? (CardRed.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {CardRed && CardRed.gstatus === 'ACTIVE' ?
-            <div className="w-full odds-khaii cursor-pointer " onClick={() => {
-              if (CardRed && CardRed.l1 != 0) {
-                handleBackOpen({ data: CardRed, type: "No", odds: CardRed.l1, nat: CardRed.nat ? CardRed.nat : CardRed.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{CardRed && CardRed.l1 ? (CardRed.l1) : "-"}</div>
-                <div className="text-[10px] font-normal">{CardRed && CardRed.ls1 ? (CardRed.ls1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full odds-khaii" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{CardRed && CardRed.l1 ? (CardRed.l1) : "-"}</div>
-                <div className="text-[10px] font-normal">{CardRed && CardRed.ls1 ? (CardRed.ls1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-      </div>
-    </div>
+                          <div className="w-full text-center white-bg">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca] ">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center ">
+                                <div>
+                                  {CardRed && CardRed.nat ? CardRed.nat : CardRed.nation ? CardRed.nation : "Any 3 Card Red"}
+                                </div>
+                                <div className={`${posArray[CardRed.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[CardRed.sid]}</div>
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {CardRed && CardRed.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (CardRed && CardRed.b1 != 0) {
+                                      handleBackOpen({ data: CardRed, type: "Yes", odds: CardRed.b1, nat: CardRed.nat ? CardRed.nat : CardRed.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{CardRed && CardRed.b1 ? (CardRed.b1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{CardRed && CardRed.bs1 ? (CardRed.bs1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{CardRed && CardRed.b1 ? (CardRed.b1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{CardRed && CardRed.bs1 ? (CardRed.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {CardRed && CardRed.gstatus === 'ACTIVE' ?
+                                  <div className="w-full odds-khaii cursor-pointer " onClick={() => {
+                                    if (CardRed && CardRed.l1 != 0) {
+                                      handleBackOpen({ data: CardRed, type: "No", odds: CardRed.l1, nat: CardRed.nat ? CardRed.nat : CardRed.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{CardRed && CardRed.l1 ? (CardRed.l1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{CardRed && CardRed.ls1 ? (CardRed.ls1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full odds-khaii" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{CardRed && CardRed.l1 ? (CardRed.l1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{CardRed && CardRed.ls1 ? (CardRed.ls1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                            </div>
+                          </div>
 
-    <div className="w-full text-center white-bg">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
-          <div>
-            {TwoBlackRed && TwoBlackRed.nat ? TwoBlackRed.nat : TwoBlackRed.nation ? TwoBlackRed.nation : "Two Black Two Red"}
-          </div>
-          <div className={`${posArray[TwoBlackRed.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[TwoBlackRed.sid]} </div>
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {TwoBlackRed && TwoBlackRed.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (TwoBlackRed && TwoBlackRed.b1 != 0) {
-                handleBackOpen({ data: TwoBlackRed, type: "Yes", odds: TwoBlackRed.b1, nat: TwoBlackRed.nat ? TwoBlackRed.nat : TwoBlackRed.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{TwoBlackRed && TwoBlackRed.b1 ? (TwoBlackRed.b1 / 100).toFixed(2) : "-"}</div>
-                <div className="text-[10px] font-normal">{TwoBlackRed && TwoBlackRed.bs1 ? (TwoBlackRed.bs1 / 100).toFixed(2) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{TwoBlackRed && TwoBlackRed.b1 ? (TwoBlackRed.b1) : "-"}</div>
-                <div className="text-[10px] font-normal">{TwoBlackRed && TwoBlackRed.bs1 ? (TwoBlackRed.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-        <div className="flex justify-end items-center divide-x w-full">
-          {TwoBlackRed && TwoBlackRed.gstatus === 'ACTIVE' ?
-            <div className="w-full odds-khaii cursor-pointer " onClick={() => {
-              if (TwoBlackRed && TwoBlackRed.l1 != 0) {
-                handleBackOpen({ data: TwoBlackRed, type: "No", odds: TwoBlackRed.l1, nat: TwoBlackRed.nat ? TwoBlackRed.nat : TwoBlackRed.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-1" >
-                <div className="text-[14px] font-[600]">{TwoBlackRed && TwoBlackRed.l1 ? (TwoBlackRed.l1 / 100).toFixed(2) : "-"}</div>
-                <div className="text-[10px] font-normal">{TwoBlackRed && TwoBlackRed.ls1 ? (TwoBlackRed.ls1 / 100).toFixed(2) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full odds-khaii" >
-              <div className=" text-center relative darktext py-1">
-                <div className="text-[14px] font-[600]">{TwoBlackRed && TwoBlackRed.l1 ? (TwoBlackRed.l1) : "-"}</div>
-                <div className="text-[10px] font-normal">{TwoBlackRed && TwoBlackRed.ls1 ? (TwoBlackRed.ls1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-      </div>
-    </div>
+                          <div className="w-full text-center white-bg">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 py-1 col-span-2 w-full text-left flex justify-between items-center">
+                                <div>
+                                  {TwoBlackRed && TwoBlackRed.nat ? TwoBlackRed.nat : TwoBlackRed.nation ? TwoBlackRed.nation : "Two Black Two Red"}
+                                </div>
+                                <div className={`${posArray[TwoBlackRed.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[TwoBlackRed.sid]} </div>
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {TwoBlackRed && TwoBlackRed.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (TwoBlackRed && TwoBlackRed.b1 != 0) {
+                                      handleBackOpen({ data: TwoBlackRed, type: "Yes", odds: TwoBlackRed.b1, nat: TwoBlackRed.nat ? TwoBlackRed.nat : TwoBlackRed.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{TwoBlackRed && TwoBlackRed.b1 ? (TwoBlackRed.b1 / 100).toFixed(2) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{TwoBlackRed && TwoBlackRed.bs1 ? (TwoBlackRed.bs1 / 100).toFixed(2) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{TwoBlackRed && TwoBlackRed.b1 ? (TwoBlackRed.b1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{TwoBlackRed && TwoBlackRed.bs1 ? (TwoBlackRed.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                              <div className="flex justify-end items-center divide-x w-full">
+                                {TwoBlackRed && TwoBlackRed.gstatus === 'ACTIVE' ?
+                                  <div className="w-full odds-khaii cursor-pointer " onClick={() => {
+                                    if (TwoBlackRed && TwoBlackRed.l1 != 0) {
+                                      handleBackOpen({ data: TwoBlackRed, type: "No", odds: TwoBlackRed.l1, nat: TwoBlackRed.nat ? TwoBlackRed.nat : TwoBlackRed.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-1" >
+                                      <div className="text-[14px] font-[600]">{TwoBlackRed && TwoBlackRed.l1 ? (TwoBlackRed.l1 / 100).toFixed(2) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{TwoBlackRed && TwoBlackRed.ls1 ? (TwoBlackRed.ls1 / 100).toFixed(2) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full odds-khaii" >
+                                    <div className=" text-center relative darktext py-1">
+                                      <div className="text-[14px] font-[600]">{TwoBlackRed && TwoBlackRed.l1 ? (TwoBlackRed.l1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{TwoBlackRed && TwoBlackRed.ls1 ? (TwoBlackRed.ls1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                            </div>
+                          </div>
 
-  </div>
+                        </div>
 
-  <div className="card-border divide-y divide-[#c7c8ca]">
+                        <div className="card-border divide-y divide-[#c7c8ca]">
 
-    <div className="grid grid-cols-4 text-center darktext font-[600] text-[14px] capitalize divide-x divide-[#c7c8ca]">
-      <div className="col-span-2 white-bg w-full text-[14px] flex justify-start white-text items-center px-[6px] py-3">
-      </div>
-      <div className="w-full col-span-2 flex justify-center light-blue items-center py-3">Back</div>
-    </div>
+                          <div className="grid grid-cols-4 text-center darktext font-[600] text-[14px] capitalize divide-x divide-[#c7c8ca]">
+                            <div className="col-span-2 white-bg w-full text-[14px] flex justify-start white-text items-center px-[6px] py-3">
+                            </div>
+                            <div className="w-full col-span-2 flex justify-center light-blue items-center py-3">Back</div>
+                          </div>
 
-    <div className="w-full text-center white-bg ">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 col-span-2 w-full text-left flex justify-between items-center">
-          <div>
-            {Total8and9 && Total8and9.nat ? Total8and9.nat : Total8and9.nation ? Total8and9.nation : "8 & 9 Total"}
-          </div>
-          <div className={`${posArray[Total8and9.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Total8and9.sid]} </div>
-        </div>
-        <div className="flex justify-end items-center col-span-2 divide-x w-full">
-          {Total8and9 && Total8and9.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (Total8and9 && Total8and9.b1 != 0) {
-                handleBackOpen({ data: Total8and9, type: "Yes", odds: Total8and9.b1, nat: Total8and9.nat ? Total8and9.nat : Total8and9.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-3" >
-                <div className="text-[14px] font-[600]">{Total8and9 && Total8and9.b1 ? (Total8and9.b1) : "-"}</div>
-                <div className="text-[10px] font-normal">{Total8and9 && Total8and9.bs1 ? (Total8and9.bs1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-3">
-                <div className="text-[14px] darktext font-[600]">{Total8and9 && Total8and9.b1 ? (Total8and9.b1) : "-"}</div>
-                <div className="text-[10px] dark-text font-normal">{Total8and9 && Total8and9.bs1 ? (Total8and9.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
+                          <div className="w-full text-center white-bg ">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 col-span-2 w-full text-left flex justify-between items-center">
+                                <div>
+                                  {Total8and9 && Total8and9.nat ? Total8and9.nat : Total8and9.nation ? Total8and9.nation : "8 & 9 Total"}
+                                </div>
+                                <div className={`${posArray[Total8and9.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Total8and9.sid]} </div>
+                              </div>
+                              <div className="flex justify-end items-center col-span-2 divide-x w-full">
+                                {Total8and9 && Total8and9.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (Total8and9 && Total8and9.b1 != 0) {
+                                      handleBackOpen({ data: Total8and9, type: "Yes", odds: Total8and9.b1, nat: Total8and9.nat ? Total8and9.nat : Total8and9.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-3" >
+                                      <div className="text-[14px] font-[600]">{Total8and9 && Total8and9.b1 ? (Total8and9.b1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{Total8and9 && Total8and9.bs1 ? (Total8and9.bs1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-3">
+                                      <div className="text-[14px] darktext font-[600]">{Total8and9 && Total8and9.b1 ? (Total8and9.b1) : "-"}</div>
+                                      <div className="text-[10px] dark-text font-normal">{Total8and9 && Total8and9.bs1 ? (Total8and9.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
 
-      </div>
-    </div>
+                            </div>
+                          </div>
 
-    <div className="w-full text-center white-bg">
-      <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
-        <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 col-span-2 w-full text-left flex justify-between items-center">
-          <div>
-            {Total10and11 && Total10and11.nat ? Total10and11.nat : Total10and11.nation ? Total10and11.nation : "10 & 11 Total"}
-          </div>
-          <div className={`${posArray[Total10and11.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Total10and11.sid]} </div>
-        </div>
-        <div className="flex justify-end items-center col-span-2 divide-x w-full">
-          {Total10and11 && Total10and11.gstatus === 'ACTIVE' ?
-            <div className="w-full light-blue cursor-pointer " onClick={() => {
-              if (Total10and11 && Total10and11.b1 != 0) {
-                handleBackOpen({ data: Total10and11, type: "Yes", odds: Total10and11.l1, nat: Total10and11.nat ? Total10and11.nat : Total10and11.nation },
-                  section1Ref);
-              }
-            }}>
-              <div className=" text-center darktext py-3" >
-                <div className="text-[14px] font-[600]">{Total10and11 && Total10and11.b1 ? (Total10and11.b1) : "-"}</div>
-                <div className="text-[10px] font-normal">{Total10and11 && Total10and11.bs1 ? (Total10and11.bs1) : "-"}</div>
-              </div>
-            </div> :
-            <div className="w-full light-blue" >
-              <div className=" text-center relative darktext py-3">
-                <div className="text-[14px] darktext font-[600]">{Total10and11 && Total10and11.b1 ? (Total10and11.bs1) : "-"}</div>
-                <div className="text-[10px] dark-text font-normal">{Total10and11 && Total10and11.bs1 ? (Total10and11.bs1) : "-"}</div>
-                <BetLocked />
-              </div>
-            </div>}
-        </div>
-      </div>
-    </div>
+                          <div className="w-full text-center white-bg">
+                            <div className="grid grid-cols-4 divide-x divide-[#c7c8ca]">
+                              <div className="h-full lg:text-[14px] text-[12px] capitalize darktext font-[600] px-2 col-span-2 w-full text-left flex justify-between items-center">
+                                <div>
+                                  {Total10and11 && Total10and11.nat ? Total10and11.nat : Total10and11.nation ? Total10and11.nation : "10 & 11 Total"}
+                                </div>
+                                <div className={`${posArray[Total10and11.sid] < 0 ? "text-red-500" : "text-green-800"} text-[11px]`} > {posArray[Total10and11.sid]} </div>
+                              </div>
+                              <div className="flex justify-end items-center col-span-2 divide-x w-full">
+                                {Total10and11 && Total10and11.gstatus === 'ACTIVE' ?
+                                  <div className="w-full light-blue cursor-pointer " onClick={() => {
+                                    if (Total10and11 && Total10and11.b1 != 0) {
+                                      handleBackOpen({ data: Total10and11, type: "Yes", odds: Total10and11.l1, nat: Total10and11.nat ? Total10and11.nat : Total10and11.nation },
+                                        section1Ref);
+                                    }
+                                  }}>
+                                    <div className=" text-center darktext py-3" >
+                                      <div className="text-[14px] font-[600]">{Total10and11 && Total10and11.b1 ? (Total10and11.b1) : "-"}</div>
+                                      <div className="text-[10px] font-normal">{Total10and11 && Total10and11.bs1 ? (Total10and11.bs1) : "-"}</div>
+                                    </div>
+                                  </div> :
+                                  <div className="w-full light-blue" >
+                                    <div className=" text-center relative darktext py-3">
+                                      <div className="text-[14px] darktext font-[600]">{Total10and11 && Total10and11.b1 ? (Total10and11.bs1) : "-"}</div>
+                                      <div className="text-[10px] dark-text font-normal">{Total10and11 && Total10and11.bs1 ? (Total10and11.bs1) : "-"}</div>
+                                      <BetLocked />
+                                    </div>
+                                  </div>}
+                              </div>
+                            </div>
+                          </div>
 
-  </div>
+                        </div>
 
-</div>
+                      </div>
 
-<div className="relative py-1">
-  <div className="flex justify-between items-center text-center py-1">
-    <p></p>
-    <p className="text-[14px] font-medium gray-text">{9.5 - oddsDifference}</p>
-    <p></p>
-  </div>
+                      <div className="relative py-1">
+                        <div className="flex justify-between items-center text-center py-1">
+                          <p></p>
+                          <p className="text-[14px] font-medium gray-text">{9.5 - oddsDifference}</p>
+                          <p></p>
+                        </div>
 
-  <div className="w-full grid grid-cols-5 divide-x divide-y py-1">
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single1, type: "Yes", odds: 9.5, nat: '1 Single', sid: Single1.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">1</p>
-      </div>
-      <div className={`${posArray[Single1.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single1.sid] ?? 0.00}</div>
-    </div>
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single2, type: "Yes", odds: 9.5, nat: '2 Single', sid: Single2.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">2</p>
-      </div>
-      <div className={`${posArray[Single2.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single2.sid] ?? 0.00}</div>
-    </div>
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single3, type: "Yes", odds: 9.5, nat: '3 Single', sid: Single3.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">3</p>
-      </div>
-      <div className={`${posArray[Single3.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single3.sid] ?? 0.00}</div>
-    </div>
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single4, type: "Yes", odds: 9.5, nat: '4 Single', sid: Single4.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">4</p>
-      </div>
-      <div className={`${posArray[Single4.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single4.sid] ?? 0.00}</div>
-    </div>
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single5, type: "Yes", odds: 9.5, nat: '5 Single', sid: Single5.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">5</p>
-      </div>
-      <div className={`${posArray[Single5.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single5.sid] ?? 0.00}</div>
-    </div>
-  </div>
+                        <div className="w-full grid grid-cols-5 divide-x divide-y py-1">
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single1, type: "Yes", odds: 9.5, nat: '1 Single', sid: Single1.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">1</p>
+                            </div>
+                            <div className={`${posArray[Single1.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single1.sid] ?? 0.00}</div>
+                          </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single2, type: "Yes", odds: 9.5, nat: '2 Single', sid: Single2.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">2</p>
+                            </div>
+                            <div className={`${posArray[Single2.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single2.sid] ?? 0.00}</div>
+                          </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single3, type: "Yes", odds: 9.5, nat: '3 Single', sid: Single3.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">3</p>
+                            </div>
+                            <div className={`${posArray[Single3.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single3.sid] ?? 0.00}</div>
+                          </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single4, type: "Yes", odds: 9.5, nat: '4 Single', sid: Single4.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">4</p>
+                            </div>
+                            <div className={`${posArray[Single4.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single4.sid] ?? 0.00}</div>
+                          </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single5, type: "Yes", odds: 9.5, nat: '5 Single', sid: Single5.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">5</p>
+                            </div>
+                            <div className={`${posArray[Single5.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single5.sid] ?? 0.00}</div>
+                          </div>
+                        </div>
 
-  <div className="w-full grid grid-cols-5  divide-x divide-y py-1">
+                        <div className="w-full grid grid-cols-5  divide-x divide-y py-1">
 
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single6, type: "Yes", odds: 9.5, nat: '6 Single', sid: Single6.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">6</p>
-      </div>
-      <div className={`${posArray[Single6.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single6.sid] ?? 0.00}</div>
-    </div>
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single7, type: "Yes", odds: 9.5, nat: '7 Single', sid: Single7.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">7</p>
-      </div>
-      <div className={`${posArray[Single7.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single7.sid] ?? 0.00}</div>
-    </div>
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single8, type: "Yes", odds: 9.5, nat: '8 Single', sid: Single8.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">8</p>
-      </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single6, type: "Yes", odds: 9.5, nat: '6 Single', sid: Single6.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">6</p>
+                            </div>
+                            <div className={`${posArray[Single6.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single6.sid] ?? 0.00}</div>
+                          </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single7, type: "Yes", odds: 9.5, nat: '7 Single', sid: Single7.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">7</p>
+                            </div>
+                            <div className={`${posArray[Single7.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single7.sid] ?? 0.00}</div>
+                          </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single8, type: "Yes", odds: 9.5, nat: '8 Single', sid: Single8.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">8</p>
+                            </div>
 
-      <div className={`${posArray[Single8.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single8.sid] ?? 0.00}</div>
-    </div>
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single9, type: "Yes", odds: 9.5, nat: '9 Single', sid: Single9.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">9</p>
-      </div>
-      <div className={`${posArray[Single9.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single9.sid] ?? 0.00}</div>
-    </div>
-    <div>
-      <div onClick={() => handleBackOpen({ data: Single0, type: "Yes", odds: 9.5, nat: '0 Single', sid: Single0.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
-        <p className="text-[40px] font-semibold">0</p>
-      </div>
-      <div className={`${posArray[Single0.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single0.sid] ?? 0.00}</div>
-    </div>
-  </div>
-  {Single1 && Single1.gstatus === 'ACTIVE' ? null : <BetLocked />}
-</div>
+                            <div className={`${posArray[Single8.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single8.sid] ?? 0.00}</div>
+                          </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single9, type: "Yes", odds: 9.5, nat: '9 Single', sid: Single9.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">9</p>
+                            </div>
+                            <div className={`${posArray[Single9.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single9.sid] ?? 0.00}</div>
+                          </div>
+                          <div>
+                            <div onClick={() => handleBackOpen({ data: Single0, type: "Yes", odds: 9.5, nat: '0 Single', sid: Single0.sid })} className=" bg-[#72BBEF] flex justify-center items-center cursor-pointer p-4">
+                              <p className="text-[40px] font-semibold">0</p>
+                            </div>
+                            <div className={`${posArray[Single0.sid] < 0 ? "text-red-500" : "text-green-800"} flex justify-center items-center text-[16px] font-[500]`} > {posArray[Single0.sid] ?? 0.00}</div>
+                          </div>
+                        </div>
+                        {Single1 && Single1.gstatus === 'ACTIVE' ? null : <BetLocked />}
+                      </div>
 
-</div>
+                    </div>
 
 
 
@@ -1194,7 +1220,7 @@ function Cards32_B({ eventId }) {
                         {result && result.length > 0 ? result.map((element, index) => (
                           <div key={index} onClick={() => handleResultModel(element)} className="bg-[var(--result-color)] w-7 h-7 cursor-pointer flex justify-center items-center rounded-full shadow-md border border-gray-700" >
                             <p className={`font-[600] text-[13px] text-[#FFFF33]`}>
-                            {element && element.result === '1' ? "8" : element && element.result === '2' ? "9" : element && element.result === '3' ? "10" : "11"}
+                              {element && element.result === '1' ? "8" : element && element.result === '2' ? "9" : element && element.result === '3' ? "10" : "11"}
                             </p>
 
                           </div>
@@ -1212,10 +1238,11 @@ function Cards32_B({ eventId }) {
                       LoadingBet={LoadingBet}
                       handleClose={handleClose}
                       updateStake={updateStake}
+                      handleButtonValues={handleButtonValues}
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }
-                   <MyBetHeader />
+                    <MyBetHeader />
                     <div className="pb-20">
                       <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                         <BetListTableDesktop betList={betList} />

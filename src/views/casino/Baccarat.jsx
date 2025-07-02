@@ -24,6 +24,7 @@ import BaccaratButton from "../../component/casinoComponent/BaccaratButton";
 import BaccaratChart from "../../component/casinoComponent/images/baccaratchart.png";
 import { FaLock } from "react-icons/fa";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function Baccarat({ eventId }) {
   const {
@@ -64,9 +65,22 @@ function Baccarat({ eventId }) {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [buttonValue, setbuttonValue] = useState(false);
+
   const toggleCollapse = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleButtonValues = (e) => {
+    setbuttonValue((prev) => !prev);
+    document.body.classList.toggle("StakeModalOpen");
+    // e.stopPropagation();
+    // setBetSlipData(prev => ({
+    //     ...prev,
+    //     count: value
+    // }));
+  };
+
 
   const handleBackOpen = (data) => {
     if (scrollTimeout.current) {
@@ -200,6 +214,22 @@ function Baccarat({ eventId }) {
               result={state.result}
             />
           ) : null}
+          {buttonValue && (
+            <div
+              onClick={(e) => {
+                handleButtonValues();
+                e.stopPropagation();
+              }}
+              className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+              >
+                <ButtonValuesModal handleClose={handleButtonValues} />
+              </div>
+            </div>
+          )}
           {backBetModal && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -215,6 +245,7 @@ function Baccarat({ eventId }) {
                   LoadingBet={LoadingBet}
                   handleClose={handleClose}
                   updateStake={updateStake}
+                  handleButtonValues={handleButtonValues}
                   clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                 />
               </div>
@@ -482,6 +513,7 @@ function Baccarat({ eventId }) {
                       LoadingBet={LoadingBet}
                       handleClose={handleClose}
                       updateStake={updateStake}
+                      handleButtonValues={handleButtonValues}
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }

@@ -21,6 +21,7 @@ import { BsFillSuitHeartFill, BsSuitClubFill, BsSuitDiamondFill, BsSuitSpadeFill
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function Anadarbahar_2({ eventId }) {
     const {
@@ -59,8 +60,7 @@ function Anadarbahar_2({ eventId }) {
         activeTab: 1,
     });
 
-
-
+    const [buttonValue, setbuttonValue] = useState(false);
 
     const handleBackOpen = (data) => {
         betForSet(data?.nat)
@@ -100,22 +100,22 @@ function Anadarbahar_2({ eventId }) {
     const betForSet = (nat) => {
         let value = nat;
         let betFor = "";
-      
+
         if (["SA", "1st Bet", "2nd Bet", "SB"].includes(value)) {
-          betFor = "andarBahar";
+            betFor = "andarBahar";
         } else if (["Joker A", "Joker 2", "Joker 3", "Joker 4", "Joker 5", "Joker 6", "Joker 7", "Joker 8", "Joker 9", "Joker 10", "Joker J", "Joker Q", "Joker K"].includes(value)) {
-          betFor = "cards";
+            betFor = "cards";
         } else if (["Joker Diamond", "Joker Heart", "Joker Club", "Joker Spade"].includes(value)) {
-          betFor = "color";
+            betFor = "color";
         } else if (["Joker Odd", "Joker Even"].includes(value)) {
-          betFor = "oddEven";
+            betFor = "oddEven";
         }
-      
+
         if (betFor) {
-          setState(state => ({ ...state, betFor }));
+            setState(state => ({ ...state, betFor }));
         }
-      };
-      
+    };
+
 
     const placeBet = async () => {
         setState(prevState => ({ ...prevState, LoadingBet: true }));
@@ -182,8 +182,15 @@ function Anadarbahar_2({ eventId }) {
     };
     const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+    const handleButtonValues = (e) => {
+        setbuttonValue((prev) => !prev);
+        document.body.classList.toggle("StakeModalOpen");
+        // e.stopPropagation();
+        // setBetSlipData(prev => ({
+        //     ...prev,
+        //     count: value
+        // }));
+    };
 
     const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
     let { data, result } = casinoData ? casinoData : {};
@@ -234,6 +241,22 @@ function Anadarbahar_2({ eventId }) {
                             result={state.result}
                         />
                     ) : null}
+                    {buttonValue && (
+                        <div
+                            onClick={(e) => {
+                                handleButtonValues();
+                                e.stopPropagation();
+                            }}
+                            className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+                        >
+                            <div
+                                onClick={(e) => e.stopPropagation()}
+                                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+                            >
+                                <ButtonValuesModal handleClose={handleButtonValues} />
+                            </div>
+                        </div>
+                    )}
                     {backBetModal && (
                         <div
                             className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -249,6 +272,7 @@ function Anadarbahar_2({ eventId }) {
                                     LoadingBet={LoadingBet}
                                     handleClose={handleClose}
                                     updateStake={updateStake}
+                                    handleButtonValues={handleButtonValues}
                                     clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                 />
                             </div>
@@ -647,10 +671,11 @@ function Anadarbahar_2({ eventId }) {
                                             LoadingBet={LoadingBet}
                                             handleClose={handleClose}
                                             updateStake={updateStake}
+                                            handleButtonValues={handleButtonValues}
                                             clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                         />
                                         }
-                                       <MyBetHeader />
+                                        <MyBetHeader />
                                         <div className="pb-20">
                                             <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                                                 <BetListTableDesktop betList={betList} />

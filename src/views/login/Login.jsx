@@ -121,7 +121,7 @@ const Login = () => {
           </div>
           <div className="justify-between items-start w-full sm:w-[350px] mx-auto bg-[#ffffff] rounded px-4 lg:py-4 py-2">
             <div className="flex justify-center items-center text-[24px] pb-2 space-x-[3px]">
-              <span className="text-[var(--primary)] font-[400]">Login</span>
+              <span className="text-[var(--primary)] font-[400]">LOGIN</span>
               <FaHandPointDown className="text-[var(--primary)]" />
             </div>
             <div className="w-full mb-3">
@@ -215,7 +215,7 @@ const Login = () => {
               <span className="text-[#007bff]"> Privacy Policy</span> and <span className="text-[#007bff]">
                 Terms of Service </span> apply.
             </div>
-            <p className="mt-1 text-center text-[#007bff]">
+            <p className="mt-1.5 text-center text-[#007bff] pb-1">
               <a class="mail-link" href="mailto:betbhai9.officiall@gmail.com">betbhai9.officiall@gmail.com</a>
             </p>
           </div>

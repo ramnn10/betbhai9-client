@@ -23,6 +23,7 @@ import Poker6PlayerBetButton from "../../component/casinoComponent/Poker6PlayerB
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function Poker_6_player({ eventId }) {
   const {
@@ -62,6 +63,7 @@ function Poker_6_player({ eventId }) {
     activeTab: 1,
   });
 
+  const [buttonValue, setbuttonValue] = useState(false);
 
   const [activeTab2, setActivetab2] = useState(1)
 
@@ -170,8 +172,15 @@ function Poker_6_player({ eventId }) {
   };
   const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+  const handleButtonValues = (e) => {
+    setbuttonValue((prev) => !prev);
+    document.body.classList.toggle("StakeModalOpen");
+    // e.stopPropagation();
+    // setBetSlipData(prev => ({
+    //     ...prev,
+    //     count: value
+    // }));
+  };
 
   const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
   const { data, result } = casinoData ? casinoData : {};
@@ -254,6 +263,22 @@ function Poker_6_player({ eventId }) {
               result={state.result}
             />
           ) : null}
+          {buttonValue && (
+            <div
+              onClick={(e) => {
+                handleButtonValues();
+                e.stopPropagation();
+              }}
+              className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+              >
+                <ButtonValuesModal handleClose={handleButtonValues} />
+              </div>
+            </div>
+          )}
           {backBetModal && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -269,6 +294,7 @@ function Poker_6_player({ eventId }) {
                   LoadingBet={LoadingBet}
                   handleClose={handleClose}
                   updateStake={updateStake}
+                  handleButtonValues={handleButtonValues}
                   clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                 />
               </div>
@@ -343,13 +369,13 @@ function Poker_6_player({ eventId }) {
                     <div className="pt-1">
                       <div className="flex overflow-x-auto whitespace-wrap md:space-x-0 space-x-1 text-[14px] tracking-wide capitalize  font-[500]">
 
-                        <div className={`${activeTab2 === 1 ? "text-white bg-[var(--primary)]" : "bg-[#CCCCCC] black-text "} flex justify-center items-center cursor-pointer px-4 py-1.5`} onClick={() => handleCardClick(1)}>
+                        <div className={`${activeTab2 === 1 ? "text-white bg-[var(--casinoHeader)]" : "bg-[#CCCCCC] black-text hover:text-[#0d6efd] "} flex justify-center items-center cursor-pointer px-4 py-1.5`} onClick={() => handleCardClick(1)}>
                           <span className="flex justify-center items-center ">
                             Hands
                           </span>
                         </div>
 
-                        <div className={`${activeTab2 === 2 ? "text-white bg-[var(--primary)]" : "bg-[#CCCCCC] black-text"} flex justify-center items-center cursor-pointer px-4 py-1.5`} onClick={() => handleCardClick(2)}>
+                        <div className={`${activeTab2 === 2 ? "text-white bg-[var(--casinoHeader)]" : "bg-[#CCCCCC] black-text hover:text-[#0d6efd]"} flex justify-center items-center cursor-pointer px-4 py-1.5`} onClick={() => handleCardClick(2)}>
                           <span className="flex justify-center items-center">
                             Pattern
                           </span>
@@ -521,10 +547,11 @@ function Poker_6_player({ eventId }) {
                       LoadingBet={LoadingBet}
                       handleClose={handleClose}
                       updateStake={updateStake}
+                      handleButtonValues={handleButtonValues}
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }
-                   <MyBetHeader />
+                    <MyBetHeader />
                     <div className="pb-20">
                       <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                         <BetListTableDesktop betList={betList} />

@@ -29,15 +29,12 @@ function CasinoBetPlaceDesktop(props) {
     //     return num;
     // };
     return (
-
         <div className='relative'>
-
             {LoadingBet && (
                 <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10 flex justify-center items-center">
                     <span className="casinoLoader"></span>
                 </div>
             )}
-
             <div className={`relative ${LoadingBet ? 'opacity-50' : ''}`}>
                 <div className='bg-gray-200'>
                     <div className="lg:bg-[var(--casinoHeader)] bg-[var(--casinoBlue)] text-white text-[14px] px-2 py-[6px] lg:rounded-t-[4px] flex justify-between items-center">
@@ -109,7 +106,7 @@ function CasinoBetPlaceDesktop(props) {
                         <div className='grid xl:grid-cols-4 grid-cols-3 lg:pt-1 pt-2 gap-1 px-2'>
                             {myArray && myArray.length > 0 ? myArray.map((element, index) => (
                                 <div key={index} className="px-0 cursor-pointer">
-                                    <div className='lg:bg-[#cccccc] bg-[#6C2D2CD9] lg:text-black text-white font-[800] flex justify-center items-center text-center h-[28px] rounded' onClick={() => updateStackOnclick(Number(element))}>
+                                    <div className='lg:bg-[#cccccc] bg-[#2c3e50] lg:text-black text-white font-[800] flex justify-center items-center text-center h-[28px]' onClick={() => updateStackOnclick(Number(element))}>
                                         {/* {formatNumber(element)} */}
                                         {element}
                                     </div>
@@ -123,7 +120,7 @@ function CasinoBetPlaceDesktop(props) {
                         <div className='hidden lg:flex justify-between items-center py-1.5 px-4'>
 
                             <button className="bg-[#097c93] hover:bg-[#097c93]/90 rounded-[0.375rem] flex justify-center items-center text-white text-[14px] px-2 py-1.5 h-[35px] w-[16%]"
-                                onClick={() => handleToggle()}
+                                onClick={() => handleButtonValues()}
                             >
                                 Edit
                             </button>
@@ -140,11 +137,11 @@ function CasinoBetPlaceDesktop(props) {
 
                         <div className="lg:hidden block px-4 pt-4 pb-2">
                             <div className="grid grid-cols-4">
-                                <div onClick={() => clearStake()} className="lg:hidden block flex text-[#0d6efd] font-[700] cursor-pointer justify-start items-center underline px-4 py-1">
+                                <div onClick={() => clearStake()} className="lg:hidden flex text-[#0d6efd] font-[700] cursor-pointer justify-start items-center underline px-4 py-1">
                                     Clear
                                 </div>
                                 <button className="bg-[#097c93] hover:bg-[#097c93]/90 font-[700] flex justify-center items-center text-white text-[14px] px-4 py-1.5 h-[35px] "
-                                    onClick={() => handleToggle()}
+                                    onClick={() => handleButtonValues()}
                                 >
                                     Edit
                                 </button>
@@ -163,9 +160,6 @@ function CasinoBetPlaceDesktop(props) {
                 </div>
             </div>
         </div>
-
-
     );
 }
-
 export default CasinoBetPlaceDesktop;

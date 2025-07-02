@@ -145,7 +145,7 @@ const ButtonValuesModal = ({ handleClose }) => {
     <div className='w-full bg-white'>
 
       <div className="">
-        <div className={`w-full text-[20px] items-center flex justify-between text-white bg-[var(--secondary)] px-3 py-2 font-[400] `}>
+        <div className={`w-full text-[20px] items-center flex justify-between text-white lg:bg-[var(--secondary)] bg-[var(--casinoBlue)] px-3 py-2 font-[400] `}>
           <span>Change Button Values</span>
           <FaTimes onClick={(e) => {
             handleClose()

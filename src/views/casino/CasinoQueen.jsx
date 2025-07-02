@@ -18,6 +18,7 @@ import MobileBetList from "../../component/casinoComponent/MobileBetList";
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function CasinoQueen({ eventId }) {
   const {
@@ -53,8 +54,7 @@ function CasinoQueen({ eventId }) {
     activeTab: 1,
   });
 
-
-
+  const [buttonValue, setbuttonValue] = useState(false);
 
   const handleBackOpen = (data) => {
     if (scrollTimeout.current) {
@@ -158,8 +158,15 @@ function CasinoQueen({ eventId }) {
   };
   const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+  const handleButtonValues = (e) => {
+    setbuttonValue((prev) => !prev);
+    document.body.classList.toggle("StakeModalOpen");
+    // e.stopPropagation();
+    // setBetSlipData(prev => ({
+    //     ...prev,
+    //     count: value
+    // }));
+  };
 
   const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
   let { data, result } = casinoData ? casinoData : {};
@@ -197,6 +204,22 @@ function CasinoQueen({ eventId }) {
               result={state.result}
             />
           ) : null}
+          {buttonValue && (
+            <div
+              onClick={(e) => {
+                handleButtonValues();
+                e.stopPropagation();
+              }}
+              className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+              >
+                <ButtonValuesModal handleClose={handleButtonValues} />
+              </div>
+            </div>
+          )}
           {backBetModal && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -212,6 +235,7 @@ function CasinoQueen({ eventId }) {
                   LoadingBet={LoadingBet}
                   handleClose={handleClose}
                   updateStake={updateStake}
+                  handleButtonValues={handleButtonValues}
                   clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                 />
               </div>
@@ -220,8 +244,6 @@ function CasinoQueen({ eventId }) {
           )}
 
           <div className="lg:flex block w-full lg:pt-1 pt-0 scroll-md lg:space-x-2">
-
-
 
             <div className="lg:hidden block">
               <CasinoTab
@@ -475,6 +497,7 @@ function CasinoQueen({ eventId }) {
                       LoadingBet={LoadingBet}
                       handleClose={handleClose}
                       updateStake={updateStake}
+                      handleButtonValues={handleButtonValues}
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }

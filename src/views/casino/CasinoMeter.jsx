@@ -36,6 +36,7 @@ import image11 from "../../component/casinoComponent/images/11.jpg";
 import image12 from "../../component/casinoComponent/images/12.jpg";
 import image13 from "../../component/casinoComponent/images/13.jpg";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 
 function CasinoMeter({ eventId }) {
@@ -82,6 +83,7 @@ function CasinoMeter({ eventId }) {
     'J': '11', 'Q': '12', 'K': '13', 'A': '1' // A can be considered as 1 or 14 depending on the game
   };
 
+    const [buttonValue, setbuttonValue] = useState(false);
 
   const [activeTab2, setActivetab2] = useState(1)
 
@@ -217,8 +219,15 @@ function CasinoMeter({ eventId }) {
   };
   const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+  const handleButtonValues = (e) => {
+    setbuttonValue((prev) => !prev);
+    document.body.classList.toggle("StakeModalOpen");
+    // e.stopPropagation();
+    // setBetSlipData(prev => ({
+    //     ...prev,
+    //     count: value
+    // }));
+  };
 
   const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
   const { data, result } = casinoData ? casinoData : {};
@@ -244,6 +253,22 @@ function CasinoMeter({ eventId }) {
               result={state.result}
             />
           ) : null}
+           {buttonValue && (
+            <div
+              onClick={(e) => {
+                handleButtonValues();
+                e.stopPropagation();
+              }}
+              className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+              >
+                <ButtonValuesModal handleClose={handleButtonValues} />
+              </div>
+            </div>
+          )}
           {backBetModal && (
             <div
               className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -259,6 +284,7 @@ function CasinoMeter({ eventId }) {
                   LoadingBet={LoadingBet}
                   handleClose={handleClose}
                   updateStake={updateStake}
+                  handleButtonValues={handleButtonValues}
                   clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                 />
               </div>
@@ -267,8 +293,6 @@ function CasinoMeter({ eventId }) {
           )}
 
           <div className="lg:flex block w-full lg:pt-1 pt-0 scroll-md lg:space-x-2">
-
-
 
             <div className="lg:hidden block">
               <CasinoTab
@@ -519,10 +543,11 @@ function CasinoMeter({ eventId }) {
                       LoadingBet={LoadingBet}
                       handleClose={handleClose}
                       updateStake={updateStake}
+                      handleButtonValues={handleButtonValues}
                       clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                     />
                     }
-                  <MyBetHeader />
+                    <MyBetHeader />
                     <div className="pb-20">
                       <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                         <BetListTableDesktop betList={betList} />

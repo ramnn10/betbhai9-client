@@ -20,6 +20,7 @@ import { BsFillSuitHeartFill, BsSuitClubFill, BsSuitDiamondFill, BsSuitSpadeFill
 import { useDispatch } from "react-redux";
 import { casinoBetPlaceFunc } from "../../redux/reducers/casino.reducer";
 import MyBetHeader from "../../component/casinoComponent/MyBetHeader";
+import ButtonValuesModal from "../buttonvalues/ButtonValuesModal";
 
 function DragonTigerOneday({ eventId }) {
     const {
@@ -58,8 +59,7 @@ function DragonTigerOneday({ eventId }) {
         activeTab: 1,
     });
 
-
-
+    const [buttonValue, setbuttonValue] = useState(false);
 
     const handleBackOpen = (data) => {
         if (scrollTimeout.current) {
@@ -162,8 +162,15 @@ function DragonTigerOneday({ eventId }) {
     };
     const updateStackOnClick = (element) => setState({ ...state, betSlipData: { ...state.betSlipData, stake: Number(state.betSlipData.stake) + element } })
 
-
-
+    const handleButtonValues = (e) => {
+        setbuttonValue((prev) => !prev);
+        document.body.classList.toggle("StakeModalOpen");
+        // e.stopPropagation();
+        // setBetSlipData(prev => ({
+        //     ...prev,
+        //     count: value
+        // }));
+    };
 
     const { ResultModel, time, count, backBetModal, LoadingBet, clicked, activeTab } = state;
     let { data, result } = casinoData ? casinoData : {};
@@ -211,6 +218,22 @@ function DragonTigerOneday({ eventId }) {
                             result={state.result}
                         />
                     ) : null}
+                    {buttonValue && (
+                        <div
+                            onClick={(e) => {
+                                handleButtonValues();
+                                e.stopPropagation();
+                            }}
+                            className="fixed top-0  bg-black bg-opacity-55 left-0 w-full h-full flex items-start justify-center z-[99999]"
+                        >
+                            <div
+                                onClick={(e) => e.stopPropagation()}
+                                className="lg:w-[28%] md:w-[50%] w-full lg:p-2   "
+                            >
+                                <ButtonValuesModal handleClose={handleButtonValues} />
+                            </div>
+                        </div>
+                    )}
                     {backBetModal && (
                         <div
                             className="fixed inset-0 bg-black bg-opacity-50 lg:hidden  flex justify-center items-top py-0 z-50"
@@ -226,6 +249,7 @@ function DragonTigerOneday({ eventId }) {
                                     LoadingBet={LoadingBet}
                                     handleClose={handleClose}
                                     updateStake={updateStake}
+                                    handleButtonValues={handleButtonValues}
                                     clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                 />
                             </div>
@@ -664,7 +688,7 @@ function DragonTigerOneday({ eventId }) {
 
                                         <div className=" pb-20 bg-black/5 mt-0.5">
                                             <RoundedTabBmx />
-                             
+
                                             <div className="flex space-x-2 justify-end items-center py-1.5 px-2">
                                                 {result && result.length > 0 ? result.map((element, index) => (
                                                     <div key={index} onClick={() => handleResultModel(element)} className="bg-[var(--result-color)] w-7 h-7 cursor-pointer flex justify-center items-center rounded-full shadow-md border border-gray-700" >
@@ -683,10 +707,11 @@ function DragonTigerOneday({ eventId }) {
                                             LoadingBet={LoadingBet}
                                             handleClose={handleClose}
                                             updateStake={updateStake}
+                                            handleButtonValues={handleButtonValues}
                                             clearStake={() => setState({ ...state, betSlipData: { ...state.betSlipData, stake: '' } })}
                                         />
                                         }
-                                       <MyBetHeader />
+                                        <MyBetHeader />
                                         <div className="pb-20">
                                             <div className="space-y-[1px] bg-gray-200 pb-1 rounded">
                                                 <BetListTableDesktop betList={betList} />
